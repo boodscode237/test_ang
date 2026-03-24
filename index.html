@@ -1,566 +1,543 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>⚡ Tech Explorer Challenge | Ultimate Tech Master</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>🤖 Tech Explorer 2.0 | Functions · AI · Cyber · E‑commerce</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      background: linear-gradient(145deg, #f0f7ff 0%, #d9e6f5 100%);
-      font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, 'Inter', sans-serif;
-      padding: 2rem 1.5rem;
-      color: #0a2b3e;
-    }
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #f1f5f9;
+        }
 
-    .container {
-      max-width: 1300px;
-      margin: 0 auto;
-    }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
 
-    /* header */
-    .hero {
-      text-align: center;
-      background: #0a2b3e;
-      background-image: radial-gradient(circle at 10% 30%, #1e4a6e, #07212e);
-      padding: 2.2rem 1rem;
-      border-radius: 64px 64px 48px 48px;
-      margin-bottom: 2.5rem;
-      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.2);
-      border: 1px solid rgba(255,255,255,0.3);
-    }
+        /* header */
+        .hero {
+            text-align: center;
+            background: #0f172acc;
+            backdrop-filter: blur(8px);
+            border-radius: 3rem;
+            padding: 2rem 1rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid #3b82f6;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.4);
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #a5f3fc, #38bdf8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            margin-top: 0.5rem;
+        }
+        .badge {
+            background: #2563eb;
+            display: inline-block;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-weight: bold;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
 
-    .hero h1 {
-      font-size: 2.8rem;
-      background: linear-gradient(135deg, #FFE6B0, #FFB347);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      letter-spacing: -0.5px;
-    }
+        /* cards */
+        .challenge-card {
+            background: #1e293be6;
+            backdrop-filter: blur(4px);
+            border-radius: 2rem;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #334155;
+            transition: transform 0.2s;
+        }
+        .challenge-card:hover {
+            transform: translateY(-4px);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+        .card-header h2 {
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
+        .card-header span {
+            font-size: 2rem;
+        }
 
-    .hero p {
-      color: #e0f0ff;
-      font-size: 1.2rem;
-      margin-top: 0.6rem;
-      font-weight: 500;
-    }
-
-    .badge {
-      display: inline-block;
-      background: #ffb347;
-      color: #1e2f3a;
-      border-radius: 60px;
-      padding: 0.3rem 1.2rem;
-      font-weight: bold;
-      font-size: 0.85rem;
-      margin-top: 0.8rem;
-      box-shadow: inset 0 -1px 0 #ffdd99, 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    /* cards */
-    .challenge-card {
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(2px);
-      border-radius: 2rem;
-      padding: 1.8rem 2rem;
-      margin-bottom: 2.2rem;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-      transition: transform 0.2s ease;
-      border: 1px solid #ffffffaa;
-    }
-
-    .challenge-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border-bottom: 3px dashed #ffb347;
-      padding-bottom: 0.6rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .card-header h2 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #0f3b4f;
-    }
-
-    .card-header span {
-      font-size: 2rem;
-    }
-
-    /* matching style */
-    .matching-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: space-between;
-    }
-
-    .term-list, .def-list {
-      flex: 1;
-      min-width: 240px;
-      background: #fef9ef;
-      padding: 1rem;
-      border-radius: 1.5rem;
-    }
-
-    .term-item, .def-item {
-      background: white;
-      margin: 0.8rem 0;
-      padding: 0.7rem 1rem;
-      border-radius: 60px;
-      font-weight: 500;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      transition: all 0.2s;
-      border: 1px solid #e2e8f0;
-    }
-
-    .term-item.active, .def-item.active {
-      background: #ffe0b5;
-      border-left: 6px solid #ff9f2e;
-      transform: scale(1.01);
-    }
-
-    .matched {
-      background: #c8e6df;
-      text-decoration: line-through;
-      opacity: 0.7;
-      pointer-events: none;
-      filter: grayscale(0.1);
-      border-color: #2c7a5e;
-    }
-
-    .match-status {
-      margin-top: 1rem;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    button {
-      background: #0f3b4f;
-      border: none;
-      color: white;
-      font-weight: bold;
-      padding: 0.6rem 1.4rem;
-      border-radius: 40px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: all 0.2s;
-      margin-top: 0.8rem;
-      margin-right: 0.8rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    button:hover {
-      background: #ff8c2e;
-      transform: scale(0.98);
-    }
-
-    .grammar-input {
-      width: 100%;
-      padding: 10px;
-      border-radius: 28px;
-      border: 2px solid #cbd5e1;
-      margin: 8px 0;
-      font-family: monospace;
-    }
-
-    .quiz-question {
-      background: #f8fafc;
-      margin: 1rem 0;
-      padding: 1rem;
-      border-radius: 1.2rem;
-      border-left: 10px solid #ffb347;
-    }
-
-    .quiz-question p {
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .quiz-question label {
-      display: block;
-      margin: 6px 0 6px 20px;
-    }
-
-    .score-area {
-      font-size: 1.3rem;
-      font-weight: bold;
-      background: #07212e;
-      display: inline-block;
-      padding: 0.3rem 1rem;
-      border-radius: 30px;
-      color: #ffdd99;
-    }
-
-    .story-box {
-      background: #eef4ff;
-      padding: 1.2rem;
-      border-radius: 1.5rem;
-      margin-bottom: 1.5rem;
-      font-size: 0.98rem;
-      line-height: 1.5;
-      border: 1px solid #bdd4ff;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 2rem;
-      color: #2c5a6e;
-    }
-
-    @media (max-width: 700px) {
-      .matching-grid {
-        flex-direction: column;
-      }
-      .hero h1 {
-        font-size: 2rem;
-      }
-      .challenge-card {
-        padding: 1.2rem;
-      }
-    }
-  </style>
+        /* matching layout */
+        .matching-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+        }
+        .term-list, .def-list {
+            flex: 1;
+            background: #0f172a;
+            padding: 1rem;
+            border-radius: 1.5rem;
+        }
+        .term-item, .def-item {
+            background: #334155;
+            margin: 0.8rem 0;
+            padding: 0.7rem 1rem;
+            border-radius: 60px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #475569;
+        }
+        .term-item.active, .def-item.active {
+            background: #3b82f6;
+            border-left: 6px solid #facc15;
+            transform: scale(1.01);
+        }
+        .matched {
+            background: #2dd4bf;
+            color: #0f172a;
+            text-decoration: line-through;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        button {
+            background: #3b82f6;
+            border: none;
+            color: white;
+            font-weight: bold;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-top: 1rem;
+            margin-right: 0.8rem;
+            transition: 0.2s;
+        }
+        button:hover {
+            background: #facc15;
+            color: #0f172a;
+        }
+        .grammar-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 28px;
+            border: none;
+            background: #0f172a;
+            color: white;
+            margin: 8px 0;
+            border: 1px solid #3b82f6;
+        }
+        .quiz-question {
+            background: #0f172a;
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 1.2rem;
+            border-left: 8px solid #facc15;
+        }
+        .story-box {
+            background: #0f172a;
+            padding: 1.2rem;
+            border-radius: 1.5rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #94a3b8;
+        }
+        @media (max-width: 700px) {
+            .matching-grid {
+                flex-direction: column;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+        .success-msg {
+            color: #2dd4bf;
+            font-weight: bold;
+        }
+        .radio-group {
+            margin-left: 1rem;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
-  <div class="hero">
-    <h1>⚡ ULTIMATE TECH EXPLORER ⚡</h1>
-    <p>🔧 Vocabulary · Grammar · Reading · Cyber skills 🔐</p>
-    <div class="badge">🏆 Complete all challenges → become a Tech Master!</div>
-  </div>
+    <div class="hero">
+        <h1>🛡️ TECH EXPLORER 2.0</h1>
+        <p>Functions · Bugs · AI · Cybersecurity · E‑commerce · IT Careers</p>
+        <div class="badge">🎮 Play & Learn → become a Cyber‑Coding Master!</div>
+    </div>
 
-  <!-- CHALLENGE 1: VOCAB MATCH-UP (interactive click-to-match) -->
-  <div class="challenge-card">
-    <div class="card-header">
-      <span>🧩</span>
-      <h2>Challenge 1: Vocabulary Match-Up</h2>
+    <!-- ========== CHALLENGE 1: VOCABULARY MATCH-UP (New Terms) ========== -->
+    <div class="challenge-card">
+        <div class="card-header">
+            <span>🧠</span>
+            <h2>Challenge 1: Tech Vault Match</h2>
+        </div>
+        <p>🔗 Match the tech term with its correct definition. Click a term, then a definition.</p>
+        <div class="matching-grid" id="matchingGridNew"></div>
+        <div id="matchMessageNew" style="margin-top: 12px; font-weight:bold;"></div>
+        <button id="resetMatchNew">⟳ Reset Matching</button>
+        <button id="checkMatchNew">✅ Check Progress</button>
     </div>
-    <p><strong>⚡ How to play:</strong> Click a <span style="background:#ffe0b5;">TERM</span> on the left, then click a <span style="background:#ffe0b5;">DEFINITION</span> on the right to match them. Matched pairs will be crossed out. Complete all 7 matches!</p>
-    <div class="matching-grid" id="matchingGrid">
-      <!-- dynamically filled by js -->
-    </div>
-    <div id="matchMessage" style="text-align:center; margin-top: 12px; font-weight:bold;"></div>
-    <button id="resetMatchBtn">⟳ Reset Matching</button>
-    <button id="checkMatchBtn">✅ Check My Matches</button>
-  </div>
 
-  <!-- CHALLENGE 2: GRAMMAR FIX-IT (Present Simple) -->
-  <div class="challenge-card">
-    <div class="card-header">
-      <span>✍️</span>
-      <h2>Challenge 2: Grammar Fix-It</h2>
+    <!-- ========== CHALLENGE 2: GRAMMAR WORKSHOP (Relative Clauses, Future, Comparatives) ========== -->
+    <div class="challenge-card">
+        <div class="card-header">
+            <span>✍️</span>
+            <h2>Challenge 2: Grammar Builder</h2>
+        </div>
+        <p><strong>🔧 Relative Clauses with WHO</strong> – Combine the sentences using "who".</p>
+        <div id="relativeClauses"></div>
+        <p><strong>🤖 Future & Ability</strong> – Fill in will / won't / can / could.</p>
+        <div id="futureAbility"></div>
+        <p><strong>⚡ Comparatives</strong> – Write the correct form (faster than / more intelligent than).</p>
+        <div id="comparatives"></div>
+        <button id="checkGrammarBtn2">✨ Check All Grammar</button>
+        <div id="grammarResult2" style="margin-top: 15px; font-weight:bold;"></div>
     </div>
-    <p>Rewrite each sentence correctly. (Present Simple: I/You/We/They = base verb, He/She/It = verb+s)</p>
-    <div id="grammarSentences"></div>
-    <button id="checkGrammarBtn">✨ Check Grammar</button>
-    <div id="grammarResult" style="margin-top: 15px; font-weight:bold;"></div>
-  </div>
 
-  <!-- CHALLENGE 3: LONG READING COMPREHENSION (20 questions) -->
-  <div class="challenge-card">
-    <div class="card-header">
-      <span>📖</span>
-      <h2>Challenge 3: The Great Digital Adventure</h2>
+    <!-- ========== CHALLENGE 3: LONG READING COMPREHENSION (20 questions) ========== -->
+    <div class="challenge-card">
+        <div class="card-header">
+            <span>📖</span>
+            <h2>Challenge 3: The Digital Detective Story</h2>
+        </div>
+        <div class="story-box">
+            <strong>🕵️ A Day in the Digital City – Read carefully!</strong><br><br>
+            Maya is a 14‑year‑old who dreams of becoming a software developer. One afternoon, she was testing a <strong>function</strong> she wrote for a game – a small piece of code that made her character <strong>jump()</strong>. But something was wrong: the character jumped through walls! That was a <strong>bug</strong>, specifically a <strong>logic error</strong>. Maya started <strong>debugging</strong> and found that she forgot to add a parameter that checks for walls.<br><br>
+            Later, her friend Leo sent her a link to “free coins” for another game. Maya remembered her <strong>cybersecurity</strong> lessons: it could be a <strong>phishing</strong> attack or even a <strong>Trojan</strong> hiding inside. She also knew that a <strong>firewall</strong> and <strong>antivirus</strong> are essential defenses. She blocked the message.<br><br>
+            At school, they learned about <strong>Artificial Intelligence</strong>. A <strong>neural network</strong> uses <strong>layers</strong> of <strong>neurons</strong> to recognize patterns. For example, a <strong>chatbot</strong> like Siri uses <strong>machine learning</strong> to understand voice commands. Maya’s teacher explained that <strong>algorithms</strong> are like recipes, and <strong>training data</strong> helps AI make <strong>predictions</strong>.<br><br>
+            On her phone, Maya installed a new <strong>mobile app</strong> from the <strong>App Store</strong>. She checked the <strong>permissions</strong> – why would a calculator need her <strong>location</strong>? She denied it. Later she bought a game using a <strong>digital wallet</strong> and got a <strong>receipt</strong> by email. She also wrote a <strong>review</strong> (5 stars) for the game.<br><br>
+            Finally, Maya helped her cousin create a strong <strong>password</strong> and turn on <strong>2‑step login</strong> for social media. She explained that <strong>encryption</strong> scrambles data so hackers can’t read it. Maya felt like a true tech detective. She even used a <strong>tracking number</strong> to follow an online order for new headphones. The future is bright with AI, but we must stay cyber‑smart!
+        </div>
+        <div id="readingQuestionsNew"></div>
+        <button id="submitReadingNew">🏆 Submit Reading Quiz</button>
+        <div id="readingScoreNew" style="margin-top: 20px; font-size:1.2rem; font-weight:bold;"></div>
     </div>
-    <div class="story-box">
-      <strong>📘 Read the story carefully:</strong><br><br>
-      Lena is a 13-year-old student who loves technology. Every day after school, she uses her <strong>laptop</strong> to explore the digital world. Her laptop has a fast <strong>SSD</strong>, so it starts up in seconds. For her school project, she needs to create a presentation about "How the Internet Works."<br><br>
-      First, Lena <strong>opens</strong> her <strong>browser</strong>, Chrome. She <strong>types</strong> the <strong>URL</strong> <code>www.kidzexplore.com</code> into the <strong>address bar</strong> and presses Enter. Her computer breaks this request into tiny <strong>data packets</strong>. A <strong>router</strong> in her house directs these packets through the <strong>internet</strong>—a giant <strong>network of networks</strong>—to a powerful <strong>server</strong>. The server finds the website and sends the data packets back. Lena's laptop receives them and puts them back together to <strong>display</strong> the webpage. The whole process takes only a few seconds!<br><br>
-      The website has a fun game about <strong>databases</strong>. Lena learns that a database is like a digital <strong>filing cabinet</strong>. In the game, she organizes a <strong>table</strong> for a school library. Each <strong>row</strong> in the table is a <strong>record</strong> for one book (Title, Author, Year). Each <strong>column</strong> is a <strong>field</strong>, like "Author Name." She also learns about a <strong>Unique ID</strong>—a special number that is different for every book, so you can tell them apart even if they have the same title.<br><br>
-      Later, Lena wants to share her project with her friend, Sam. She decides to <strong>upload</strong> it to the <strong>cloud</strong> using her Google Drive. She knows the cloud isn't actually in the sky; it's just data stored on a big <strong>server</strong> in a <strong>data center</strong> somewhere in the world. She attaches her file, which is 5 <strong>megabytes</strong> (MB), and clicks "Send."<br><br>
-      After her homework is done, Lena wants to relax. She opens her favorite online game. But when she logs in, she gets a strange message from a user named "GameMaster99." The message says, "Click this link for free game money!" The link has a strange <strong>URL</strong>. Lena remembers the lessons from her <strong>cybersecurity</strong> class. She knows about <strong>trick messages</strong> and <strong>fake profiles</strong>. She doesn't click the link. Instead, she <strong>closes</strong> the message and <strong>reports</strong> the user.<br><br>
-      Later, she video calls Sam to tell him about the message. Sam says he got a similar one. They agree it's important to have strong passwords and never share them. They also talk about how <strong>cyberbullying</strong> can happen and why it's important to <strong>save the proof</strong> and tell a trusted adult. Lena feels good knowing she is a smart and safe digital citizen.
-    </div>
-    <div id="readingQuestions"></div>
-    <button id="submitReadingBtn">🏁 Submit Reading Quiz</button>
-    <div id="readingScore" style="margin-top: 20px; font-size:1.2rem; font-weight:bold;"></div>
-  </div>
 
-  <!-- CHALLENGE 4: Two Truths and a Lie (playful) -->
-  <div class="challenge-card">
-    <div class="card-header">
-      <span>🎭</span>
-      <h2>Challenge 4: Two Truths and a Lie (Tech Edition)</h2>
+    <!-- ========== CHALLENGE 4: Playful Interactive – Bug Detective & Safety ========== -->
+    <div class="challenge-card">
+        <div class="card-header">
+            <span>🐞</span>
+            <h2>Challenge 4: Debug & Secure – Mini Game</h2>
+        </div>
+        <p><strong>🔍 Spot the Bug!</strong> Read the scenario and choose the correct fix.</p>
+        <div id="bugGame"></div>
+        <p><strong>🛡️ Permission Police & Strong Password</strong></p>
+        <div id="securityGame"></div>
+        <button id="checkMiniGameBtn">🎯 Submit Mini Game Answers</button>
+        <div id="miniGameResult" style="margin-top: 12px;"></div>
     </div>
-    <p><strong>Example:</strong><br>
-    ✅ I upload photos to the cloud every day.<br>
-    ❌ A mouse is an example of software. (Lie!)<br>
-    ✅ I use a browser to visit websites.</p>
-    <p>👉 Write YOUR three tech sentences below. Two truths, one lie. Share with a friend and let them guess!</p>
-    <textarea id="truthLieInput" rows="4" style="width:100%; border-radius:20px; padding:12px; border:2px solid #ffb347; font-family:inherit;" placeholder="1. ...&#10;2. ...&#10;3. ..."></textarea>
-    <button id="clearTruthBtn">✏️ Clear / New</button>
-  </div>
-  <footer>🌟 Tech Master Challenge — based on real IT vocabulary, grammar & cybersecurity. Keep exploring!</footer>
+
+    <footer>🌟 Tech Explorer 2.0 – Functions, AI, Cybersecurity, E‑commerce & more. Keep exploring safely!</footer>
 </div>
 
 <script>
-  // ---------- CHALLENGE 1: interactive matching (term + definition) ----------
-  const termsData = [
-    { term: "Hardware", definition: "The parts of a computer you can touch, like the mouse and keyboard." },
-    { term: "Software", definition: "The programs and apps on a computer that you cannot touch." },
-    { term: "CPU", definition: "The 'brain' of the computer that processes information." },
-    { term: "URL", definition: "The easy-to-remember address of a website (e.g., www.google.com)." },
-    { term: "Browser", definition: "A program that helps you find and view websites (e.g., Chrome)." },
-    { term: "Server", definition: "A powerful computer that sends information to your browser." },
-    { term: "IP Address", definition: "A unique number address for every device on a network (e.g., 192.168.1.1)." }
-  ];
+    // ---------- CHALLENGE 1: VOCAB MATCHING (12 new terms from new slides) ----------
+    const termsNew = [
+        { term: "Function", def: "A small set of instructions with one specific job (like jump())." },
+        { term: "Bug", def: "A mistake in a program that makes it behave incorrectly." },
+        { term: "Phishing", def: "Fake emails or messages that trick you into giving personal info." },
+        { term: "Firewall", def: "A barrier that stops bad data from entering your network." },
+        { term: "Machine Learning", def: "Computers learn from examples (data) instead of strict rules." },
+        { term: "Neural Network", def: "A program built to mimic the human brain with layers of neurons." },
+        { term: "E‑commerce", def: "Buying and selling products on the internet." },
+        { term: "Username", def: "The unique name you use online, often starting with @." },
+        { term: "Algorithm", def: "A set of math rules or steps to solve a problem." },
+        { term: "Permissions", def: "What you allow an app to access on your device (camera, location)." },
+        { term: "Digital Wallet", def: "Paying with an app on your phone (Apple Pay, Google Pay)." },
+        { term: "Encryption", def: "Scrambling data so only authorized people can read it." }
+    ];
+    let matchesNew = new Array(termsNew.length).fill(false);
+    let selectedTermNew = null;
+    let selectedDefNew = null;
+    let defShuffleNew = [];
 
-  let matches = new Array(termsData.length).fill(false); // matched definitions for each term index
-  let selectedTermIdx = null;
-  let selectedDefIdx = null;
-  let definitionsRemaining = [];
-
-  function shuffleArray(arr) {
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
+    function shuffleArrayNew(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
     }
-    return arr;
-  }
 
-  function buildMatchingUI() {
-    // reset selections
-    selectedTermIdx = null;
-    selectedDefIdx = null;
-    // create shuffled definitions with original index
-    let defArray = termsData.map((item, idx) => ({ def: item.definition, originalIdx: idx }));
-    definitionsRemaining = shuffleArray([...defArray]);
-    
-    const container = document.getElementById('matchingGrid');
-    container.innerHTML = `
-      <div class="term-list"><h3>📌 TERMS</h3><div id="termItemsContainer"></div></div>
-      <div class="def-list"><h3>📖 DEFINITIONS</h3><div id="defItemsContainer"></div></div>
-    `;
-    const termContainer = document.getElementById('termItemsContainer');
-    const defContainer = document.getElementById('defItemsContainer');
-    
-    // render terms
-    termsData.forEach((item, idx) => {
-      const termDiv = document.createElement('div');
-      termDiv.className = 'term-item';
-      if (matches[idx]) termDiv.classList.add('matched');
-      termDiv.textContent = item.term;
-      termDiv.dataset.termIdx = idx;
-      termDiv.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (matches[idx]) return;
-        // remove active class from all terms
-        document.querySelectorAll('.term-item').forEach(el => el.classList.remove('active'));
-        termDiv.classList.add('active');
-        selectedTermIdx = idx;
-        selectedDefIdx = null;
-        document.querySelectorAll('.def-item').forEach(el => el.classList.remove('active'));
-      });
-      termContainer.appendChild(termDiv);
-    });
-    
-    // render shuffled definitions
-    definitionsRemaining.forEach((defObj, displayIdx) => {
-      const defDiv = document.createElement('div');
-      defDiv.className = 'def-item';
-      defDiv.textContent = defObj.def;
-      defDiv.dataset.defOriginalIdx = defObj.originalIdx;
-      defDiv.dataset.displayIdx = displayIdx;
-      defDiv.addEventListener('click', (e) => {
-        if (matches[defObj.originalIdx]) return;
-        document.querySelectorAll('.def-item').forEach(el => el.classList.remove('active'));
-        defDiv.classList.add('active');
-        selectedDefIdx = defObj.originalIdx;
-        if (selectedTermIdx !== null) {
-          // try to make match
-          if (selectedTermIdx === selectedDefIdx && !matches[selectedTermIdx]) {
-            // correct match
-            matches[selectedTermIdx] = true;
-            // refresh UI
-            buildMatchingUI();
-            document.getElementById('matchMessage').innerHTML = '✅ Good match! Keep going!';
-            if (matches.every(v => v === true)) {
-              document.getElementById('matchMessage').innerHTML = '🎉 PERFECT! You mastered the vocabulary! 🎉';
+    function buildMatchingNew() {
+        selectedTermNew = null;
+        selectedDefNew = null;
+        const defArray = termsNew.map((item, idx) => ({ def: item.def, originalIdx: idx }));
+        defShuffleNew = shuffleArrayNew([...defArray]);
+        const container = document.getElementById('matchingGridNew');
+        container.innerHTML = `
+            <div class="term-list"><h3>📡 TECH TERMS</h3><div id="termItemsNew"></div></div>
+            <div class="def-list"><h3>🔍 DEFINITIONS</h3><div id="defItemsNew"></div></div>
+        `;
+        const termCont = document.getElementById('termItemsNew');
+        const defCont = document.getElementById('defItemsNew');
+        // terms
+        termsNew.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = 'term-item';
+            if (matchesNew[idx]) div.classList.add('matched');
+            div.textContent = item.term;
+            div.dataset.termIdx = idx;
+            div.addEventListener('click', () => {
+                if (matchesNew[idx]) return;
+                document.querySelectorAll('#termItemsNew .term-item').forEach(el => el.classList.remove('active'));
+                div.classList.add('active');
+                selectedTermNew = idx;
+                if (selectedDefNew !== null) attemptMatchNew(selectedTermNew, selectedDefNew);
+            });
+            termCont.appendChild(div);
+        });
+        // shuffled definitions
+        defShuffleNew.forEach((defObj, displayIdx) => {
+            const div = document.createElement('div');
+            div.className = 'def-item';
+            div.textContent = defObj.def;
+            div.dataset.defOriginalIdx = defObj.originalIdx;
+            div.addEventListener('click', () => {
+                if (matchesNew[defObj.originalIdx]) return;
+                document.querySelectorAll('#defItemsNew .def-item').forEach(el => el.classList.remove('active'));
+                div.classList.add('active');
+                selectedDefNew = defObj.originalIdx;
+                if (selectedTermNew !== null) attemptMatchNew(selectedTermNew, selectedDefNew);
+            });
+            defCont.appendChild(div);
+        });
+    }
+
+    function attemptMatchNew(termIdx, defIdx) {
+        if (matchesNew[termIdx] || matchesNew[defIdx]) return;
+        if (termIdx === defIdx) {
+            matchesNew[termIdx] = true;
+            document.getElementById('matchMessageNew').innerHTML = '✅ Correct match! Keep going.';
+            buildMatchingNew();
+            if (matchesNew.every(v => v === true)) {
+                document.getElementById('matchMessageNew').innerHTML = '🎉 PERFECT! Vocabulary master unlocked! 🎉';
             }
-          } else {
-            document.getElementById('matchMessage').innerHTML = '❌ Wrong match! Try again.';
+        } else {
+            document.getElementById('matchMessageNew').innerHTML = '❌ Oops! Not the right match. Try again.';
             // clear active classes
             document.querySelectorAll('.term-item, .def-item').forEach(el => el.classList.remove('active'));
-            selectedTermIdx = null;
-            selectedDefIdx = null;
-          }
-        } else {
-          // select definition first? we allow selecting definition then term
-          selectedDefIdx = defObj.originalIdx;
+            selectedTermNew = null;
+            selectedDefNew = null;
         }
-      });
-      defContainer.appendChild(defDiv);
-    });
-    
-    // if we have selectedDefIdx but no term, we allow term selection after
-    if (selectedDefIdx !== null && selectedTermIdx === null) {
-      // highlight the definition
-      document.querySelectorAll('.def-item').forEach(el => {
-        if (el.dataset.defOriginalIdx == selectedDefIdx) el.classList.add('active');
-      });
     }
-  }
-  
-  function resetMatching() {
-    matches.fill(false);
-    buildMatchingUI();
-    document.getElementById('matchMessage').innerHTML = 'Matches reset. Start pairing!';
-  }
-  
-  function checkMatches() {
-    const allMatched = matches.every(v => v === true);
-    if (allMatched) {
-      document.getElementById('matchMessage').innerHTML = '🏅 CHALLENGE 1 COMPLETE! Perfect matches! 🏅';
-    } else {
-      const remaining = matches.filter(m => !m).length;
-      document.getElementById('matchMessage').innerHTML = `📌 You have ${remaining} match(es) left. Keep pairing!`;
+
+    function resetMatchNew() {
+        matchesNew.fill(false);
+        buildMatchingNew();
+        document.getElementById('matchMessageNew').innerHTML = 'Matches reset. Start pairing!';
     }
-  }
-  
-  // ---------- GRAMMAR ----------
-  const grammarItems = [
-    { wrong: "The website (load) slowly.", correct: "The website loads slowly.", hint: "He/She/It ➕ -s" },
-    { wrong: "I (types) my name in the search box.", correct: "I type my name in the search box.", hint: "I ➕ base verb" },
-    { wrong: "She (search) for games.", correct: "She searches for games.", hint: "add -es after ch/sh/s" },
-    { wrong: "We (always) (is) careful online.", correct: "We are always careful online.", hint: "We ➕ are / adverb after be" }
-  ];
-  
-  function buildGrammarUI() {
-    const container = document.getElementById('grammarSentences');
-    container.innerHTML = '';
-    grammarItems.forEach((item, idx) => {
-      const div = document.createElement('div');
-      div.style.marginBottom = '1rem';
-      div.innerHTML = `
-        <p><strong>${item.wrong}</strong></p>
-        <input type="text" id="grammarInput${idx}" class="grammar-input" placeholder="Type corrected sentence...">
-        <small style="color:#ff8c2e;">🔎 ${item.hint}</small>
-      `;
-      container.appendChild(div);
-    });
-  }
-  
-  function checkGrammar() {
-    let correctCount = 0;
-    const userAnswers = [];
-    grammarItems.forEach((item, idx) => {
-      const input = document.getElementById(`grammarInput${idx}`);
-      const userVal = input.value.trim().toLowerCase().replace(/\.+$/, '');
-      const expected = item.correct.toLowerCase().replace(/\.+$/, '');
-      if (userVal === expected) {
-        correctCount++;
-        input.style.borderColor = "#2ecc71";
-        input.style.backgroundColor = "#e6f9ed";
-      } else {
-        input.style.borderColor = "#e74c3c";
-        input.style.backgroundColor = "#ffe9e6";
-      }
-    });
-    const resultDiv = document.getElementById('grammarResult');
-    resultDiv.innerHTML = `✍️ Grammar score: ${correctCount}/${grammarItems.length} correct. ${correctCount === grammarItems.length ? 'Perfect grammar! +10 tech points!' : 'Check hints and try again!'}`;
-  }
-  
-  // ---------- READING COMPREHENSION (20 questions) ----------
-  const readingQuestions = [
-    { text: "What does Lena use after school?", options: ["A desktop computer", "A laptop", "A tablet"], correct: 1 },
-    { text: "Why does her laptop start up quickly?", options: ["It has a new battery", "It has a fast SSD", "It has a lot of RAM"], correct: 1 },
-    { text: "What does Lena open to start her internet search?", options: ["A game", "A file", "A browser"], correct: 2 },
-    { text: "What is the URL she types?", options: ["www.google.com", "www.kidzexplore.com", "www.myproject.com"], correct: 1 },
-    { text: "What are the tiny pieces of information called when sent over the internet?", options: ["Data files", "Data packets", "Data gigabytes"], correct: 1 },
-    { text: "What device in her house directs these packets?", options: ["A server", "A modem", "A router"], correct: 2 },
-    { text: "What is the internet described as?", options: ["A single computer", "A network of networks", "A type of software"], correct: 1 },
-    { text: "What sends the website back to Lena?", options: ["A client", "A server", "A URL"], correct: 1 },
-    { text: "What is a database compared to?", options: ["A digital toy box", "A digital filing cabinet", "A digital playground"], correct: 1 },
-    { text: "In a database table, what is a complete row called?", options: ["A field", "A record", "A cell"], correct: 1 },
-    { text: "What is a column in a database table called?", options: ["A record", "A field", "A table"], correct: 1 },
-    { text: "What is a Unique ID used for?", options: ["To make data look pretty", "To identify one specific record", "To sort data alphabetically"], correct: 1 },
-    { text: "Where does Lena upload her project?", options: ["To a USB drive", "To the cloud", "To her local hard drive"], correct: 1 },
-    { text: "What is the cloud made of?", options: ["Special wireless signals", "Data in the sky", "Servers in data centers"], correct: 2 },
-    { text: "What was the size of the file Lena uploaded?", options: ["5 gigabytes (GB)", "5 megabytes (MB)", "5 bytes"], correct: 1 },
-    { text: "What did the message from 'GameMaster99' want Lena to do?", options: ["Share her password", "Click a strange link", "Send her address"], correct: 1 },
-    { text: "What is the term for a message that tries to trick you?", options: ["A fake profile", "A trick message", "A strong password"], correct: 1 },
-    { text: "What did Lena do when she got the suspicious message?", options: ["She clicked the link", "She closed it and reported the user", "She shared it with her friend"], correct: 1 },
-    { text: "What is one thing Lena and Sam discussed to stay safe?", options: ["Using the same password", "Never sharing their passwords", "Clicking on every link"], correct: 1 },
-    { text: "What should you do if you see mean comments or cyberbullying?", options: ["Delete messages and ignore", "Send mean messages back", "Save the proof and tell a trusted adult"], correct: 2 }
-  ];
-  
-  function buildReadingQuiz() {
-    const container = document.getElementById('readingQuestions');
-    container.innerHTML = '';
-    readingQuestions.forEach((q, idx) => {
-      const div = document.createElement('div');
-      div.className = 'quiz-question';
-      div.innerHTML = `<p>${idx+1}. ${q.text}</p>`;
-      q.options.forEach((opt, optIdx) => {
-        const radioId = `q${idx}_opt${optIdx}`;
-        div.innerHTML += `
-          <label style="display:block; margin-left:1rem;">
-            <input type="radio" name="q${idx}" value="${optIdx}"> ${opt}
-          </label>
-        `;
-      });
-      container.appendChild(div);
-    });
-  }
-  
-  function evaluateReading() {
-    let score = 0;
-    for (let i = 0; i < readingQuestions.length; i++) {
-      const radios = document.getElementsByName(`q${i}`);
-      let selectedVal = null;
-      for (let j = 0; j < radios.length; j++) {
-        if (radios[j].checked) {
-          selectedVal = parseInt(radios[j].value);
-          break;
+    function checkMatchNew() {
+        let remaining = matchesNew.filter(m => !m).length;
+        if (remaining === 0) document.getElementById('matchMessageNew').innerHTML = '🏅 CHALLENGE 1 COMPLETE! All terms matched!';
+        else document.getElementById('matchMessageNew').innerHTML = `📌 ${remaining} match(es) left. Keep pairing!`;
+    }
+
+    // ---------- CHALLENGE 2: GRAMMAR ----------
+    const relativeItems = [
+        { job: "A Cyber Security Expert", action: "protects data from bad hackers." },
+        { job: "A Game Developer", action: "uses code and art to make video games." },
+        { job: "A Data Scientist", action: "studies large amounts of information to help businesses." }
+    ];
+    const futureAbilityItems = [
+        { text: "In 2050, robots ______ (cook) our dinner.", correct: "will cook" },
+        { text: "I ______ (can) speak three languages now.", correct: "can" },
+        { text: "AI ______ (could) help doctors cure diseases in the future.", correct: "could" },
+        { text: "People ______ (not / drive) cars in 100 years.", correct: "won't drive" }
+    ];
+    const comparativeItems = [
+        { text: "A computer is ______ (fast) a human.", correct: "faster than" },
+        { text: "Neural networks are ______ (intelligent) simple calculators.", correct: "more intelligent than" }
+    ];
+
+    function buildGrammarUI() {
+        // relative clauses
+        let htmlRel = '';
+        relativeItems.forEach((item, idx) => {
+            htmlRel += `<div style="margin-bottom:1rem;"><strong>✏️ ${item.job}</strong> → They ${item.action}<br>
+            <input type="text" id="rel${idx}" class="grammar-input" placeholder='Combine: "${item.job} is a person who ..."'></div>`;
+        });
+        document.getElementById('relativeClauses').innerHTML = htmlRel;
+
+        let futureHtml = '';
+        futureAbilityItems.forEach((item, idx) => {
+            futureHtml += `<div><p>🔮 ${item.text}</p><input type="text" id="future${idx}" class="grammar-input" placeholder="Type answer"></div>`;
+        });
+        document.getElementById('futureAbility').innerHTML = futureHtml;
+
+        let compHtml = '';
+        comparativeItems.forEach((item, idx) => {
+            compHtml += `<div><p>📊 ${item.text}</p><input type="text" id="comp${idx}" class="grammar-input" placeholder="e.g., faster than"></div>`;
+        });
+        document.getElementById('comparatives').innerHTML = compHtml;
+    }
+
+    function checkAllGrammar() {
+        let score = 0, total = relativeItems.length + futureAbilityItems.length + comparativeItems.length;
+        // relative clauses - expected pattern
+        const relExpected = [
+            "A Cyber Security Expert is a person who protects data from bad hackers.",
+            "A Game Developer is a person who uses code and art to make video games.",
+            "A Data Scientist is a person who studies large amounts of information to help businesses."
+        ];
+        for (let i=0; i<relativeItems.length; i++) {
+            const val = document.getElementById(`rel${i}`)?.value.trim().toLowerCase().replace(/\.$/, '');
+            if (val === relExpected[i].toLowerCase()) score++;
         }
-      }
-      if (selectedVal === readingQuestions[i].correct) score++;
+        for (let i=0; i<futureAbilityItems.length; i++) {
+            const val = document.getElementById(`future${i}`)?.value.trim().toLowerCase().replace(/\.$/, '');
+            if (val === futureAbilityItems[i].correct.toLowerCase()) score++;
+        }
+        for (let i=0; i<comparativeItems.length; i++) {
+            const val = document.getElementById(`comp${i}`)?.value.trim().toLowerCase().replace(/\.$/, '');
+            if (val === comparativeItems[i].correct.toLowerCase()) score++;
+        }
+        document.getElementById('grammarResult2').innerHTML = `📝 Grammar score: ${score}/${total}. ${score===total ? '🌟 Excellent grammar skills!' : 'Check your answers and try again!'}`;
     }
-    const total = readingQuestions.length;
-    let message = `📊 Reading Score: ${score}/${total}`;
-    if (score === total) message += " 🌟🌟🌟 PERFECT READER! You're a digital guru! 🌟🌟🌟";
-    else if (score >= 16) message += " 🔥 Great job! Almost there!";
-    else if (score >= 10) message += " 👍 Good effort! Re-read the story to boost.";
-    else message += " 📚 Try reading the story again — you'll get it!";
-    document.getElementById('readingScore').innerHTML = message;
-  }
-  
-  // ---------- INITIALIZE EVERYTHING ----------
-  function init() {
-    buildMatchingUI();
-    buildGrammarUI();
-    buildReadingQuiz();
-    document.getElementById('resetMatchBtn').addEventListener('click', resetMatching);
-    document.getElementById('checkMatchBtn').addEventListener('click', checkMatches);
-    document.getElementById('checkGrammarBtn').addEventListener('click', checkGrammar);
-    document.getElementById('submitReadingBtn').addEventListener('click', evaluateReading);
-    document.getElementById('clearTruthBtn').addEventListener('click', () => {
-      document.getElementById('truthLieInput').value = '';
-    });
-    // Example placeholder for two truths
-    const textarea = document.getElementById('truthLieInput');
-    if (!textarea.value) {
-      textarea.placeholder = "1. I can name 3 computer parts in English.\n2. I have visited a data center.\n3. I never use the cloud.";
+
+    // ---------- READING COMPREHENSION (20 questions based on story) ----------
+    const readingQuestionsNew = [
+        { text: "What was the logic error in Maya's game?", options: ["Character jumped too high", "Character jumped through walls", "Game crashed"], correct: 1 },
+        { text: "What does 'debugging' mean?", options: ["Adding new features", "Finding and fixing bugs", "Installing software"], correct: 1 },
+        { text: "What kind of attack could the 'free coins' link be?", options: ["Phishing", "Firewall", "Encryption"], correct: 0 },
+        { text: "Which malware hides inside something that looks safe?", options: ["Worm", "Trojan", "Spyware"], correct: 1 },
+        { text: "What does a firewall do?", options: ["Blocks bad data", "Speeds up internet", "Creates passwords"], correct: 0 },
+        { text: "What does a neural network use to recognize patterns?", options: ["Layers of neurons", "Only one algorithm", "USB drives"], correct: 0 },
+        { text: "What is a chatbot like Siri an example of?", options: ["Machine Learning & AI", "Simple calculator", "Virus"], correct: 0 },
+        { text: "What are algorithms similar to?", options: ["Recipes", "Hackers", "Passwords"], correct: 0 },
+        { text: "When Maya installed a mobile app, what did she check?", options: ["Permissions", "Screen size", "Battery level"], correct: 0 },
+        { text: "Why did she deny location access to a calculator app?", options: ["It didn't need it", "It cost money", "It was a virus"], correct: 0 },
+        { text: "What is a digital wallet?", options: ["A physical wallet", "An app to pay with phone", "A bank check"], correct: 1 },
+        { text: "What does a receipt prove?", options: ["That you paid", "That you have a virus", "Your username"], correct: 0 },
+        { text: "What is a strong password example from the lesson?", options: ["123456", "PizzaRocket99!", "password"], correct: 1 },
+        { text: "What does encryption do?", options: ["Scrambles data", "Deletes files", "Speeds up computer"], correct: 0 },
+        { text: "What helps you follow an online order package?", options: ["Tracking number", "Shopping cart", "Password"], correct: 0 },
+        { text: "What is the main idea of cybersecurity?", options: ["Protecting data from bad people", "Downloading games", "Making social media posts"], correct: 0 },
+        { text: "What is a function in programming?", options: ["A bug", "A set of instructions with one job", "A type of hacker"], correct: 1 },
+        { text: "Why is 2‑step login useful?", options: ["Adds extra security", "Makes password visible", "Slows down hackers only"], correct: 0 },
+        { text: "What did Maya write after buying the game?", options: ["A review", "A bug", "A virus"], correct: 0 },
+        { text: "What is training data used for in machine learning?", options: ["To teach AI using examples", "To crash computers", "To steal passwords"], correct: 0 }
+    ];
+
+    function buildReadingQuiz() {
+        const container = document.getElementById('readingQuestionsNew');
+        container.innerHTML = '';
+        readingQuestionsNew.forEach((q, idx) => {
+            const div = document.createElement('div');
+            div.className = 'quiz-question';
+            div.innerHTML = `<p><strong>${idx+1}. ${q.text}</strong></p>`;
+            q.options.forEach((opt, optIdx) => {
+                div.innerHTML += `<label style="display:block; margin-left:1rem;">
+                    <input type="radio" name="readq${idx}" value="${optIdx}"> ${opt}
+                </label>`;
+            });
+            container.appendChild(div);
+        });
     }
-  }
-  
-  init();
+
+    function evaluateReadingNew() {
+        let score = 0;
+        for (let i=0; i<readingQuestionsNew.length; i++) {
+            const radios = document.getElementsByName(`readq${i}`);
+            let selected = null;
+            for (let r of radios) if (r.checked) { selected = parseInt(r.value); break; }
+            if (selected === readingQuestionsNew[i].correct) score++;
+        }
+        let msg = `📚 Reading Score: ${score}/${readingQuestionsNew.length}`;
+        if (score === readingQuestionsNew.length) msg += " 🏆 PERFECT! You are a true Tech Detective!";
+        else if (score >= 16) msg += " 🔥 Excellent understanding!";
+        else msg += " 👓 Re‑read the story and try again!";
+        document.getElementById('readingScoreNew').innerHTML = msg;
+    }
+
+    // ---------- CHALLENGE 4: mini game (bug spotting + security) ----------
+    const bugScenarios = [
+        { scenario: "You write a function to add two numbers, but you write 2 * 3 instead of 2 + 3. What kind of bug?", options: ["Syntax Error", "Logic Error", "Crash"], correct: 1 },
+        { scenario: "Your program stops because you forgot a quote: print('Hello). What bug?", options: ["Logic Error", "Syntax Error", "Worm"], correct: 1 }
+    ];
+    const securityQuestions = [
+        { text: "A calculator app asks for access to your contacts. Do you allow?", options: ["Yes, always", "No, it doesn't need it", "Maybe if it's free"], correct: 1 },
+        { text: "Which password is strongest?", options: ["abc123", "MyCatL0ves!Pizza42", "password"], correct: 1 }
+    ];
+
+    function buildMiniGame() {
+        let bugHtml = '';
+        bugScenarios.forEach((item, idx) => {
+            bugHtml += `<div style="margin-bottom:1rem;"><strong>🐛 ${item.scenario}</strong><br>`;
+            item.options.forEach((opt, optIdx) => {
+                bugHtml += `<label style="margin-right:1rem;"><input type="radio" name="bug${idx}" value="${optIdx}"> ${opt}</label>`;
+            });
+            bugHtml += `</div>`;
+        });
+        document.getElementById('bugGame').innerHTML = bugHtml;
+        let secHtml = '';
+        securityQuestions.forEach((item, idx) => {
+            secHtml += `<div style="margin-bottom:1rem;"><strong>🔒 ${item.text}</strong><br>`;
+            item.options.forEach((opt, optIdx) => {
+                secHtml += `<label style="margin-right:1rem;"><input type="radio" name="sec${idx}" value="${optIdx}"> ${opt}</label>`;
+            });
+            secHtml += `</div>`;
+        });
+        document.getElementById('securityGame').innerHTML = secHtml;
+    }
+
+    function checkMiniGame() {
+        let score = 0;
+        for (let i=0; i<bugScenarios.length; i++) {
+            let radios = document.getElementsByName(`bug${i}`);
+            let val = null;
+            for (let r of radios) if (r.checked) { val = parseInt(r.value); break; }
+            if (val === bugScenarios[i].correct) score++;
+        }
+        for (let i=0; i<securityQuestions.length; i++) {
+            let radios = document.getElementsByName(`sec${i}`);
+            let val = null;
+            for (let r of radios) if (r.checked) { val = parseInt(r.value); break; }
+            if (val === securityQuestions[i].correct) score++;
+        }
+        document.getElementById('miniGameResult').innerHTML = `🎮 Security & Debug score: ${score}/${bugScenarios.length+securityQuestions.length}. ${score===4 ? '⭐ Perfect detective!' : 'Try to review the safety tips!'}`;
+    }
+
+    // ---------- INITIALIZE ALL ----------
+    function init() {
+        buildMatchingNew();
+        buildGrammarUI();
+        buildReadingQuiz();
+        buildMiniGame();
+
+        document.getElementById('resetMatchNew').addEventListener('click', resetMatchNew);
+        document.getElementById('checkMatchNew').addEventListener('click', checkMatchNew);
+        document.getElementById('checkGrammarBtn2').addEventListener('click', checkAllGrammar);
+        document.getElementById('submitReadingNew').addEventListener('click', evaluateReadingNew);
+        document.getElementById('checkMiniGameBtn').addEventListener('click', checkMiniGame);
+    }
+    init();
 </script>
 </body>
 </html>
