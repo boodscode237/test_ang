@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>⚡ Tech Explorer Challenge | Ultimate Tech Master</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f0f7ff 0%, #d9e6f5 100%);
+      font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, 'Inter', sans-serif;
+      padding: 2rem 1.5rem;
+      color: #0a2b3e;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    /* header */
+    .hero {
+      text-align: center;
+      background: #0a2b3e;
+      background-image: radial-gradient(circle at 10% 30%, #1e4a6e, #07212e);
+      padding: 2.2rem 1rem;
+      border-radius: 64px 64px 48px 48px;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      background: linear-gradient(135deg, #FFE6B0, #FFB347);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      letter-spacing: -0.5px;
+    }
+
+    .hero p {
+      color: #e0f0ff;
+      font-size: 1.2rem;
+      margin-top: 0.6rem;
+      font-weight: 500;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #ffb347;
+      color: #1e2f3a;
+      border-radius: 60px;
+      padding: 0.3rem 1.2rem;
+      font-weight: bold;
+      font-size: 0.85rem;
+      margin-top: 0.8rem;
+      box-shadow: inset 0 -1px 0 #ffdd99, 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* cards */
+    .challenge-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(2px);
+      border-radius: 2rem;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2.2rem;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s ease;
+      border: 1px solid #ffffffaa;
+    }
+
+    .challenge-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 3px dashed #ffb347;
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-header h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0f3b4f;
+    }
+
+    .card-header span {
+      font-size: 2rem;
+    }
+
+    /* matching style */
+    .matching-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+
+    .term-list, .def-list {
+      flex: 1;
+      min-width: 240px;
+      background: #fef9ef;
+      padding: 1rem;
+      border-radius: 1.5rem;
+    }
+
+    .term-item, .def-item {
+      background: white;
+      margin: 0.8rem 0;
+      padding: 0.7rem 1rem;
+      border-radius: 60px;
+      font-weight: 500;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid #e2e8f0;
+    }
+
+    .term-item.active, .def-item.active {
+      background: #ffe0b5;
+      border-left: 6px solid #ff9f2e;
+      transform: scale(1.01);
+    }
+
+    .matched {
+      background: #c8e6df;
+      text-decoration: line-through;
+      opacity: 0.7;
+      pointer-events: none;
+      filter: grayscale(0.1);
+      border-color: #2c7a5e;
+    }
+
+    .match-status {
+      margin-top: 1rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    button {
+      background: #0f3b4f;
+      border: none;
+      color: white;
+      font-weight: bold;
+      padding: 0.6rem 1.4rem;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      margin-top: 0.8rem;
+      margin-right: 0.8rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    button:hover {
+      background: #ff8c2e;
+      transform: scale(0.98);
+    }
+
+    .grammar-input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 28px;
+      border: 2px solid #cbd5e1;
+      margin: 8px 0;
+      font-family: monospace;
+    }
+
+    .quiz-question {
+      background: #f8fafc;
+      margin: 1rem 0;
+      padding: 1rem;
+      border-radius: 1.2rem;
+      border-left: 10px solid #ffb347;
+    }
+
+    .quiz-question p {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .quiz-question label {
+      display: block;
+      margin: 6px 0 6px 20px;
+    }
+
+    .score-area {
+      font-size: 1.3rem;
+      font-weight: bold;
+      background: #07212e;
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      color: #ffdd99;
+    }
+
+    .story-box {
+      background: #eef4ff;
+      padding: 1.2rem;
+      border-radius: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.98rem;
+      line-height: 1.5;
+      border: 1px solid #bdd4ff;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      color: #2c5a6e;
+    }
+
+    @media (max-width: 700px) {
+      .matching-grid {
+        flex-direction: column;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .challenge-card {
+        padding: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <h1>⚡ ULTIMATE TECH EXPLORER ⚡</h1>
+    <p>🔧 Vocabulary · Grammar · Reading · Cyber skills 🔐</p>
+    <div class="badge">🏆 Complete all challenges → become a Tech Master!</div>
+  </div>
+
+  <!-- CHALLENGE 1: VOCAB MATCH-UP (interactive click-to-match) -->
+  <div class="challenge-card">
+    <div class="card-header">
+      <span>🧩</span>
+      <h2>Challenge 1: Vocabulary Match-Up</h2>
+    </div>
+    <p><strong>⚡ How to play:</strong> Click a <span style="background:#ffe0b5;">TERM</span> on the left, then click a <span style="background:#ffe0b5;">DEFINITION</span> on the right to match them. Matched pairs will be crossed out. Complete all 7 matches!</p>
+    <div class="matching-grid" id="matchingGrid">
+      <!-- dynamically filled by js -->
+    </div>
+    <div id="matchMessage" style="text-align:center; margin-top: 12px; font-weight:bold;"></div>
+    <button id="resetMatchBtn">⟳ Reset Matching</button>
+    <button id="checkMatchBtn">✅ Check My Matches</button>
+  </div>
+
+  <!-- CHALLENGE 2: GRAMMAR FIX-IT (Present Simple) -->
+  <div class="challenge-card">
+    <div class="card-header">
+      <span>✍️</span>
+      <h2>Challenge 2: Grammar Fix-It</h2>
+    </div>
+    <p>Rewrite each sentence correctly. (Present Simple: I/You/We/They = base verb, He/She/It = verb+s)</p>
+    <div id="grammarSentences"></div>
+    <button id="checkGrammarBtn">✨ Check Grammar</button>
+    <div id="grammarResult" style="margin-top: 15px; font-weight:bold;"></div>
+  </div>
+
+  <!-- CHALLENGE 3: LONG READING COMPREHENSION (20 questions) -->
+  <div class="challenge-card">
+    <div class="card-header">
+      <span>📖</span>
+      <h2>Challenge 3: The Great Digital Adventure</h2>
+    </div>
+    <div class="story-box">
+      <strong>📘 Read the story carefully:</strong><br><br>
+      Lena is a 13-year-old student who loves technology. Every day after school, she uses her <strong>laptop</strong> to explore the digital world. Her laptop has a fast <strong>SSD</strong>, so it starts up in seconds. For her school project, she needs to create a presentation about "How the Internet Works."<br><br>
+      First, Lena <strong>opens</strong> her <strong>browser</strong>, Chrome. She <strong>types</strong> the <strong>URL</strong> <code>www.kidzexplore.com</code> into the <strong>address bar</strong> and presses Enter. Her computer breaks this request into tiny <strong>data packets</strong>. A <strong>router</strong> in her house directs these packets through the <strong>internet</strong>—a giant <strong>network of networks</strong>—to a powerful <strong>server</strong>. The server finds the website and sends the data packets back. Lena's laptop receives them and puts them back together to <strong>display</strong> the webpage. The whole process takes only a few seconds!<br><br>
+      The website has a fun game about <strong>databases</strong>. Lena learns that a database is like a digital <strong>filing cabinet</strong>. In the game, she organizes a <strong>table</strong> for a school library. Each <strong>row</strong> in the table is a <strong>record</strong> for one book (Title, Author, Year). Each <strong>column</strong> is a <strong>field</strong>, like "Author Name." She also learns about a <strong>Unique ID</strong>—a special number that is different for every book, so you can tell them apart even if they have the same title.<br><br>
+      Later, Lena wants to share her project with her friend, Sam. She decides to <strong>upload</strong> it to the <strong>cloud</strong> using her Google Drive. She knows the cloud isn't actually in the sky; it's just data stored on a big <strong>server</strong> in a <strong>data center</strong> somewhere in the world. She attaches her file, which is 5 <strong>megabytes</strong> (MB), and clicks "Send."<br><br>
+      After her homework is done, Lena wants to relax. She opens her favorite online game. But when she logs in, she gets a strange message from a user named "GameMaster99." The message says, "Click this link for free game money!" The link has a strange <strong>URL</strong>. Lena remembers the lessons from her <strong>cybersecurity</strong> class. She knows about <strong>trick messages</strong> and <strong>fake profiles</strong>. She doesn't click the link. Instead, she <strong>closes</strong> the message and <strong>reports</strong> the user.<br><br>
+      Later, she video calls Sam to tell him about the message. Sam says he got a similar one. They agree it's important to have strong passwords and never share them. They also talk about how <strong>cyberbullying</strong> can happen and why it's important to <strong>save the proof</strong> and tell a trusted adult. Lena feels good knowing she is a smart and safe digital citizen.
+    </div>
+    <div id="readingQuestions"></div>
+    <button id="submitReadingBtn">🏁 Submit Reading Quiz</button>
+    <div id="readingScore" style="margin-top: 20px; font-size:1.2rem; font-weight:bold;"></div>
+  </div>
+
+  <!-- CHALLENGE 4: Two Truths and a Lie (playful) -->
+  <div class="challenge-card">
+    <div class="card-header">
+      <span>🎭</span>
+      <h2>Challenge 4: Two Truths and a Lie (Tech Edition)</h2>
+    </div>
+    <p><strong>Example:</strong><br>
+    ✅ I upload photos to the cloud every day.<br>
+    ❌ A mouse is an example of software. (Lie!)<br>
+    ✅ I use a browser to visit websites.</p>
+    <p>👉 Write YOUR three tech sentences below. Two truths, one lie. Share with a friend and let them guess!</p>
+    <textarea id="truthLieInput" rows="4" style="width:100%; border-radius:20px; padding:12px; border:2px solid #ffb347; font-family:inherit;" placeholder="1. ...&#10;2. ...&#10;3. ..."></textarea>
+    <button id="clearTruthBtn">✏️ Clear / New</button>
+  </div>
+  <footer>🌟 Tech Master Challenge — based on real IT vocabulary, grammar & cybersecurity. Keep exploring!</footer>
+</div>
+
+<script>
+  // ---------- CHALLENGE 1: interactive matching (term + definition) ----------
+  const termsData = [
+    { term: "Hardware", definition: "The parts of a computer you can touch, like the mouse and keyboard." },
+    { term: "Software", definition: "The programs and apps on a computer that you cannot touch." },
+    { term: "CPU", definition: "The 'brain' of the computer that processes information." },
+    { term: "URL", definition: "The easy-to-remember address of a website (e.g., www.google.com)." },
+    { term: "Browser", definition: "A program that helps you find and view websites (e.g., Chrome)." },
+    { term: "Server", definition: "A powerful computer that sends information to your browser." },
+    { term: "IP Address", definition: "A unique number address for every device on a network (e.g., 192.168.1.1)." }
+  ];
+
+  let matches = new Array(termsData.length).fill(false); // matched definitions for each term index
+  let selectedTermIdx = null;
+  let selectedDefIdx = null;
+  let definitionsRemaining = [];
+
+  function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function buildMatchingUI() {
+    // reset selections
+    selectedTermIdx = null;
+    selectedDefIdx = null;
+    // create shuffled definitions with original index
+    let defArray = termsData.map((item, idx) => ({ def: item.definition, originalIdx: idx }));
+    definitionsRemaining = shuffleArray([...defArray]);
+    
+    const container = document.getElementById('matchingGrid');
+    container.innerHTML = `
+      <div class="term-list"><h3>📌 TERMS</h3><div id="termItemsContainer"></div></div>
+      <div class="def-list"><h3>📖 DEFINITIONS</h3><div id="defItemsContainer"></div></div>
+    `;
+    const termContainer = document.getElementById('termItemsContainer');
+    const defContainer = document.getElementById('defItemsContainer');
+    
+    // render terms
+    termsData.forEach((item, idx) => {
+      const termDiv = document.createElement('div');
+      termDiv.className = 'term-item';
+      if (matches[idx]) termDiv.classList.add('matched');
+      termDiv.textContent = item.term;
+      termDiv.dataset.termIdx = idx;
+      termDiv.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (matches[idx]) return;
+        // remove active class from all terms
+        document.querySelectorAll('.term-item').forEach(el => el.classList.remove('active'));
+        termDiv.classList.add('active');
+        selectedTermIdx = idx;
+        selectedDefIdx = null;
+        document.querySelectorAll('.def-item').forEach(el => el.classList.remove('active'));
+      });
+      termContainer.appendChild(termDiv);
+    });
+    
+    // render shuffled definitions
+    definitionsRemaining.forEach((defObj, displayIdx) => {
+      const defDiv = document.createElement('div');
+      defDiv.className = 'def-item';
+      defDiv.textContent = defObj.def;
+      defDiv.dataset.defOriginalIdx = defObj.originalIdx;
+      defDiv.dataset.displayIdx = displayIdx;
+      defDiv.addEventListener('click', (e) => {
+        if (matches[defObj.originalIdx]) return;
+        document.querySelectorAll('.def-item').forEach(el => el.classList.remove('active'));
+        defDiv.classList.add('active');
+        selectedDefIdx = defObj.originalIdx;
+        if (selectedTermIdx !== null) {
+          // try to make match
+          if (selectedTermIdx === selectedDefIdx && !matches[selectedTermIdx]) {
+            // correct match
+            matches[selectedTermIdx] = true;
+            // refresh UI
+            buildMatchingUI();
+            document.getElementById('matchMessage').innerHTML = '✅ Good match! Keep going!';
+            if (matches.every(v => v === true)) {
+              document.getElementById('matchMessage').innerHTML = '🎉 PERFECT! You mastered the vocabulary! 🎉';
+            }
+          } else {
+            document.getElementById('matchMessage').innerHTML = '❌ Wrong match! Try again.';
+            // clear active classes
+            document.querySelectorAll('.term-item, .def-item').forEach(el => el.classList.remove('active'));
+            selectedTermIdx = null;
+            selectedDefIdx = null;
+          }
+        } else {
+          // select definition first? we allow selecting definition then term
+          selectedDefIdx = defObj.originalIdx;
+        }
+      });
+      defContainer.appendChild(defDiv);
+    });
+    
+    // if we have selectedDefIdx but no term, we allow term selection after
+    if (selectedDefIdx !== null && selectedTermIdx === null) {
+      // highlight the definition
+      document.querySelectorAll('.def-item').forEach(el => {
+        if (el.dataset.defOriginalIdx == selectedDefIdx) el.classList.add('active');
+      });
+    }
+  }
+  
+  function resetMatching() {
+    matches.fill(false);
+    buildMatchingUI();
+    document.getElementById('matchMessage').innerHTML = 'Matches reset. Start pairing!';
+  }
+  
+  function checkMatches() {
+    const allMatched = matches.every(v => v === true);
+    if (allMatched) {
+      document.getElementById('matchMessage').innerHTML = '🏅 CHALLENGE 1 COMPLETE! Perfect matches! 🏅';
+    } else {
+      const remaining = matches.filter(m => !m).length;
+      document.getElementById('matchMessage').innerHTML = `📌 You have ${remaining} match(es) left. Keep pairing!`;
+    }
+  }
+  
+  // ---------- GRAMMAR ----------
+  const grammarItems = [
+    { wrong: "The website (load) slowly.", correct: "The website loads slowly.", hint: "He/She/It ➕ -s" },
+    { wrong: "I (types) my name in the search box.", correct: "I type my name in the search box.", hint: "I ➕ base verb" },
+    { wrong: "She (search) for games.", correct: "She searches for games.", hint: "add -es after ch/sh/s" },
+    { wrong: "We (always) (is) careful online.", correct: "We are always careful online.", hint: "We ➕ are / adverb after be" }
+  ];
+  
+  function buildGrammarUI() {
+    const container = document.getElementById('grammarSentences');
+    container.innerHTML = '';
+    grammarItems.forEach((item, idx) => {
+      const div = document.createElement('div');
+      div.style.marginBottom = '1rem';
+      div.innerHTML = `
+        <p><strong>${item.wrong}</strong></p>
+        <input type="text" id="grammarInput${idx}" class="grammar-input" placeholder="Type corrected sentence...">
+        <small style="color:#ff8c2e;">🔎 ${item.hint}</small>
+      `;
+      container.appendChild(div);
+    });
+  }
+  
+  function checkGrammar() {
+    let correctCount = 0;
+    const userAnswers = [];
+    grammarItems.forEach((item, idx) => {
+      const input = document.getElementById(`grammarInput${idx}`);
+      const userVal = input.value.trim().toLowerCase().replace(/\.+$/, '');
+      const expected = item.correct.toLowerCase().replace(/\.+$/, '');
+      if (userVal === expected) {
+        correctCount++;
+        input.style.borderColor = "#2ecc71";
+        input.style.backgroundColor = "#e6f9ed";
+      } else {
+        input.style.borderColor = "#e74c3c";
+        input.style.backgroundColor = "#ffe9e6";
+      }
+    });
+    const resultDiv = document.getElementById('grammarResult');
+    resultDiv.innerHTML = `✍️ Grammar score: ${correctCount}/${grammarItems.length} correct. ${correctCount === grammarItems.length ? 'Perfect grammar! +10 tech points!' : 'Check hints and try again!'}`;
+  }
+  
+  // ---------- READING COMPREHENSION (20 questions) ----------
+  const readingQuestions = [
+    { text: "What does Lena use after school?", options: ["A desktop computer", "A laptop", "A tablet"], correct: 1 },
+    { text: "Why does her laptop start up quickly?", options: ["It has a new battery", "It has a fast SSD", "It has a lot of RAM"], correct: 1 },
+    { text: "What does Lena open to start her internet search?", options: ["A game", "A file", "A browser"], correct: 2 },
+    { text: "What is the URL she types?", options: ["www.google.com", "www.kidzexplore.com", "www.myproject.com"], correct: 1 },
+    { text: "What are the tiny pieces of information called when sent over the internet?", options: ["Data files", "Data packets", "Data gigabytes"], correct: 1 },
+    { text: "What device in her house directs these packets?", options: ["A server", "A modem", "A router"], correct: 2 },
+    { text: "What is the internet described as?", options: ["A single computer", "A network of networks", "A type of software"], correct: 1 },
+    { text: "What sends the website back to Lena?", options: ["A client", "A server", "A URL"], correct: 1 },
+    { text: "What is a database compared to?", options: ["A digital toy box", "A digital filing cabinet", "A digital playground"], correct: 1 },
+    { text: "In a database table, what is a complete row called?", options: ["A field", "A record", "A cell"], correct: 1 },
+    { text: "What is a column in a database table called?", options: ["A record", "A field", "A table"], correct: 1 },
+    { text: "What is a Unique ID used for?", options: ["To make data look pretty", "To identify one specific record", "To sort data alphabetically"], correct: 1 },
+    { text: "Where does Lena upload her project?", options: ["To a USB drive", "To the cloud", "To her local hard drive"], correct: 1 },
+    { text: "What is the cloud made of?", options: ["Special wireless signals", "Data in the sky", "Servers in data centers"], correct: 2 },
+    { text: "What was the size of the file Lena uploaded?", options: ["5 gigabytes (GB)", "5 megabytes (MB)", "5 bytes"], correct: 1 },
+    { text: "What did the message from 'GameMaster99' want Lena to do?", options: ["Share her password", "Click a strange link", "Send her address"], correct: 1 },
+    { text: "What is the term for a message that tries to trick you?", options: ["A fake profile", "A trick message", "A strong password"], correct: 1 },
+    { text: "What did Lena do when she got the suspicious message?", options: ["She clicked the link", "She closed it and reported the user", "She shared it with her friend"], correct: 1 },
+    { text: "What is one thing Lena and Sam discussed to stay safe?", options: ["Using the same password", "Never sharing their passwords", "Clicking on every link"], correct: 1 },
+    { text: "What should you do if you see mean comments or cyberbullying?", options: ["Delete messages and ignore", "Send mean messages back", "Save the proof and tell a trusted adult"], correct: 2 }
+  ];
+  
+  function buildReadingQuiz() {
+    const container = document.getElementById('readingQuestions');
+    container.innerHTML = '';
+    readingQuestions.forEach((q, idx) => {
+      const div = document.createElement('div');
+      div.className = 'quiz-question';
+      div.innerHTML = `<p>${idx+1}. ${q.text}</p>`;
+      q.options.forEach((opt, optIdx) => {
+        const radioId = `q${idx}_opt${optIdx}`;
+        div.innerHTML += `
+          <label style="display:block; margin-left:1rem;">
+            <input type="radio" name="q${idx}" value="${optIdx}"> ${opt}
+          </label>
+        `;
+      });
+      container.appendChild(div);
+    });
+  }
+  
+  function evaluateReading() {
+    let score = 0;
+    for (let i = 0; i < readingQuestions.length; i++) {
+      const radios = document.getElementsByName(`q${i}`);
+      let selectedVal = null;
+      for (let j = 0; j < radios.length; j++) {
+        if (radios[j].checked) {
+          selectedVal = parseInt(radios[j].value);
+          break;
+        }
+      }
+      if (selectedVal === readingQuestions[i].correct) score++;
+    }
+    const total = readingQuestions.length;
+    let message = `📊 Reading Score: ${score}/${total}`;
+    if (score === total) message += " 🌟🌟🌟 PERFECT READER! You're a digital guru! 🌟🌟🌟";
+    else if (score >= 16) message += " 🔥 Great job! Almost there!";
+    else if (score >= 10) message += " 👍 Good effort! Re-read the story to boost.";
+    else message += " 📚 Try reading the story again — you'll get it!";
+    document.getElementById('readingScore').innerHTML = message;
+  }
+  
+  // ---------- INITIALIZE EVERYTHING ----------
+  function init() {
+    buildMatchingUI();
+    buildGrammarUI();
+    buildReadingQuiz();
+    document.getElementById('resetMatchBtn').addEventListener('click', resetMatching);
+    document.getElementById('checkMatchBtn').addEventListener('click', checkMatches);
+    document.getElementById('checkGrammarBtn').addEventListener('click', checkGrammar);
+    document.getElementById('submitReadingBtn').addEventListener('click', evaluateReading);
+    document.getElementById('clearTruthBtn').addEventListener('click', () => {
+      document.getElementById('truthLieInput').value = '';
+    });
+    // Example placeholder for two truths
+    const textarea = document.getElementById('truthLieInput');
+    if (!textarea.value) {
+      textarea.placeholder = "1. I can name 3 computer parts in English.\n2. I have visited a data center.\n3. I never use the cloud.";
+    }
+  }
+  
+  init();
+</script>
+</body>
+</html>
