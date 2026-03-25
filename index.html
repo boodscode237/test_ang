@@ -2,542 +2,165 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>🤖 Tech Explorer 2.0 | Functions · AI · Cyber · E‑commerce</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Smith - Digital Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+        .cube-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #06b6d4 100%);
         }
-
-        body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
-            padding: 2rem 1.5rem;
-            color: #f1f5f9;
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        /* header */
-        .hero {
-            text-align: center;
-            background: #0f172acc;
-            backdrop-filter: blur(8px);
-            border-radius: 3rem;
-            padding: 2rem 1rem;
-            margin-bottom: 2.5rem;
-            border: 1px solid #3b82f6;
-            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.4);
-        }
-        .hero h1 {
-            font-size: 2.8rem;
-            background: linear-gradient(135deg, #a5f3fc, #38bdf8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            color: #cbd5e1;
-            margin-top: 0.5rem;
-        }
-        .badge {
-            background: #2563eb;
-            display: inline-block;
-            padding: 0.3rem 1.2rem;
-            border-radius: 40px;
-            font-weight: bold;
-            margin-top: 1rem;
-            font-size: 0.85rem;
-        }
-
-        /* cards */
-        .challenge-card {
-            background: #1e293be6;
-            backdrop-filter: blur(4px);
-            border-radius: 2rem;
-            padding: 1.8rem 2rem;
-            margin-bottom: 2rem;
-            border: 1px solid #334155;
-            transition: transform 0.2s;
-        }
-        .challenge-card:hover {
-            transform: translateY(-4px);
-        }
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 2px solid #3b82f6;
-            padding-bottom: 0.6rem;
-            margin-bottom: 1.5rem;
-        }
-        .card-header h2 {
-            font-size: 1.7rem;
-            font-weight: 700;
-        }
-        .card-header span {
-            font-size: 2rem;
-        }
-
-        /* matching layout */
-        .matching-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: space-between;
-        }
-        .term-list, .def-list {
-            flex: 1;
-            background: #0f172a;
-            padding: 1rem;
-            border-radius: 1.5rem;
-        }
-        .term-item, .def-item {
-            background: #334155;
-            margin: 0.8rem 0;
-            padding: 0.7rem 1rem;
-            border-radius: 60px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: 1px solid #475569;
-        }
-        .term-item.active, .def-item.active {
-            background: #3b82f6;
-            border-left: 6px solid #facc15;
-            transform: scale(1.01);
-        }
-        .matched {
-            background: #2dd4bf;
-            color: #0f172a;
-            text-decoration: line-through;
-            opacity: 0.7;
-            pointer-events: none;
-        }
-        button {
-            background: #3b82f6;
-            border: none;
-            color: white;
-            font-weight: bold;
-            padding: 0.6rem 1.4rem;
-            border-radius: 40px;
-            cursor: pointer;
-            margin-top: 1rem;
-            margin-right: 0.8rem;
-            transition: 0.2s;
-        }
-        button:hover {
-            background: #facc15;
-            color: #0f172a;
-        }
-        .grammar-input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 28px;
-            border: none;
-            background: #0f172a;
-            color: white;
-            margin: 8px 0;
-            border: 1px solid #3b82f6;
-        }
-        .quiz-question {
-            background: #0f172a;
-            margin: 1rem 0;
-            padding: 1rem;
-            border-radius: 1.2rem;
-            border-left: 8px solid #facc15;
-        }
-        .story-box {
-            background: #0f172a;
-            padding: 1.2rem;
-            border-radius: 1.5rem;
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-        footer {
-            text-align: center;
-            margin-top: 2rem;
-            color: #94a3b8;
-        }
-        @media (max-width: 700px) {
-            .matching-grid {
-                flex-direction: column;
-            }
-            .hero h1 {
-                font-size: 2rem;
-            }
-        }
-        .success-msg {
-            color: #2dd4bf;
-            font-weight: bold;
-        }
-        .radio-group {
-            margin-left: 1rem;
+        @media print {
+            .no-print { display: none; }
+            body { background: white; color: black; }
+            .shadow-xl { box-shadow: none; }
         }
     </style>
 </head>
-<body>
-<div class="container">
-    <div class="hero">
-        <h1>🛡️ TECH EXPLORER 2.0</h1>
-        <p>Functions · Bugs · AI · Cybersecurity · E‑commerce · IT Careers</p>
-        <div class="badge">🎮 Play & Learn → become a Cyber‑Coding Master!</div>
-    </div>
+<body class="bg-slate-100 text-slate-800 min-h-screen pb-12">
 
-    <!-- ========== CHALLENGE 1: VOCABULARY MATCH-UP (New Terms) ========== -->
-    <div class="challenge-card">
-        <div class="card-header">
-            <span>🧠</span>
-            <h2>Challenge 1: Tech Vault Match</h2>
+    <!-- Header / Navigation -->
+    <header class="cube-gradient text-white py-8 mb-8 no-print shadow-lg">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0 text-center md:text-left">
+                <p class="text-cyan-300 font-bold tracking-widest text-sm uppercase">School 303 — IT Cube</p>
+                <h1 class="text-3xl font-bold">Resume Master Class</h1>
+            </div>
+            <button onclick="window.print()" class="bg-white text-slate-900 px-6 py-2 rounded-full font-bold hover:bg-cyan-50 transition flex items-center gap-2">
+                <i class="fa-solid fa-print"></i> Print Resume [Печать]
+            </button>
         </div>
-        <p>🔗 Match the tech term with its correct definition. Click a term, then a definition.</p>
-        <div class="matching-grid" id="matchingGridNew"></div>
-        <div id="matchMessageNew" style="margin-top: 12px; font-weight:bold;"></div>
-        <button id="resetMatchNew">⟳ Reset Matching</button>
-        <button id="checkMatchNew">✅ Check Progress</button>
-    </div>
+    </header>
 
-    <!-- ========== CHALLENGE 2: GRAMMAR WORKSHOP (Relative Clauses, Future, Comparatives) ========== -->
-    <div class="challenge-card">
-        <div class="card-header">
-            <span>✍️</span>
-            <h2>Challenge 2: Grammar Builder</h2>
+    <main class="container mx-auto px-4 max-w-4xl">
+        <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
+            
+            <!-- Profile Header -->
+            <div class="p-8 md:p-12 border-b border-slate-100 flex flex-col md:flex-row gap-8 items-center">
+                <div class="w-32 h-32 bg-slate-200 rounded-full flex items-center justify-center text-slate-400 text-5xl overflow-hidden shrink-0 border-4 border-cyan-500">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="text-center md:text-left flex-grow">
+                    <h2 class="text-4xl font-bold text-slate-900">Alex Smith</h2>
+                    <p class="text-cyan-600 font-semibold text-lg mb-4">Junior Tech Professional [Младший специалист]</p>
+                    
+                    <div class="flex flex-wrap justify-center md:justify-start gap-4 text-sm text-slate-500">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-phone text-cyan-500"></i> +7 (900) 123-45-67</span>
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-envelope text-cyan-500"></i> alex.coder@mail.com</span>
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-cyan-500"></i> Saint Petersburg, RU</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-8 md:p-12 grid grid-cols-1 md:grid-cols-3 gap-12">
+                
+                <!-- Left Sidebar -->
+                <div class="space-y-10">
+                    <section>
+                        <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-brain text-cyan-500"></i> Skills [Навыки]
+                        </h3>
+                        <div class="space-y-6">
+                            <div>
+                                <p class="text-sm font-bold text-slate-900 mb-2">Technical [Профессиональные]</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-cyan-50 text-cyan-700 px-3 py-1 rounded text-xs font-semibold">Python (Basic)</span>
+                                    <span class="bg-cyan-50 text-cyan-700 px-3 py-1 rounded text-xs font-semibold">Video Editing</span>
+                                    <span class="bg-cyan-50 text-cyan-700 px-3 py-1 rounded text-xs font-semibold">LEGO Robotics</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-slate-900 mb-2">People [Личные качества]</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded text-xs font-semibold">Punctual [Пунктуальный]</span>
+                                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded text-xs font-semibold">Teamwork [Командная работа]</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-language text-cyan-500"></i> Languages [Языки]
+                        </h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm">
+                                <span>Russian</span>
+                                <span class="font-bold">Native</span>
+                            </div>
+                            <div class="flex justify-between text-sm text-slate-600">
+                                <span>English</span>
+                                <span class="font-bold">A2 Level</span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Main Content -->
+                <div class="md:col-span-2 space-y-10">
+                    
+                    <section>
+                        <h3 class="text-xl font-bold text-slate-900 mb-4 border-b-2 border-cyan-500 w-fit pb-1">
+                            About Me [О себе]
+                        </h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            I am a 14-year-old student at <strong>School 303 - IT Cube</strong>. I am hard-working [трудолюбивый] and I love technology [технологии]. I want to learn more about robot programming [программирование роботов].
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3 class="text-xl font-bold text-slate-900 mb-6 border-b-2 border-cyan-500 w-fit pb-1">
+                            Education [Образование]
+                        </h3>
+                        <div class="relative pl-6 border-l-2 border-slate-100">
+                            <div class="absolute w-3 h-3 bg-cyan-500 rounded-full -left-[7px] top-2"></div>
+                            <h4 class="font-bold text-slate-900">School 303 - IT Cube</h4>
+                            <p class="text-sm text-cyan-600 font-semibold mb-2">Grade 8 Student | 2020 – Present</p>
+                            <p class="text-sm text-slate-500 italic mb-2">Achievement [Достижение]: Won "Best Project" at the School Tech Fair (2023).</p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3 class="text-xl font-bold text-slate-900 mb-6 border-b-2 border-cyan-500 w-fit pb-1">
+                            Experience [Опыт работы]
+                        </h3>
+                        <div class="space-y-8">
+                            <div class="relative pl-6 border-l-2 border-slate-100">
+                                <div class="absolute w-3 h-3 bg-cyan-500 rounded-full -left-[7px] top-2"></div>
+                                <h4 class="font-bold text-slate-900">Volunteer [Волонтер] Tech Assistant [Помощник]</h4>
+                                <p class="text-sm text-cyan-600 font-semibold mb-3">School Computer Lab | 2023</p>
+                                <ul class="list-disc list-inside text-sm text-slate-600 space-y-2">
+                                    <li><strong>Helped</strong> [Помогал] the teacher with computers.</li>
+                                    <li><strong>Started</strong> [Запускал] the projectors before class.</li>
+                                    <li><strong>Organized</strong> [Организовывал] the cables and hardware.</li>
+                                </ul>
+                            </div>
+
+                            <div class="relative pl-6 border-l-2 border-slate-100">
+                                <div class="absolute w-3 h-3 bg-slate-300 rounded-full -left-[7px] top-2"></div>
+                                <h4 class="font-bold text-slate-900">Pet Sitter [Присмотр за животными]</h4>
+                                <p class="text-sm text-slate-500 font-semibold mb-3">Neighborhood | 2023</p>
+                                <ul class="list-disc list-inside text-sm text-slate-600 space-y-2">
+                                    <li><strong>Walked</strong> [Выгуливал] two dogs every morning.</li>
+                                    <li><strong>Fed</strong> [Кормил] cats when neighbors were on holiday.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
         </div>
-        <p><strong>🔧 Relative Clauses with WHO</strong> – Combine the sentences using "who".</p>
-        <div id="relativeClauses"></div>
-        <p><strong>🤖 Future & Ability</strong> – Fill in will / won't / can / could.</p>
-        <div id="futureAbility"></div>
-        <p><strong>⚡ Comparatives</strong> – Write the correct form (faster than / more intelligent than).</p>
-        <div id="comparatives"></div>
-        <button id="checkGrammarBtn2">✨ Check All Grammar</button>
-        <div id="grammarResult2" style="margin-top: 15px; font-weight:bold;"></div>
-    </div>
 
-    <!-- ========== CHALLENGE 3: LONG READING COMPREHENSION (20 questions) ========== -->
-    <div class="challenge-card">
-        <div class="card-header">
-            <span>📖</span>
-            <h2>Challenge 3: The Digital Detective Story</h2>
-        </div>
-        <div class="story-box">
-            <strong>🕵️ A Day in the Digital City – Read carefully!</strong><br><br>
-            Maya is a 14‑year‑old who dreams of becoming a software developer. One afternoon, she was testing a <strong>function</strong> she wrote for a game – a small piece of code that made her character <strong>jump()</strong>. But something was wrong: the character jumped through walls! That was a <strong>bug</strong>, specifically a <strong>logic error</strong>. Maya started <strong>debugging</strong> and found that she forgot to add a parameter that checks for walls.<br><br>
-            Later, her friend Leo sent her a link to “free coins” for another game. Maya remembered her <strong>cybersecurity</strong> lessons: it could be a <strong>phishing</strong> attack or even a <strong>Trojan</strong> hiding inside. She also knew that a <strong>firewall</strong> and <strong>antivirus</strong> are essential defenses. She blocked the message.<br><br>
-            At school, they learned about <strong>Artificial Intelligence</strong>. A <strong>neural network</strong> uses <strong>layers</strong> of <strong>neurons</strong> to recognize patterns. For example, a <strong>chatbot</strong> like Siri uses <strong>machine learning</strong> to understand voice commands. Maya’s teacher explained that <strong>algorithms</strong> are like recipes, and <strong>training data</strong> helps AI make <strong>predictions</strong>.<br><br>
-            On her phone, Maya installed a new <strong>mobile app</strong> from the <strong>App Store</strong>. She checked the <strong>permissions</strong> – why would a calculator need her <strong>location</strong>? She denied it. Later she bought a game using a <strong>digital wallet</strong> and got a <strong>receipt</strong> by email. She also wrote a <strong>review</strong> (5 stars) for the game.<br><br>
-            Finally, Maya helped her cousin create a strong <strong>password</strong> and turn on <strong>2‑step login</strong> for social media. She explained that <strong>encryption</strong> scrambles data so hackers can’t read it. Maya felt like a true tech detective. She even used a <strong>tracking number</strong> to follow an online order for new headphones. The future is bright with AI, but we must stay cyber‑smart!
-        </div>
-        <div id="readingQuestionsNew"></div>
-        <button id="submitReadingNew">🏆 Submit Reading Quiz</button>
-        <div id="readingScoreNew" style="margin-top: 20px; font-size:1.2rem; font-weight:bold;"></div>
-    </div>
+        <footer class="mt-8 text-center no-print">
+            <p class="text-slate-400 text-xs">Technical English Lesson Asset • Created for School 303 IT-Cube</p>
+        </footer>
+    </main>
 
-    <!-- ========== CHALLENGE 4: Playful Interactive – Bug Detective & Safety ========== -->
-    <div class="challenge-card">
-        <div class="card-header">
-            <span>🐞</span>
-            <h2>Challenge 4: Debug & Secure – Mini Game</h2>
-        </div>
-        <p><strong>🔍 Spot the Bug!</strong> Read the scenario and choose the correct fix.</p>
-        <div id="bugGame"></div>
-        <p><strong>🛡️ Permission Police & Strong Password</strong></p>
-        <div id="securityGame"></div>
-        <button id="checkMiniGameBtn">🎯 Submit Mini Game Answers</button>
-        <div id="miniGameResult" style="margin-top: 12px;"></div>
-    </div>
-
-    <footer>🌟 Tech Explorer 2.0 – Functions, AI, Cybersecurity, E‑commerce & more. Keep exploring safely!</footer>
-</div>
-
-<script>
-    // ---------- CHALLENGE 1: VOCAB MATCHING (12 new terms from new slides) ----------
-    const termsNew = [
-        { term: "Function", def: "A small set of instructions with one specific job (like jump())." },
-        { term: "Bug", def: "A mistake in a program that makes it behave incorrectly." },
-        { term: "Phishing", def: "Fake emails or messages that trick you into giving personal info." },
-        { term: "Firewall", def: "A barrier that stops bad data from entering your network." },
-        { term: "Machine Learning", def: "Computers learn from examples (data) instead of strict rules." },
-        { term: "Neural Network", def: "A program built to mimic the human brain with layers of neurons." },
-        { term: "E‑commerce", def: "Buying and selling products on the internet." },
-        { term: "Username", def: "The unique name you use online, often starting with @." },
-        { term: "Algorithm", def: "A set of math rules or steps to solve a problem." },
-        { term: "Permissions", def: "What you allow an app to access on your device (camera, location)." },
-        { term: "Digital Wallet", def: "Paying with an app on your phone (Apple Pay, Google Pay)." },
-        { term: "Encryption", def: "Scrambling data so only authorized people can read it." }
-    ];
-    let matchesNew = new Array(termsNew.length).fill(false);
-    let selectedTermNew = null;
-    let selectedDefNew = null;
-    let defShuffleNew = [];
-
-    function shuffleArrayNew(arr) {
-        for (let i = arr.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [arr[i], arr[j]] = [arr[j], arr[i]];
-        }
-        return arr;
-    }
-
-    function buildMatchingNew() {
-        selectedTermNew = null;
-        selectedDefNew = null;
-        const defArray = termsNew.map((item, idx) => ({ def: item.def, originalIdx: idx }));
-        defShuffleNew = shuffleArrayNew([...defArray]);
-        const container = document.getElementById('matchingGridNew');
-        container.innerHTML = `
-            <div class="term-list"><h3>📡 TECH TERMS</h3><div id="termItemsNew"></div></div>
-            <div class="def-list"><h3>🔍 DEFINITIONS</h3><div id="defItemsNew"></div></div>
-        `;
-        const termCont = document.getElementById('termItemsNew');
-        const defCont = document.getElementById('defItemsNew');
-        // terms
-        termsNew.forEach((item, idx) => {
-            const div = document.createElement('div');
-            div.className = 'term-item';
-            if (matchesNew[idx]) div.classList.add('matched');
-            div.textContent = item.term;
-            div.dataset.termIdx = idx;
-            div.addEventListener('click', () => {
-                if (matchesNew[idx]) return;
-                document.querySelectorAll('#termItemsNew .term-item').forEach(el => el.classList.remove('active'));
-                div.classList.add('active');
-                selectedTermNew = idx;
-                if (selectedDefNew !== null) attemptMatchNew(selectedTermNew, selectedDefNew);
-            });
-            termCont.appendChild(div);
-        });
-        // shuffled definitions
-        defShuffleNew.forEach((defObj, displayIdx) => {
-            const div = document.createElement('div');
-            div.className = 'def-item';
-            div.textContent = defObj.def;
-            div.dataset.defOriginalIdx = defObj.originalIdx;
-            div.addEventListener('click', () => {
-                if (matchesNew[defObj.originalIdx]) return;
-                document.querySelectorAll('#defItemsNew .def-item').forEach(el => el.classList.remove('active'));
-                div.classList.add('active');
-                selectedDefNew = defObj.originalIdx;
-                if (selectedTermNew !== null) attemptMatchNew(selectedTermNew, selectedDefNew);
-            });
-            defCont.appendChild(div);
-        });
-    }
-
-    function attemptMatchNew(termIdx, defIdx) {
-        if (matchesNew[termIdx] || matchesNew[defIdx]) return;
-        if (termIdx === defIdx) {
-            matchesNew[termIdx] = true;
-            document.getElementById('matchMessageNew').innerHTML = '✅ Correct match! Keep going.';
-            buildMatchingNew();
-            if (matchesNew.every(v => v === true)) {
-                document.getElementById('matchMessageNew').innerHTML = '🎉 PERFECT! Vocabulary master unlocked! 🎉';
-            }
-        } else {
-            document.getElementById('matchMessageNew').innerHTML = '❌ Oops! Not the right match. Try again.';
-            // clear active classes
-            document.querySelectorAll('.term-item, .def-item').forEach(el => el.classList.remove('active'));
-            selectedTermNew = null;
-            selectedDefNew = null;
-        }
-    }
-
-    function resetMatchNew() {
-        matchesNew.fill(false);
-        buildMatchingNew();
-        document.getElementById('matchMessageNew').innerHTML = 'Matches reset. Start pairing!';
-    }
-    function checkMatchNew() {
-        let remaining = matchesNew.filter(m => !m).length;
-        if (remaining === 0) document.getElementById('matchMessageNew').innerHTML = '🏅 CHALLENGE 1 COMPLETE! All terms matched!';
-        else document.getElementById('matchMessageNew').innerHTML = `📌 ${remaining} match(es) left. Keep pairing!`;
-    }
-
-    // ---------- CHALLENGE 2: GRAMMAR ----------
-    const relativeItems = [
-        { job: "A Cyber Security Expert", action: "protects data from bad hackers." },
-        { job: "A Game Developer", action: "uses code and art to make video games." },
-        { job: "A Data Scientist", action: "studies large amounts of information to help businesses." }
-    ];
-    const futureAbilityItems = [
-        { text: "In 2050, robots ______ (cook) our dinner.", correct: "will cook" },
-        { text: "I ______ (can) speak three languages now.", correct: "can" },
-        { text: "AI ______ (could) help doctors cure diseases in the future.", correct: "could" },
-        { text: "People ______ (not / drive) cars in 100 years.", correct: "won't drive" }
-    ];
-    const comparativeItems = [
-        { text: "A computer is ______ (fast) a human.", correct: "faster than" },
-        { text: "Neural networks are ______ (intelligent) simple calculators.", correct: "more intelligent than" }
-    ];
-
-    function buildGrammarUI() {
-        // relative clauses
-        let htmlRel = '';
-        relativeItems.forEach((item, idx) => {
-            htmlRel += `<div style="margin-bottom:1rem;"><strong>✏️ ${item.job}</strong> → They ${item.action}<br>
-            <input type="text" id="rel${idx}" class="grammar-input" placeholder='Combine: "${item.job} is a person who ..."'></div>`;
-        });
-        document.getElementById('relativeClauses').innerHTML = htmlRel;
-
-        let futureHtml = '';
-        futureAbilityItems.forEach((item, idx) => {
-            futureHtml += `<div><p>🔮 ${item.text}</p><input type="text" id="future${idx}" class="grammar-input" placeholder="Type answer"></div>`;
-        });
-        document.getElementById('futureAbility').innerHTML = futureHtml;
-
-        let compHtml = '';
-        comparativeItems.forEach((item, idx) => {
-            compHtml += `<div><p>📊 ${item.text}</p><input type="text" id="comp${idx}" class="grammar-input" placeholder="e.g., faster than"></div>`;
-        });
-        document.getElementById('comparatives').innerHTML = compHtml;
-    }
-
-    function checkAllGrammar() {
-        let score = 0, total = relativeItems.length + futureAbilityItems.length + comparativeItems.length;
-        // relative clauses - expected pattern
-        const relExpected = [
-            "A Cyber Security Expert is a person who protects data from bad hackers.",
-            "A Game Developer is a person who uses code and art to make video games.",
-            "A Data Scientist is a person who studies large amounts of information to help businesses."
-        ];
-        for (let i=0; i<relativeItems.length; i++) {
-            const val = document.getElementById(`rel${i}`)?.value.trim().toLowerCase().replace(/\.$/, '');
-            if (val === relExpected[i].toLowerCase()) score++;
-        }
-        for (let i=0; i<futureAbilityItems.length; i++) {
-            const val = document.getElementById(`future${i}`)?.value.trim().toLowerCase().replace(/\.$/, '');
-            if (val === futureAbilityItems[i].correct.toLowerCase()) score++;
-        }
-        for (let i=0; i<comparativeItems.length; i++) {
-            const val = document.getElementById(`comp${i}`)?.value.trim().toLowerCase().replace(/\.$/, '');
-            if (val === comparativeItems[i].correct.toLowerCase()) score++;
-        }
-        document.getElementById('grammarResult2').innerHTML = `📝 Grammar score: ${score}/${total}. ${score===total ? '🌟 Excellent grammar skills!' : 'Check your answers and try again!'}`;
-    }
-
-    // ---------- READING COMPREHENSION (20 questions based on story) ----------
-    const readingQuestionsNew = [
-        { text: "What was the logic error in Maya's game?", options: ["Character jumped too high", "Character jumped through walls", "Game crashed"], correct: 1 },
-        { text: "What does 'debugging' mean?", options: ["Adding new features", "Finding and fixing bugs", "Installing software"], correct: 1 },
-        { text: "What kind of attack could the 'free coins' link be?", options: ["Phishing", "Firewall", "Encryption"], correct: 0 },
-        { text: "Which malware hides inside something that looks safe?", options: ["Worm", "Trojan", "Spyware"], correct: 1 },
-        { text: "What does a firewall do?", options: ["Blocks bad data", "Speeds up internet", "Creates passwords"], correct: 0 },
-        { text: "What does a neural network use to recognize patterns?", options: ["Layers of neurons", "Only one algorithm", "USB drives"], correct: 0 },
-        { text: "What is a chatbot like Siri an example of?", options: ["Machine Learning & AI", "Simple calculator", "Virus"], correct: 0 },
-        { text: "What are algorithms similar to?", options: ["Recipes", "Hackers", "Passwords"], correct: 0 },
-        { text: "When Maya installed a mobile app, what did she check?", options: ["Permissions", "Screen size", "Battery level"], correct: 0 },
-        { text: "Why did she deny location access to a calculator app?", options: ["It didn't need it", "It cost money", "It was a virus"], correct: 0 },
-        { text: "What is a digital wallet?", options: ["A physical wallet", "An app to pay with phone", "A bank check"], correct: 1 },
-        { text: "What does a receipt prove?", options: ["That you paid", "That you have a virus", "Your username"], correct: 0 },
-        { text: "What is a strong password example from the lesson?", options: ["123456", "PizzaRocket99!", "password"], correct: 1 },
-        { text: "What does encryption do?", options: ["Scrambles data", "Deletes files", "Speeds up computer"], correct: 0 },
-        { text: "What helps you follow an online order package?", options: ["Tracking number", "Shopping cart", "Password"], correct: 0 },
-        { text: "What is the main idea of cybersecurity?", options: ["Protecting data from bad people", "Downloading games", "Making social media posts"], correct: 0 },
-        { text: "What is a function in programming?", options: ["A bug", "A set of instructions with one job", "A type of hacker"], correct: 1 },
-        { text: "Why is 2‑step login useful?", options: ["Adds extra security", "Makes password visible", "Slows down hackers only"], correct: 0 },
-        { text: "What did Maya write after buying the game?", options: ["A review", "A bug", "A virus"], correct: 0 },
-        { text: "What is training data used for in machine learning?", options: ["To teach AI using examples", "To crash computers", "To steal passwords"], correct: 0 }
-    ];
-
-    function buildReadingQuiz() {
-        const container = document.getElementById('readingQuestionsNew');
-        container.innerHTML = '';
-        readingQuestionsNew.forEach((q, idx) => {
-            const div = document.createElement('div');
-            div.className = 'quiz-question';
-            div.innerHTML = `<p><strong>${idx+1}. ${q.text}</strong></p>`;
-            q.options.forEach((opt, optIdx) => {
-                div.innerHTML += `<label style="display:block; margin-left:1rem;">
-                    <input type="radio" name="readq${idx}" value="${optIdx}"> ${opt}
-                </label>`;
-            });
-            container.appendChild(div);
-        });
-    }
-
-    function evaluateReadingNew() {
-        let score = 0;
-        for (let i=0; i<readingQuestionsNew.length; i++) {
-            const radios = document.getElementsByName(`readq${i}`);
-            let selected = null;
-            for (let r of radios) if (r.checked) { selected = parseInt(r.value); break; }
-            if (selected === readingQuestionsNew[i].correct) score++;
-        }
-        let msg = `📚 Reading Score: ${score}/${readingQuestionsNew.length}`;
-        if (score === readingQuestionsNew.length) msg += " 🏆 PERFECT! You are a true Tech Detective!";
-        else if (score >= 16) msg += " 🔥 Excellent understanding!";
-        else msg += " 👓 Re‑read the story and try again!";
-        document.getElementById('readingScoreNew').innerHTML = msg;
-    }
-
-    // ---------- CHALLENGE 4: mini game (bug spotting + security) ----------
-    const bugScenarios = [
-        { scenario: "You write a function to add two numbers, but you write 2 * 3 instead of 2 + 3. What kind of bug?", options: ["Syntax Error", "Logic Error", "Crash"], correct: 1 },
-        { scenario: "Your program stops because you forgot a quote: print('Hello). What bug?", options: ["Logic Error", "Syntax Error", "Worm"], correct: 1 }
-    ];
-    const securityQuestions = [
-        { text: "A calculator app asks for access to your contacts. Do you allow?", options: ["Yes, always", "No, it doesn't need it", "Maybe if it's free"], correct: 1 },
-        { text: "Which password is strongest?", options: ["abc123", "MyCatL0ves!Pizza42", "password"], correct: 1 }
-    ];
-
-    function buildMiniGame() {
-        let bugHtml = '';
-        bugScenarios.forEach((item, idx) => {
-            bugHtml += `<div style="margin-bottom:1rem;"><strong>🐛 ${item.scenario}</strong><br>`;
-            item.options.forEach((opt, optIdx) => {
-                bugHtml += `<label style="margin-right:1rem;"><input type="radio" name="bug${idx}" value="${optIdx}"> ${opt}</label>`;
-            });
-            bugHtml += `</div>`;
-        });
-        document.getElementById('bugGame').innerHTML = bugHtml;
-        let secHtml = '';
-        securityQuestions.forEach((item, idx) => {
-            secHtml += `<div style="margin-bottom:1rem;"><strong>🔒 ${item.text}</strong><br>`;
-            item.options.forEach((opt, optIdx) => {
-                secHtml += `<label style="margin-right:1rem;"><input type="radio" name="sec${idx}" value="${optIdx}"> ${opt}</label>`;
-            });
-            secHtml += `</div>`;
-        });
-        document.getElementById('securityGame').innerHTML = secHtml;
-    }
-
-    function checkMiniGame() {
-        let score = 0;
-        for (let i=0; i<bugScenarios.length; i++) {
-            let radios = document.getElementsByName(`bug${i}`);
-            let val = null;
-            for (let r of radios) if (r.checked) { val = parseInt(r.value); break; }
-            if (val === bugScenarios[i].correct) score++;
-        }
-        for (let i=0; i<securityQuestions.length; i++) {
-            let radios = document.getElementsByName(`sec${i}`);
-            let val = null;
-            for (let r of radios) if (r.checked) { val = parseInt(r.value); break; }
-            if (val === securityQuestions[i].correct) score++;
-        }
-        document.getElementById('miniGameResult').innerHTML = `🎮 Security & Debug score: ${score}/${bugScenarios.length+securityQuestions.length}. ${score===4 ? '⭐ Perfect detective!' : 'Try to review the safety tips!'}`;
-    }
-
-    // ---------- INITIALIZE ALL ----------
-    function init() {
-        buildMatchingNew();
-        buildGrammarUI();
-        buildReadingQuiz();
-        buildMiniGame();
-
-        document.getElementById('resetMatchNew').addEventListener('click', resetMatchNew);
-        document.getElementById('checkMatchNew').addEventListener('click', checkMatchNew);
-        document.getElementById('checkGrammarBtn2').addEventListener('click', checkAllGrammar);
-        document.getElementById('submitReadingNew').addEventListener('click', evaluateReadingNew);
-        document.getElementById('checkMiniGameBtn').addEventListener('click', checkMiniGame);
-    }
-    init();
-</script>
 </body>
 </html>
