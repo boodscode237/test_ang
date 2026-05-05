@@ -3,192 +3,163 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Причастия и Деепричастия — Учебное пособие</title>
+<title>Причастия и Деепричастия — Полное учебное пособие</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #1a1208;
-    --cream: #f5f0e8;
-    --gold: #c9902a;
-    --red: #8b1a1a;
-    --blue: #1a3a5c;
-    --green: #1a4a2a;
-    --purple: #3a1a5c;
-    --orange: #b05010;
-    --light-cream: #faf7f2;
-    --border: #d4c9b0;
+    --ink: #1a1208; --cream: #f5f0e8; --gold: #c9902a;
+    --red: #8b1a1a; --blue: #1a3a5c; --green: #1a4a2a;
+    --purple: #3a1a5c; --orange: #b05010;
+    --light-cream: #faf7f2; --border: #d4c9b0;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: var(--cream);
-    color: var(--ink);
-    font-family: 'Source Serif 4', serif;
-    font-size: 15px;
-    line-height: 1.7;
-  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--cream);color:var(--ink);font-family:'Source Serif 4',serif;font-size:15px;line-height:1.7;}
 
-  /* ── ОБЛОЖКА ── */
-  .cover {
-    min-height: 100vh;
-    background: var(--ink);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center; padding: 60px 40px;
-    position: relative; overflow: hidden;
-  }
-  .cover::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: repeating-linear-gradient(
-      45deg, transparent, transparent 40px,
-      rgba(201,144,42,0.04) 40px, rgba(201,144,42,0.04) 80px
-    );
-  }
-  .cover-border { position: absolute; inset: 20px; border: 1px solid rgba(201,144,42,0.3); pointer-events: none; }
-  .cover-inner { position: relative; z-index: 1; max-width: 700px; }
-  .cover-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; letter-spacing: 4px;
-    color: var(--gold); text-transform: uppercase; margin-bottom: 30px;
-  }
-  .cover-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(38px, 8vw, 76px); font-weight: 900;
-    color: var(--cream); line-height: 1.05; margin-bottom: 20px;
-  }
-  .cover-title span { color: var(--gold); }
-  .cover-subtitle {
-    font-size: 18px; font-weight: 300; font-style: italic;
-    color: rgba(245,240,232,0.55); margin-bottom: 50px;
-  }
-  .cover-meta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-  .cover-chip {
-    background: rgba(201,144,42,0.15); border: 1px solid rgba(201,144,42,0.3);
-    color: var(--gold); padding: 8px 18px;
-    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px; border-radius: 2px;
-  }
+  /* COVER */
+  .cover{min-height:100vh;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 40px;position:relative;overflow:hidden;}
+  .cover::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(201,144,42,.04) 40px,rgba(201,144,42,.04) 80px);}
+  .cover-border{position:absolute;inset:20px;border:1px solid rgba(201,144,42,.3);pointer-events:none;}
+  .cover-inner{position:relative;z-index:1;max-width:720px;}
+  .cover-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:28px;}
+  .cover-title{font-family:'Playfair Display',serif;font-size:clamp(36px,8vw,74px);font-weight:900;color:var(--cream);line-height:1.05;margin-bottom:18px;}
+  .cover-title span{color:var(--gold);}
+  .cover-subtitle{font-size:17px;font-weight:300;font-style:italic;color:rgba(245,240,232,.55);margin-bottom:40px;}
+  .cover-meta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .cover-chip{background:rgba(201,144,42,.15);border:1px solid rgba(201,144,42,.3);color:var(--gold);padding:7px 16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;border-radius:2px;}
 
-  /* ── СОДЕРЖАНИЕ ── */
-  .toc { background: var(--light-cream); border-bottom: 2px solid var(--border); padding: 50px 40px; }
-  .toc-inner { max-width: 920px; margin: 0 auto; }
-  .toc h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--ink); margin-bottom: 30px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
-  .toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px,1fr)); gap: 12px; }
-  .toc-item {
-    display: flex; align-items: center; gap: 12px;
-    padding: 12px 16px; background: white;
-    border: 1px solid var(--border); border-left: 3px solid var(--gold);
-    cursor: pointer; transition: all .2s; text-decoration: none; color: var(--ink);
-  }
-  .toc-item:hover { background: var(--cream); border-left-color: var(--red); }
-  .toc-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gold); min-width: 24px; }
-  .toc-text { font-size: 13px; font-weight: 600; }
-  .toc-sub { font-size: 11px; color: #888; display: block; }
+  /* TOC */
+  .toc{background:var(--light-cream);border-bottom:2px solid var(--border);padding:50px 40px;}
+  .toc-inner{max-width:940px;margin:0 auto;}
+  .toc h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--ink);margin-bottom:28px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+  .toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px;}
+  .toc-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:white;border:1px solid var(--border);border-left:3px solid var(--gold);text-decoration:none;color:var(--ink);transition:all .2s;}
+  .toc-item:hover{background:var(--cream);border-left-color:var(--red);}
+  .toc-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);min-width:22px;}
+  .toc-text{font-size:13px;font-weight:600;}
+  .toc-sub{font-size:11px;color:#888;display:block;}
 
-  /* ── ОСНОВНОЙ КОНТЕНТ ── */
-  .content { max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
+  /* LAYOUT */
+  .content{max-width:960px;margin:0 auto;padding:0 24px 80px;}
 
-  /* ── ЗАГОЛОВОК РАЗДЕЛА ── */
-  .section-header {
-    margin-top: 70px; margin-bottom: 32px;
-    padding-bottom: 16px; border-bottom: 2px solid var(--ink);
-    display: flex; align-items: baseline; gap: 20px;
-  }
-  .section-num { font-family: 'Playfair Display', serif; font-size: 60px; font-weight: 900; color: var(--border); line-height: 1; user-select: none; }
-  .section-titles h2 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--ink); }
-  .section-titles p { font-size: 12px; color: var(--gold); font-family: 'JetBrains Mono', monospace; letter-spacing: 1px; text-transform: uppercase; }
+  /* SECTION HEADER */
+  .section-header{margin-top:70px;margin-bottom:30px;padding-bottom:14px;border-bottom:2px solid var(--ink);display:flex;align-items:baseline;gap:18px;}
+  .section-num{font-family:'Playfair Display',serif;font-size:58px;font-weight:900;color:var(--border);line-height:1;user-select:none;}
+  .section-titles h2{font-family:'Playfair Display',serif;font-size:25px;font-weight:700;color:var(--ink);}
+  .section-titles p{font-size:11px;color:var(--gold);font-family:'JetBrains Mono',monospace;letter-spacing:1px;text-transform:uppercase;}
 
-  /* ── БЛОК ОБЪЯСНЕНИЯ ── */
-  .explain { background: white; border: 1px solid var(--border); border-left: 4px solid var(--blue); padding: 20px 24px; margin-bottom: 20px; border-radius: 0 2px 2px 0; }
-  .explain h3 { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--blue); margin-bottom: 10px; }
+  /* BOXES */
+  .explain{background:white;border:1px solid var(--border);border-left:4px solid var(--blue);padding:18px 22px;margin-bottom:18px;border-radius:0 2px 2px 0;}
+  .explain h3{font-family:'Playfair Display',serif;font-size:16px;color:var(--blue);margin-bottom:8px;}
+  .key-rule{background:#fdf6e8;border:1px solid #e8d5a0;border-left:4px solid var(--gold);padding:14px 18px;margin:14px 0;font-size:14px;}
+  .key-rule strong{color:var(--orange);}
+  .warning{background:#fdf0f0;border:1px solid #e8b0b0;border-left:4px solid var(--red);padding:13px 18px;margin:12px 0;font-size:13.5px;}
+  .warning strong{color:var(--red);}
+  .tip{display:flex;gap:12px;align-items:flex-start;background:#f0f4f8;border-left:3px solid var(--blue);padding:11px 15px;margin:11px 0;font-size:13.5px;}
+  .tip-icon{font-size:18px;flex-shrink:0;}
+  .new-tag{display:inline-block;background:var(--green);color:white;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border-radius:2px;margin-left:6px;vertical-align:middle;}
 
-  /* ── ПРАВИЛО ── */
-  .key-rule { background: #fdf6e8; border: 1px solid #e8d5a0; border-left: 4px solid var(--gold); padding: 15px 20px; margin: 16px 0; font-size: 14px; }
-  .key-rule strong { color: var(--orange); }
+  /* FORMULA */
+  .formula{background:var(--ink);color:var(--cream);font-family:'JetBrains Mono',monospace;padding:15px 18px;margin:14px 0;border-radius:2px;font-size:12.5px;line-height:1.85;}
+  .formula .hl{color:var(--gold);font-weight:600;}
+  .formula .arr{color:#555;}
 
-  /* ── ВНИМАНИЕ ── */
-  .warning { background: #fdf0f0; border: 1px solid #e8b0b0; border-left: 4px solid var(--red); padding: 14px 20px; margin: 14px 0; font-size: 13.5px; }
-  .warning strong { color: var(--red); }
+  /* TABLES */
+  .table-wrap{overflow-x:auto;margin:18px 0;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{background:var(--ink);color:var(--cream);font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;padding:9px 13px;text-align:left;white-space:nowrap;}
+  td{padding:8px 13px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:nth-child(even) td{background:var(--light-cream);}
+  tr:hover td{background:#eee8d8;}
+  .ru{font-weight:600;color:var(--red);}
+  .suffix{display:inline-block;background:var(--gold);color:white;padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;}
+  td code{font-family:'JetBrains Mono',monospace;font-size:12px;background:#eee;padding:1px 5px;border-radius:2px;color:var(--ink);}
 
-  /* ── ТАБЛИЦЫ ── */
-  .table-wrap { overflow-x: auto; margin: 20px 0; }
-  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-  th { background: var(--ink); color: var(--cream); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; padding: 10px 14px; text-align: left; white-space: nowrap; }
-  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  tr:nth-child(even) td { background: var(--light-cream); }
-  tr:hover td { background: #eee8d8; }
-  .ru { font-weight: 600; color: var(--red); }
-  .suffix { display: inline-block; background: var(--gold); color: white; padding: 1px 6px; border-radius: 2px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; }
-  td code, th code { font-family: 'JetBrains Mono', monospace; font-size: 12px; background: rgba(255,255,255,0.15); padding: 1px 5px; border-radius: 2px; }
-  td code { background: #eee; color: var(--ink); }
+  /* COMPARE GRID */
+  .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0;}
+  .compare-box{background:white;border:1px solid var(--border);padding:14px 16px;}
+  .compare-box h4{font-size:11px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px;margin-bottom:9px;padding-bottom:7px;border-bottom:2px solid;}
+  .compare-box.b1 h4{color:var(--blue);border-color:var(--blue);}
+  .compare-box.b2 h4{color:var(--green);border-color:var(--green);}
+  .compare-box.b3 h4{color:var(--orange);border-color:var(--orange);}
+  .compare-box.b4 h4{color:var(--purple);border-color:var(--purple);}
+  .compare-box ul{list-style:none;}
+  .compare-box li{font-size:13px;padding:4px 0;border-bottom:1px solid var(--border);}
+  .compare-box li:last-child{border:none;}
+  .label{font-size:11px;color:#888;display:block;font-style:italic;}
 
-  /* ── СРАВНЕНИЕ ── */
-  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
-  .compare-box { background: white; border: 1px solid var(--border); padding: 16px 18px; }
-  .compare-box h4 { font-size: 12px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid; }
-  .compare-box.b1 h4 { color: var(--blue); border-color: var(--blue); }
-  .compare-box.b2 h4 { color: var(--green); border-color: var(--green); }
-  .compare-box.b3 h4 { color: var(--orange); border-color: var(--orange); }
-  .compare-box.b4 h4 { color: var(--purple); border-color: var(--purple); }
-  .compare-box ul { list-style: none; }
-  .compare-box li { font-size: 13px; padding: 5px 0; border-bottom: 1px solid var(--border); }
-  .compare-box li:last-child { border: none; }
-  .label { font-size: 11px; color: #888; display: block; font-style: italic; }
+  /* BADGES */
+  .badge{display:inline-block;padding:2px 8px;font-family:'JetBrains Mono',monospace;font-size:11px;border-radius:2px;font-weight:600;}
+  .nsv{background:#fde8c8;color:var(--orange);}
+  .sv{background:#d8e8fd;color:var(--blue);}
+  .act{background:#d8fde8;color:var(--green);}
+  .pas{background:#fdd8d8;color:var(--red);}
 
-  /* ── ФОРМУЛА ── */
-  .formula { background: var(--ink); color: var(--cream); font-family: 'JetBrains Mono', monospace; padding: 16px 20px; margin: 16px 0; border-radius: 2px; font-size: 13px; line-height: 1.8; }
-  .formula .hl { color: var(--gold); font-weight: 600; }
-  .formula .arr { color: #666; }
+  /* MEANING TABLE */
+  .meaning-table{border:1px solid var(--border);margin:14px 0;overflow:hidden;}
+  .meaning-table .mt-head{background:var(--blue);color:white;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:8px 14px;display:grid;grid-template-columns:1fr 1fr 1fr;}
+  .meaning-table .mt-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--border);font-size:13px;}
+  .meaning-table .mt-row:nth-child(even){background:var(--light-cream);}
+  .meaning-table .mt-cell{padding:8px 14px;border-right:1px solid var(--border);}
+  .meaning-table .mt-cell:last-child{border:none;}
+  .meaning-table .mt-cell .ru{display:block;}
 
-  /* ── СОВЕТ ── */
-  .tip { display: flex; gap: 12px; align-items: flex-start; background: #f0f4f8; border-left: 3px solid var(--blue); padding: 12px 16px; margin: 12px 0; font-size: 13.5px; }
-  .tip-icon { font-size: 18px; flex-shrink: 0; }
+  /* SPRYAZHENIYE BOX */
+  .sprj-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+  .sprj-box{background:white;border:1px solid var(--border);padding:14px;}
+  .sprj-box h4{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid var(--gold);color:var(--gold);}
+  .sprj-box ul{list-style:none;font-size:12.5px;}
+  .sprj-box li{padding:2px 0;}
 
-  /* ── ЗНАЧКИ ── */
-  .badge { display: inline-block; padding: 2px 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; border-radius: 2px; font-weight: 600; }
-  .nsv { background: #fde8c8; color: var(--orange); }
-  .sv  { background: #d8e8fd; color: var(--blue); }
-  .act { background: #d8fde8; color: var(--green); }
-  .pas { background: #fdd8d8; color: var(--red); }
+  /* ALTERNATIONS GRID */
+  .alt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:7px;margin:10px 0;}
+  .alt-item{background:white;border:1px solid var(--border);padding:7px 11px;font-size:12.5px;}
+  .alt-item .change{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--red);font-size:11px;}
 
-  /* ── КАРТОЧКИ (ФЛЭШКАРДЫ) ── */
-  .flashcard-section { background: var(--ink); padding: 60px 40px; margin: 70px -24px 0; }
-  .flashcard-header { max-width: 920px; margin: 0 auto 40px; text-align: center; }
-  .flashcard-header h2 { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--cream); margin-bottom: 8px; }
-  .flashcard-header p { color: rgba(245,240,232,0.45); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; }
-  .cards-grid { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 16px; }
-  .card { background: #242018; border: 1px solid #3a3020; border-radius: 2px; perspective: 1000px; cursor: pointer; height: 210px; }
-  .card-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.5s ease; }
-  .card.flipped .card-inner { transform: rotateY(180deg); }
-  .card-face { position: absolute; inset: 0; backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
-  .card-front { background: #242018; }
-  .card-back { background: #1a2a1a; transform: rotateY(180deg); }
-  .card-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
-  .card-q { font-family: 'Source Serif 4', serif; font-size: 15px; font-weight: 600; color: var(--cream); line-height: 1.45; }
-  .card-hint { font-size: 11px; color: #555; margin-top: 12px; font-family: 'JetBrains Mono', monospace; }
-  .card-a { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #aad4aa; line-height: 1.75; }
-  .gold-big { color: var(--gold); font-size: 17px; font-weight: 700; }
+  /* FLASHCARDS */
+  .flashcard-section{background:var(--ink);padding:60px 40px;margin:70px -24px 0;}
+  .flashcard-header{max-width:940px;margin:0 auto 38px;text-align:center;}
+  .flashcard-header h2{font-family:'Playfair Display',serif;font-size:34px;font-weight:900;color:var(--cream);margin-bottom:8px;}
+  .flashcard-header p{color:rgba(245,240,232,.4);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;}
+  .cards-grid{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+  .card{background:#242018;border:1px solid #3a3020;border-radius:2px;perspective:1000px;cursor:pointer;height:215px;}
+  .card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .5s ease;}
+  .card.flipped .card-inner{transform:rotateY(180deg);}
+  .card-face{position:absolute;inset:0;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;text-align:center;}
+  .card-front{background:#242018;}
+  .card-back{background:#1a2a1a;transform:rotateY(180deg);}
+  .card-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:11px;}
+  .card-q{font-family:'Source Serif 4',serif;font-size:14.5px;font-weight:600;color:var(--cream);line-height:1.45;}
+  .card-hint{font-size:10px;color:#555;margin-top:11px;font-family:'JetBrains Mono',monospace;}
+  .card-a{font-family:'JetBrains Mono',monospace;font-size:12px;color:#aad4aa;line-height:1.8;}
+  .gold-big{color:var(--gold);font-size:16px;font-weight:700;}
+  .card-new{border-color:#2a4a2a;}
+  .card-new .card-front{background:#1e2a1e;}
 
-  /* ── ТЕСТ ── */
-  .quiz-section { margin: 50px 0; }
-  .quiz-section h3 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 20px; color: var(--ink); border-left: 3px solid var(--gold); padding-left: 14px; }
-  .quiz-item { background: white; border: 1px solid var(--border); padding: 16px 20px; margin-bottom: 12px; }
-  .quiz-q { font-weight: 600; margin-bottom: 10px; font-size: 14px; }
-  .quiz-opts { display: flex; flex-direction: column; gap: 6px; }
-  .quiz-opt { padding: 9px 14px; background: var(--light-cream); border: 1px solid var(--border); cursor: pointer; font-size: 13.5px; transition: all .15s; border-radius: 1px; text-align: left; font-family: 'Source Serif 4', serif; }
-  .quiz-opt:hover:not(:disabled) { background: #e8e0d0; }
-  .quiz-opt.correct { background: #d4f0d4; border-color: #6aaa6a; color: #1a4a1a; font-weight: 600; }
-  .quiz-opt.wrong   { background: #f0d4d4; border-color: #aa6a6a; color: #4a1a1a; }
-  .quiz-feedback { font-size: 13px; margin-top: 8px; display: none; padding: 8px 12px; border-radius: 2px; }
+  /* QUIZ */
+  .quiz-section{margin:48px 0;}
+  .quiz-section h3{font-family:'Playfair Display',serif;font-size:21px;margin-bottom:18px;color:var(--ink);border-left:3px solid var(--gold);padding-left:13px;}
+  .quiz-item{background:white;border:1px solid var(--border);padding:15px 18px;margin-bottom:11px;}
+  .quiz-q{font-weight:600;margin-bottom:9px;font-size:14px;}
+  .quiz-opts{display:flex;flex-direction:column;gap:5px;}
+  .quiz-opt{padding:8px 13px;background:var(--light-cream);border:1px solid var(--border);cursor:pointer;font-size:13px;transition:all .15s;border-radius:1px;text-align:left;font-family:'Source Serif 4',serif;}
+  .quiz-opt:hover:not(:disabled){background:#e8e0d0;}
+  .quiz-opt.correct{background:#d4f0d4;border-color:#6aaa6a;color:#1a4a1a;font-weight:600;}
+  .quiz-opt.wrong{background:#f0d4d4;border-color:#aa6a6a;color:#4a1a1a;}
+  .quiz-feedback{font-size:13px;margin-top:8px;display:none;padding:8px 12px;border-radius:2px;}
 
-  /* ── ПРОКРУТКА НАВЕРХ ── */
-  .scroll-top { position: fixed; bottom: 30px; right: 30px; background: var(--ink); color: var(--cream); border: 1px solid var(--gold); padding: 10px 16px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 12px; z-index: 100; opacity: 0; transition: opacity .3s; pointer-events: none; }
-  .scroll-top.visible { opacity: 1; pointer-events: all; }
+  /* SCROLL TOP */
+  .scroll-top{position:fixed;bottom:28px;right:28px;background:var(--ink);color:var(--cream);border:1px solid var(--gold);padding:9px 14px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:12px;z-index:100;opacity:0;transition:opacity .3s;pointer-events:none;}
+  .scroll-top.visible{opacity:1;pointer-events:all;}
 
-  @media (max-width: 600px) {
-    .compare-grid { grid-template-columns: 1fr; }
-    .section-num { font-size: 40px; }
-    .flashcard-section { padding: 40px 16px; }
-    .cover { padding: 40px 20px; }
+  /* SECTION BREAK */
+  .section-break{margin:50px 0;border-top:1px dashed var(--border);}
+
+  @media(max-width:640px){
+    .compare-grid,.sprj-grid{grid-template-columns:1fr;}
+    .section-num{font-size:40px;}
+    .flashcard-section{padding:36px 14px;}
+    .meaning-table .mt-head,.meaning-table .mt-row{grid-template-columns:1fr;}
+    .meaning-table .mt-cell{border-right:none;border-bottom:1px solid var(--border);}
   }
 </style>
 </head>
@@ -198,14 +169,15 @@
 <div class="cover">
   <div class="cover-border"></div>
   <div class="cover-inner">
-    <div class="cover-label">Учебное пособие · Русская грамматика · Таблицы и карточки</div>
+    <div class="cover-label">Полное учебное пособие · По материалам: Городецкая, Чувалова; Сизова; Кондрашова и др.</div>
     <h1 class="cover-title">Причастие<br>и <span>Деепричастие</span><br>в русском языке</h1>
-    <p class="cover-subtitle">Подробные объяснения, сравнительные таблицы и карточки для повторения</p>
+    <p class="cover-subtitle">Подробные таблицы · Объяснения · Карточки · Тест · Дополненное издание</p>
     <div class="cover-meta">
       <div class="cover-chip">8 тем</div>
-      <div class="cover-chip">Сравнительные таблицы</div>
-      <div class="cover-chip">Карточки для повторения</div>
-      <div class="cover-chip">Тест</div>
+      <div class="cover-chip">Спряжения глаголов</div>
+      <div class="cover-chip">Все чередования</div>
+      <div class="cover-chip">Значения деепричастий</div>
+      <div class="cover-chip">18 карточек</div>
     </div>
   </div>
 </div>
@@ -215,22 +187,75 @@
   <div class="toc-inner">
     <h2>Содержание</h2>
     <div class="toc-grid">
-      <a class="toc-item" href="#t1"><span class="toc-num">01</span><div><span class="toc-text">Пассивные конструкции — НСВ</span><span class="toc-sub">Глаголы несовершенного вида</span></div></a>
-      <a class="toc-item" href="#t2"><span class="toc-num">02</span><div><span class="toc-text">Пассивные конструкции — СВ</span><span class="toc-sub">Краткие причастия</span></div></a>
+      <a class="toc-item" href="#sprj"><span class="toc-num">0</span><div><span class="toc-text">Спряжения глаголов</span><span class="toc-sub">Основа для образования причастий</span></div></a>
+      <a class="toc-item" href="#t1"><span class="toc-num">01</span><div><span class="toc-text">Пассивные конструкции — НСВ</span><span class="toc-sub">Глагол + -ся</span></div></a>
+      <a class="toc-item" href="#t2"><span class="toc-num">02</span><div><span class="toc-text">Пассивные конструкции — СВ</span><span class="toc-sub">Краткие причастия -н/-ен/-т</span></div></a>
       <a class="toc-item" href="#t3"><span class="toc-num">03</span><div><span class="toc-text">Активные причастия настоящего</span><span class="toc-sub">-ущ-/-ющ-/-ащ-/-ящ-</span></div></a>
       <a class="toc-item" href="#t4"><span class="toc-num">04</span><div><span class="toc-text">Активные причастия прошедшего</span><span class="toc-sub">-вш-/-ш-</span></div></a>
-      <a class="toc-item" href="#t5"><span class="toc-num">05</span><div><span class="toc-text">Пассивные причастия настоящего</span><span class="toc-sub">-ем-/-им-</span></div></a>
-      <a class="toc-item" href="#t6"><span class="toc-num">06</span><div><span class="toc-text">Пассивные причастия прошедшего</span><span class="toc-sub">-нн-/-енн-/-т-</span></div></a>
-      <a class="toc-item" href="#t7"><span class="toc-num">07</span><div><span class="toc-text">Деепричастия НСВ</span><span class="toc-sub">Одновременное действие</span></div></a>
-      <a class="toc-item" href="#t8"><span class="toc-num">08</span><div><span class="toc-text">Деепричастия СВ</span><span class="toc-sub">Предшествующее действие</span></div></a>
-      <a class="toc-item" href="#flashcards"><span class="toc-num">★</span><div><span class="toc-text">Карточки для повторения</span><span class="toc-sub">Нажмите, чтобы перевернуть</span></div></a>
+      <a class="toc-item" href="#t5"><span class="toc-num">05</span><div><span class="toc-text">Пассивные причастия настоящего</span><span class="toc-sub">-ем-/-им-/-ом-</span></div></a>
+      <a class="toc-item" href="#t6"><span class="toc-num">06</span><div><span class="toc-text">Пассивные причастия прошедшего</span><span class="toc-sub">-нн-/-енн-/-т- + все чередования</span></div></a>
+      <a class="toc-item" href="#t7"><span class="toc-num">07</span><div><span class="toc-text">Деепричастия НСВ</span><span class="toc-sub">Значения: время, условие, причина…</span></div></a>
+      <a class="toc-item" href="#t8"><span class="toc-num">08</span><div><span class="toc-text">Деепричастия СВ</span><span class="toc-sub">-в/-вши-сь/-ши/-я (движение)</span></div></a>
+      <a class="toc-item" href="#svod"><span class="toc-num">★</span><div><span class="toc-text">Сводная таблица</span><span class="toc-sub">Все формы в одном месте</span></div></a>
+      <a class="toc-item" href="#flashcards"><span class="toc-num">♦</span><div><span class="toc-text">Карточки для повторения</span><span class="toc-sub">18 карточек — нажмите для ответа</span></div></a>
     </div>
   </div>
 </div>
 
 <div class="content">
 
-<!-- ══════════════════════ ТЕМА 1 ══════════════════════ -->
+<!-- ══════ РАЗДЕЛ 0: СПРЯЖЕНИЯ ══════ -->
+<div id="sprj">
+<div class="section-header">
+  <div class="section-num" style="color:var(--gold)">0</div>
+  <div class="section-titles">
+    <p>Основа · Спряжение глаголов</p>
+    <h2>Группы глаголов — основа для всех форм <span class="new-tag">+ из проекта</span></h2>
+  </div>
+</div>
+
+<div class="explain">
+  <h3>Почему это важно?</h3>
+  <p>Все причастия и деепричастия образуются от глагольных основ. Определить суффикс причастия невозможно без знания спряжения (группы) глагола. Спряжение определяет окончание 3-го лица множественного числа настоящего времени.</p>
+</div>
+
+<div class="sprj-grid">
+  <div class="sprj-box">
+    <h4>Спряжение 1 (Группа 1)</h4>
+    <p style="font-size:12px;color:#888;margin-bottom:8px;">Инфинитив на <code>-ать/-ять/-еть/-оть/-уть</code><br>Исключения: брить, стелить</p>
+    <ul>
+      <li>Я — <strong>-у/-ю</strong></li>
+      <li>Ты — <strong>-ешь/-ёшь</strong></li>
+      <li>Он — <strong>-ет/-ёт</strong></li>
+      <li>Мы — <strong>-ем/-ём</strong></li>
+      <li>Вы — <strong>-ете/-ёте</strong></li>
+      <li>Они — <strong style="color:var(--red)">-ут/-ют</strong> → суффикс <span class="suffix">-ущ-/-ющ-</span></li>
+    </ul>
+    <p style="margin-top:10px;font-size:12px;border-top:1px solid var(--border);padding-top:8px;"><span class="ru">читать → читают → читающий</span></p>
+  </div>
+  <div class="sprj-box">
+    <h4>Спряжение 2 (Группа 2)</h4>
+    <p style="font-size:12px;color:#888;margin-bottom:8px;">Инфинитив на <code>-ить</code><br>Исключения: гнать, держать, дышать, слышать, видеть, смотреть, зависеть, ненавидеть, терпеть, вертеть, обидеть</p>
+    <ul>
+      <li>Я — <strong>-у/-ю</strong></li>
+      <li>Ты — <strong>-ишь</strong></li>
+      <li>Он — <strong>-ит</strong></li>
+      <li>Мы — <strong>-им</strong></li>
+      <li>Вы — <strong>-ите</strong></li>
+      <li>Они — <strong style="color:var(--red)">-ат/-ят</strong> → суффикс <span class="suffix">-ащ-/-ящ-</span></li>
+    </ul>
+    <p style="margin-top:10px;font-size:12px;border-top:1px solid var(--border);padding-top:8px;"><span class="ru">говорить → говорят → говорящий</span></p>
+  </div>
+</div>
+
+<div class="key-rule">
+  <strong>Связь спряжения с причастиями:</strong><br>
+  Группа 1 (они -ют/-ут) → активное наст.: <span class="suffix">-ющ-/-ущ-</span> · пассивное наст.: <span class="suffix">-ем-/-ом-</span><br>
+  Группа 2 (они -ят/-ат) → активное наст.: <span class="suffix">-ящ-/-ащ-</span> · пассивное наст.: <span class="suffix">-им-</span>
+</div>
+</div>
+
+<!-- ══════ ТЕМА 1 ══════ -->
 <div id="t1">
 <div class="section-header">
   <div class="section-num">01</div>
@@ -241,79 +266,53 @@
 </div>
 
 <div class="explain">
-  <h3>Что такое пассивная конструкция?</h3>
-  <p>В активной конструкции подлежащее (кто?) само совершает действие. В пассивной конструкции подлежащее (что?) испытывает действие, а производитель действия стоит в <strong>творительном падеже</strong> (кем?). При глаголах НСВ пассив образуется с помощью частицы <strong>-СЯ</strong>.</p>
+  <h3>Принцип</h3>
+  <p>В активной конструкции подлежащее само совершает действие. В пассивной — подлежащее испытывает действие, а производитель стоит в <strong>творительном падеже</strong> (кем?). При глаголах НСВ пассив образуется с помощью <strong>-СЯ</strong>.</p>
 </div>
 
 <div class="formula">
   <span class="hl">АКТИВНАЯ:</span> Кто? (И.п.) <span class="arr">→</span> глагол НСВ <span class="arr">→</span> Что? (В.п.)<br>
-  <span class="hl">ПАССИВНАЯ:</span> Что? (И.п.) <span class="arr">→</span> глагол НСВ + СЯ <span class="arr">→</span> Кем? (Тв.п.)
+  <span class="hl">ПАССИВНАЯ:</span> Что? (И.п.) <span class="arr">→</span> глагол НСВ + СЯ <span class="arr">←</span> Кем? (Тв.п.)
 </div>
 
 <div class="table-wrap">
 <table>
   <thead><tr><th>Активная конструкция</th><th>Пассивная конструкция</th><th>Время</th></tr></thead>
   <tbody>
-    <tr>
-      <td><span class="ru">Декан подписывает документы.</span></td>
-      <td><span class="ru">Документы подписываются деканом.</span></td>
-      <td>Настоящее</td>
-    </tr>
-    <tr>
-      <td><span class="ru">Студенты изучали экономику.</span></td>
-      <td><span class="ru">Экономика изучалась студентами.</span></td>
-      <td>Прошедшее</td>
-    </tr>
-    <tr>
-      <td><span class="ru">Учёные будут обсуждать доклады.</span></td>
-      <td><span class="ru">Доклады будут обсуждаться учёными.</span></td>
-      <td>Будущее</td>
-    </tr>
-    <tr>
-      <td><span class="ru">На улице открывают магазин.</span></td>
-      <td><span class="ru">На улице открывается магазин.</span></td>
-      <td>Без агента</td>
-    </tr>
-    <tr>
-      <td><span class="ru">Государство охраняет природу.</span></td>
-      <td><span class="ru">Природа охраняется государством.</span></td>
-      <td>Настоящее</td>
-    </tr>
+    <tr><td><span class="ru">Декан подписывает документы.</span></td><td><span class="ru">Документы подписываются деканом.</span></td><td>Настоящее</td></tr>
+    <tr><td><span class="ru">Студенты изучали экономику.</span></td><td><span class="ru">Экономика изучалась студентами.</span></td><td>Прошедшее</td></tr>
+    <tr><td><span class="ru">Учёные будут обсуждать доклады.</span></td><td><span class="ru">Доклады будут обсуждаться учёными.</span></td><td>Будущее</td></tr>
+    <tr><td><span class="ru">Преподаватель объясняет грамматику.</span></td><td><span class="ru">Грамматика объясняется преподавателем.</span></td><td>Настоящее</td></tr>
+    <tr><td><span class="ru">Учёные многих стран изучают космос.</span></td><td><span class="ru">Космос изучается учёными многих стран.</span></td><td>Настоящее</td></tr>
   </tbody>
 </table>
 </div>
 
 <div class="key-rule">
-  <strong>Правило:</strong> В пассивной конструкции с НСВ глагол согласуется в <strong>роде, числе и времени</strong> с подлежащим (И.п.). Бывший субъект переходит в <strong>творительный падеж</strong> (кем? чем?).
+  <strong>Правило:</strong> Глагол согласуется с <strong>подлежащим (И.п.)</strong> в роде, числе и времени. Бывший субъект → Тв.п. (кем?). Пассивный глагол НСВ имеет все три времени: наст. / прош. / буд.
 </div>
 
 <div class="compare-grid">
   <div class="compare-box b3">
     <h4>Без производителя действия</h4>
     <ul>
-      <li><span class="ru">В магазине продаются книги.</span><span class="label">Производитель неизвестен или неважен</span></li>
+      <li><span class="ru">В магазине продаются книги.</span><span class="label">производитель неизвестен или неважен</span></li>
       <li><span class="ru">Здесь строится новый дом.</span></li>
-      <li><span class="ru">В 9 часов открывается магазин.</span></li>
+      <li><span class="ru">Дистанционное обучение широко используется.</span></li>
     </ul>
   </div>
   <div class="compare-box b1">
-    <h4>С производителем действия (Тв.п.)</h4>
+    <h4>С производителем (Тв.п.)</h4>
     <ul>
       <li><span class="ru">Книги продаются продавцом.</span></li>
-      <li><span class="ru">Дом строится рабочими.</span></li>
-      <li><span class="ru">Закон принимается парламентом.</span></li>
+      <li><span class="ru">Грамматика объясняется преподавателем.</span></li>
+      <li><span class="ru">Технологии применяются преподавателями.</span></li>
     </ul>
   </div>
 </div>
-
-<div class="warning">
-  <strong>Внимание!</strong> Глагол пассивной конструкции всегда согласуется с <em>подлежащим</em> (И.п.), а не с производителем действия (Тв.п.):<br>
-  <span class="ru">Учёный<strong>и</strong> исследу<strong>ют</strong> проблему. → Проблема исследу<strong>ется</strong> учёными.</span><br>
-  <span class="ru">Студент<strong>ы</strong> изучал<strong>и</strong> тему. → Тема изучал<strong>ась</strong> студентами.</span>
-</div>
 </div>
 
-<!-- ══════════════════════ ТЕМА 2 ══════════════════════ -->
+<!-- ══════ ТЕМА 2 ══════ -->
 <div id="t2">
 <div class="section-header">
   <div class="section-num">02</div>
@@ -325,29 +324,29 @@
 
 <div class="explain">
   <h3>Краткие пассивные причастия</h3>
-  <p>При глаголах совершенного вида пассив образуется с помощью <strong>кратких пассивных причастий</strong>. Краткая форма согласуется с подлежащим в <strong>роде и числе</strong>, но <em>не склоняется</em>. Производитель действия — в <strong>творительном падеже</strong>.</p>
+  <p>При глаголах СВ пассив выражает <strong>результат завершённого действия</strong>. Используются <strong>краткие пассивные причастия</strong>, которые согласуются с подлежащим в роде и числе, но <em>не склоняются</em>. В прошедшем времени: <span class="ru">был/была/было/были</span> + краткое причастие.</p>
 </div>
 
 <div class="table-wrap">
 <table>
-  <thead><tr><th>Суффикс</th><th>Образование</th><th>Пример инфинитива</th><th>М.р.</th><th>Ж.р.</th><th>С.р.</th><th>Мн.ч.</th></tr></thead>
+  <thead><tr><th>Суффикс</th><th>Образование</th><th>Пример глагола</th><th>М.р.</th><th>Ж.р.</th><th>С.р.</th><th>Мн.ч.</th></tr></thead>
   <tbody>
     <tr>
-      <td><span class="suffix">-н-</span></td>
-      <td>Инфинитив на <code>-ать/-ять/-еть</code><br>→ основа + нн</td>
-      <td><code>написать → написа-</code></td>
+      <td><span class="suffix">-нн-</span></td>
+      <td>Основа инф. на <code>-ать/-ять/-еть</code> + нн</td>
+      <td><code>написать</code></td>
       <td class="ru">написан</td><td class="ru">написана</td><td class="ru">написано</td><td class="ru">написаны</td>
     </tr>
     <tr>
-      <td><span class="suffix">-ен-/-ён-</span></td>
-      <td>Инфинитив на <code>-ить/-ти</code><br>→ основа 1 л. ед.ч. + ен/ён</td>
-      <td><code>решить → реш-</code></td>
+      <td><span class="suffix">-енн-/-ённ-</span></td>
+      <td>Основа 1 л. ед.ч. буд.вр. + ен/ён</td>
+      <td><code>решить</code></td>
       <td class="ru">решён</td><td class="ru">решена</td><td class="ru">решено</td><td class="ru">решены</td>
     </tr>
     <tr>
       <td><span class="suffix">-т-</span></td>
-      <td>Особые глаголы<br>(список ниже)</td>
-      <td><code>открыть → откры-</code></td>
+      <td>Особые глаголы (см. список)</td>
+      <td><code>открыть</code></td>
       <td class="ru">открыт</td><td class="ru">открыта</td><td class="ru">открыто</td><td class="ru">открыты</td>
     </tr>
   </tbody>
@@ -355,63 +354,36 @@
 </div>
 
 <div class="key-rule">
-  <strong>Глаголы с суффиксом -т- (нужно запомнить!):</strong><br>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:6px;margin-top:10px;font-size:13px;">
-    <span class="ru">взять → взят</span>
-    <span class="ru">принять → принят</span>
-    <span class="ru">понять → понят</span>
-    <span class="ru">начать → начат</span>
-    <span class="ru">открыть → открыт</span>
-    <span class="ru">закрыть → закрыт</span>
-    <span class="ru">забыть → забыт</span>
-    <span class="ru">убить → убит</span>
-    <span class="ru">вымыть → вымыт</span>
-    <span class="ru">выпить → выпит</span>
-    <span class="ru">поднять → поднят</span>
-    <span class="ru">снять → снят</span>
-  </div>
-</div>
-
-<div class="warning">
-  <strong>Чередования согласных</strong> при образовании пассивных причастий:<br>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:5px;margin-top:8px;font-size:13px;">
-    <span>б → бл: <span class="ru">употребить → употреблённый</span></span>
-    <span>в → вл: <span class="ru">исправить → исправленный</span></span>
-    <span>п → пл: <span class="ru">купить → купленный</span></span>
-    <span>т → ч: <span class="ru">встретить → встреченный</span></span>
-    <span>т → щ: <span class="ru">возвратить → возвращённый</span></span>
-    <span>с → ш: <span class="ru">пригласить → приглашённый</span></span>
-    <span>з → ж: <span class="ru">изобразить → изображённый</span></span>
-    <span>д → ж: <span class="ru">обидеть → обиженный</span></span>
+  <strong>Полный список глаголов с суффиксом -Т- (запомнить!):</strong>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:5px;margin-top:9px;font-size:13px;">
+    <span class="ru">взять → взятый</span> <span class="ru">принять → принятый</span>
+    <span class="ru">понять → понятый</span> <span class="ru">начать → начатый</span>
+    <span class="ru">открыть → открытый</span> <span class="ru">закрыть → закрытый</span>
+    <span class="ru">забыть → забытый</span> <span class="ru">убить → убитый</span>
+    <span class="ru">вымыть → вымытый</span> <span class="ru">выпить → выпитый</span>
+    <span class="ru">поднять → поднятый</span> <span class="ru">снять → снятый</span>
+    <span class="ru">достигнуть → достигнутый</span> <span class="ru">одеть → одетый</span>
+    <span class="ru">надеть → надетый</span> <span class="ru">обуть → обутый</span>
+    <span class="ru">запереть → запертый</span> <span class="ru">приколоть → приколотый</span>
+    <span class="ru">мять → мятый</span> <span class="ru">шить → шитый</span>
+    <span class="ru">быть (бить) → битый</span> <span class="ru">вылить → вылитый</span>
   </div>
 </div>
 
 <div class="table-wrap" style="margin-top:20px">
 <table>
-  <thead><tr><th>Активная конструкция</th><th>Пассивная (краткая форма)</th></tr></thead>
+  <thead><tr><th>Активная конструкция СВ</th><th>Пассивная (краткая форма)</th><th>Время</th></tr></thead>
   <tbody>
-    <tr>
-      <td><span class="ru">Ректор подписал приказ.</span></td>
-      <td><span class="ru">Приказ подписан ректором.</span></td>
-    </tr>
-    <tr>
-      <td><span class="ru">Профессор прочитал лекцию.</span></td>
-      <td><span class="ru">Лекция прочитана профессором.</span></td>
-    </tr>
-    <tr>
-      <td><span class="ru">Студенты выполнили задание.</span></td>
-      <td><span class="ru">Задание выполнено студентами.</span></td>
-    </tr>
-    <tr>
-      <td><span class="ru">Витамины открыл Николай Лунин.</span></td>
-      <td><span class="ru">Витамины открыты Николаем Луниным.</span></td>
-    </tr>
+    <tr><td><span class="ru">Ректор подписал приказ.</span></td><td><span class="ru">Приказ подписан ректором.</span></td><td>Наст./рез. прош.</td></tr>
+    <tr><td><span class="ru">Студенты изучили основы программирования.</span></td><td><span class="ru">Основы программирования были изучены студентами.</span></td><td>Прошедшее</td></tr>
+    <tr><td><span class="ru">Студенты изучат тему.</span></td><td><span class="ru">Тема будет изучена студентами.</span></td><td>Будущее</td></tr>
+    <tr><td><span class="ru">Ломоносов основал университет.</span></td><td><span class="ru">Университет основан Ломоносовым.</span></td><td>Результат</td></tr>
   </tbody>
 </table>
 </div>
 </div>
 
-<!-- ══════════════════════ ТЕМА 3 ══════════════════════ -->
+<!-- ══════ ТЕМА 3 ══════ -->
 <div id="t3">
 <div class="section-header">
   <div class="section-num">03</div>
@@ -421,48 +393,46 @@
   </div>
 </div>
 
-<div class="explain">
-  <h3>Что такое активное причастие настоящего времени?</h3>
-  <p>Активное причастие настоящего времени описывает действие, которое <strong>сам субъект совершает в данный момент</strong>. Оно заменяет конструкцию <span class="ru">который + глагол НСВ (настоящее время)</span>. Причастие согласуется с существительным в роде, числе и <strong>падеже</strong>.</p>
-</div>
-
 <div class="formula">
-  <span class="hl">Основа образования:</span> форма 3-го лица множественного числа (они…) настоящего времени НСВ<br>
-  <span class="hl">1-е спряжение</span> (они -ют/-ут) → убрать -ют/-ут → + <span class="hl">-ющ-/-ущ-</span> + окончания прилагательного<br>
-  <span class="hl">2-е спряжение</span> (они -ят/-ат) → убрать -ят/-ат → + <span class="hl">-ящ-/-ащ-</span> + окончания прилагательного<br>
-  <span class="hl">Возвратные глаголы:</span> причастие + <span class="hl">-ся</span> (не -сь!)
+  <span class="hl">Основа:</span> Они… (3 л. мн.ч. наст. вр. НСВ)<br>
+  <span class="hl">Группа 1</span> (они -ют/-ут) → убрать окончание → + <span class="hl">-ющ-/-ущ-</span><br>
+  <span class="hl">Группа 2</span> (они -ят/-ат) → убрать окончание → + <span class="hl">-ящ-/-ащ-</span><br>
+  <span class="hl">Возвратные:</span> + <span class="hl">-ся</span> (не -сь!)
 </div>
 
 <div class="table-wrap">
 <table>
-  <thead><tr><th>Инфинитив</th><th>Они (3 л. мн.ч.)</th><th>Суффикс</th><th>Причастие (м.р.)</th><th>Значение</th></tr></thead>
+  <thead><tr><th>Инфинитив</th><th>Они (3 л. мн.ч.)</th><th>Суффикс</th><th>Причастие</th><th>= который…</th></tr></thead>
   <tbody>
-    <tr><td><code>читать</code></td><td class="ru">чита-ют</td><td><span class="suffix">-ющ-</span></td><td class="ru">читающий</td><td>который читает</td></tr>
-    <tr><td><code>проверять</code></td><td class="ru">проверя-ют</td><td><span class="suffix">-ющ-</span></td><td class="ru">проверяющий</td><td>который проверяет</td></tr>
-    <tr><td><code>писать</code></td><td class="ru">пиш-ут</td><td><span class="suffix">-ущ-</span></td><td class="ru">пишущий</td><td>который пишет</td></tr>
-    <tr><td><code>идти</code></td><td class="ru">ид-ут</td><td><span class="suffix">-ущ-</span></td><td class="ru">идущий</td><td>который идёт</td></tr>
-    <tr><td><code>говорить</code></td><td class="ru">говор-ят</td><td><span class="suffix">-ящ-</span></td><td class="ru">говорящий</td><td>который говорит</td></tr>
-    <tr><td><code>лежать</code></td><td class="ru">леж-ат</td><td><span class="suffix">-ащ-</span></td><td class="ru">лежащий</td><td>который лежит</td></tr>
-    <tr><td><code>слышать</code></td><td class="ru">слыш-ат</td><td><span class="suffix">-ащ-</span></td><td class="ru">слышащий</td><td>который слышит</td></tr>
-    <tr><td><code>заниматься</code></td><td class="ru">занима-ют-ся</td><td><span class="suffix">-ющ-ся</span></td><td class="ru">занимающийся</td><td>который занимается</td></tr>
+    <tr><td><code>читать</code></td><td class="ru">читают</td><td><span class="suffix">-ющ-</span></td><td class="ru">читающий</td><td>который читает</td></tr>
+    <tr><td><code>управлять</code></td><td class="ru">управляют</td><td><span class="suffix">-ющ-</span></td><td class="ru">управляющий</td><td>который управляет</td></tr>
+    <tr><td><code>писать</code></td><td class="ru">пишут</td><td><span class="suffix">-ущ-</span></td><td class="ru">пишущий</td><td>который пишет</td></tr>
+    <tr><td><code>идти</code></td><td class="ru">идут</td><td><span class="suffix">-ущ-</span></td><td class="ru">идущий</td><td>который идёт</td></tr>
+    <tr><td><code>говорить</code></td><td class="ru">говорят</td><td><span class="suffix">-ящ-</span></td><td class="ru">говорящий</td><td>который говорит</td></tr>
+    <tr><td><code>слышать</code></td><td class="ru">слышат</td><td><span class="suffix">-ащ-</span></td><td class="ru">слышащий</td><td>который слышит</td></tr>
+    <tr><td><code>лежать</code></td><td class="ru">лежат</td><td><span class="suffix">-ащ-</span></td><td class="ru">лежащий</td><td>который лежит</td></tr>
+    <tr><td><code>заниматься</code></td><td class="ru">занимаются</td><td><span class="suffix">-ющ-ся</span></td><td class="ru">занимающийся</td><td>который занимается</td></tr>
+    <tr><td><code>держаться</code></td><td class="ru">держатся</td><td><span class="suffix">-ащ-ся</span></td><td class="ru">держащийся</td><td>который держится</td></tr>
   </tbody>
 </table>
 </div>
 
-<div class="explain">
-  <h3>Склонение: причастие = прилагательное</h3>
-  <p>Падеж причастия зависит от того, в каком падеже стоит определяемое существительное:</p>
+<div class="warning">
+  <strong>Не имеют формы активного причастия настоящего:</strong> стоить, просить, говорить, учить, платить, кормить + глаголы без настоящего времени (глаголы только СВ).
 </div>
 
+<div class="explain">
+  <h3>Склонение причастия (= прилагательное)</h3>
+</div>
 <div class="table-wrap">
 <table>
   <thead><tr><th>Падеж</th><th>Вопрос</th><th>С который</th><th>С причастием</th></tr></thead>
   <tbody>
     <tr><td>И.п.</td><td>какой?</td><td class="ru">юрист, который работает</td><td class="ru">работающий юрист</td></tr>
-    <tr><td>Р.п.</td><td>какого?</td><td class="ru">юриста, который работает</td><td class="ru">работающего юриста</td></tr>
+    <tr><td>Р.п.</td><td>какого?</td><td class="ru">нет юриста, который работает</td><td class="ru">нет работающего юриста</td></tr>
     <tr><td>Д.п.</td><td>какому?</td><td class="ru">юристу, который работает</td><td class="ru">работающему юристу</td></tr>
-    <tr><td>В.п.</td><td>какого?</td><td class="ru">юриста, который работает</td><td class="ru">работающего юриста</td></tr>
-    <tr><td>Тв.п.</td><td>каким?</td><td class="ru">юристом, который работает</td><td class="ru">работающим юристом</td></tr>
+    <tr><td>В.п.</td><td>какого?</td><td class="ru">вижу юриста, который работает</td><td class="ru">работающего юриста</td></tr>
+    <tr><td>Тв.п.</td><td>каким?</td><td class="ru">с юристом, который работает</td><td class="ru">с работающим юристом</td></tr>
     <tr><td>П.п.</td><td>о каком?</td><td class="ru">о юристе, который работает</td><td class="ru">о работающем юристе</td></tr>
   </tbody>
 </table>
@@ -470,11 +440,11 @@
 
 <div class="tip">
   <span class="tip-icon">💡</span>
-  <div>Активное причастие заменяет только те конструкции, где <span class="ru">который</span> выполняет роль <strong>подлежащего</strong> (И.п.) в придаточном предложении, то есть сам производит действие. Если который стоит в другом падеже, используется пассивное причастие или другой оборот.</div>
+  <div>Активное причастие заменяет только придаточные, где <span class="ru">который</span> — <strong>подлежащее</strong> (И.п.) — т.е. сам выполняет действие. Если который стоит в другом падеже → нужно пассивное причастие или другая конструкция.</div>
 </div>
 </div>
 
-<!-- ══════════════════════ ТЕМА 4 ══════════════════════ -->
+<!-- ══════ ТЕМА 4 ══════ -->
 <div id="t4">
 <div class="section-header">
   <div class="section-num">04</div>
@@ -484,409 +454,422 @@
   </div>
 </div>
 
-<div class="explain">
-  <h3>Образование и значение</h3>
-  <p>Активное причастие прошедшего времени заменяет конструкцию <span class="ru">который + глагол НСВ/СВ (прошедшее время)</span>. Образуется от формы прошедшего времени мужского рода единственного числа.</p>
-</div>
-
 <div class="formula">
-  <span class="hl">Если форма оканчивается на -Л:</span> убрать -л → + <span class="hl">-вш-</span> + окончания прилагательного<br>
-  <span class="hl">Если форма НЕ оканчивается на -л (согласная):</span> → + <span class="hl">-ш-</span> + окончания прилагательного<br>
-  <span class="hl">Возвратные глаголы:</span> причастие + <span class="hl">-ся</span> (всегда -ся, не -сь!)
+  <span class="hl">Основа:</span> форма прошедшего времени м.р. ед.ч. (он…)<br>
+  <span class="hl">Оканчивается на -Л:</span> убрать -л → + <span class="hl">-вш-</span> + окончания прилагательного<br>
+  <span class="hl">Оканчивается на СОГЛАСНУЮ (не -л):</span> + <span class="hl">-ш-</span> + окончания прилагательного<br>
+  <span class="hl">Возвратные:</span> причастие + <span class="hl">-ся</span> (всегда -ся, не -сь!)
 </div>
 
 <div class="table-wrap">
 <table>
-  <thead><tr><th>Инфинитив</th><th>Прош. вр. (он)</th><th>Суффикс</th><th>Причастие</th><th>НСВ или СВ</th></tr></thead>
+  <thead><tr><th>Инфинитив</th><th>Прош.вр. (он)</th><th>Суффикс</th><th>Причастие</th><th>НСВ/СВ</th></tr></thead>
   <tbody>
-    <tr><td><code>читать (НСВ)</code></td><td class="ru">читал</td><td><span class="suffix">-вш-</span></td><td class="ru">читавший</td><td><span class="badge nsv">НСВ</span> действие продолжалось</td></tr>
-    <tr><td><code>прочитать (СВ)</code></td><td class="ru">прочитал</td><td><span class="suffix">-вш-</span></td><td class="ru">прочитавший</td><td><span class="badge sv">СВ</span> действие завершилось</td></tr>
-    <tr><td><code>говорить (НСВ)</code></td><td class="ru">говорил</td><td><span class="suffix">-вш-</span></td><td class="ru">говоривший</td><td><span class="badge nsv">НСВ</span></td></tr>
+    <tr><td><code>читать</code></td><td class="ru">читал</td><td><span class="suffix">-вш-</span></td><td class="ru">читавший</td><td><span class="badge nsv">НСВ</span> — процесс</td></tr>
+    <tr><td><code>прочитать</code></td><td class="ru">прочитал</td><td><span class="suffix">-вш-</span></td><td class="ru">прочитавший</td><td><span class="badge sv">СВ</span> — результат</td></tr>
+    <tr><td><code>говорить</code></td><td class="ru">говорил</td><td><span class="suffix">-вш-</span></td><td class="ru">говоривший</td><td><span class="badge nsv">НСВ</span></td></tr>
+    <tr><td><code>видеть</code></td><td class="ru">видел</td><td><span class="suffix">-вш-</span></td><td class="ru">видевший</td><td><span class="badge nsv">НСВ</span></td></tr>
+    <tr><td><code>написать</code></td><td class="ru">написал</td><td><span class="suffix">-вш-</span></td><td class="ru">написавший</td><td><span class="badge sv">СВ</span></td></tr>
     <tr><td><code>расти</code></td><td class="ru">рос</td><td><span class="suffix">-ш-</span></td><td class="ru">росший</td><td>—</td></tr>
     <tr><td><code>нести</code></td><td class="ru">нёс</td><td><span class="suffix">-ш-</span></td><td class="ru">нёсший</td><td>—</td></tr>
+    <tr><td><code>везти</code></td><td class="ru">вёз</td><td><span class="suffix">-ш-</span></td><td class="ru">вёзший</td><td>—</td></tr>
+    <tr><td><code>помочь</code></td><td class="ru">помог</td><td><span class="suffix">-ш-</span></td><td class="ru">помогший</td><td>—</td></tr>
     <tr><td><code>учиться</code></td><td class="ru">учился</td><td><span class="suffix">-вш-ся</span></td><td class="ru">учившийся</td><td>—</td></tr>
   </tbody>
 </table>
 </div>
 
 <div class="warning">
-  <strong>Неправильные формы — нужно запомнить!</strong><br>
-  <span class="ru">идти → шедший</span> · <span class="ru">прийти → пришедший</span> · <span class="ru">привести → приведший</span> · <span class="ru">исчезнуть → исчезнувший</span>
+  <strong>Неправильные формы — обязательно запомнить!</strong>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:5px;margin-top:8px;font-size:13px;">
+    <span class="ru">идти → шёл → <strong>шедший</strong></span>
+    <span class="ru">прийти → пришёл → <strong>пришедший</strong></span>
+    <span class="ru">уйти → ушёл → <strong>ушедший</strong></span>
+    <span class="ru">найти → нашёл → <strong>нашедший</strong></span>
+    <span class="ru">привести → привёл → <strong>приведший</strong></span>
+    <span class="ru">погибнуть → погиб → <strong>погибший</strong></span>
+    <span class="ru">исчезнуть → исчез → <strong>исчезнувший</strong></span>
+  </div>
 </div>
 
 <div class="compare-grid">
   <div class="compare-box b3">
     <h4>НСВ — действие в процессе (прошлое)</h4>
     <ul>
-      <li><span class="ru">студент, читавший книгу</span><span class="label">= студент, который читал книгу</span></li>
-      <li><span class="ru">профессор, объяснявший тему</span><span class="label">= профессор, который объяснял тему</span></li>
-      <li><span class="ru">дети, игравшие во дворе</span><span class="label">= дети, которые играли во дворе</span></li>
+      <li><span class="ru">студент, читавший книгу</span><span class="label">= который читал книгу (процесс)</span></li>
+      <li><span class="ru">профессор, объяснявший тему</span><span class="label">= который объяснял тему</span></li>
     </ul>
   </div>
   <div class="compare-box b4">
     <h4>СВ — действие завершилось</h4>
     <ul>
-      <li><span class="ru">студент, прочитавший книгу</span><span class="label">= студент, который прочитал книгу</span></li>
-      <li><span class="ru">профессор, объяснивший тему</span><span class="label">= профессор, который объяснил тему</span></li>
-      <li><span class="ru">друг, приехавший из Москвы</span><span class="label">= друг, который приехал из Москвы</span></li>
+      <li><span class="ru">студент, прочитавший книгу</span><span class="label">= который прочитал книгу (факт)</span></li>
+      <li><span class="ru">учёный, открывший закон</span><span class="label">= который открыл закон</span></li>
     </ul>
   </div>
 </div>
 </div>
 
-<!-- ══════════════════════ ТЕМА 5 ══════════════════════ -->
+<!-- ══════ ТЕМА 5 ══════ -->
 <div id="t5">
 <div class="section-header">
   <div class="section-num">05</div>
   <div class="section-titles">
     <p>Тема 5 · Пассивные причастия</p>
-    <h2>Пассивные причастия настоящего времени</h2>
+    <h2>Пассивные причастия настоящего времени <span class="new-tag">+ суффикс -ом-</span></h2>
   </div>
 </div>
 
-<div class="explain">
-  <h3>Образование и значение</h3>
-  <p>Пассивное причастие настоящего времени показывает, что предмет <strong>испытывает действие</strong> в настоящее время. Образуется от формы 1-го лица множественного числа (мы…) глагола НСВ. Заменяет конструкцию <span class="ru">который + НСВ (пассив настоящего времени)</span>.</p>
-</div>
-
 <div class="formula">
-  <span class="hl">1-е спряжение</span> (мы -ем) → основа + <span class="hl">-ем-</span> + окончания прилагательного<br>
-  <span class="hl">2-е спряжение</span> (мы -им) → основа + <span class="hl">-им-</span> + окончания прилагательного<br>
-  <span class="hl">Глаголы на -давать, -знавать, -ставать:</span> от инфинитива: давать → <span class="hl">даваемый</span>
+  <span class="hl">Основа:</span> Мы… (1 л. мн.ч. наст. вр. НСВ)<br>
+  <span class="hl">Группа 1</span> (мы -ем) → основа + <span class="hl">-ем-</span> + окончания прилагательного<br>
+  <span class="hl">Группа 2</span> (мы -им) → основа + <span class="hl">-им-</span> + окончания прилагательного<br>
+  <span class="hl">Особые глаголы движения:</span> мы -ём → + <span class="hl">-ом-</span>
 </div>
 
 <div class="table-wrap">
 <table>
-  <thead><tr><th>Инфинитив</th><th>Мы (1 л. мн.ч.)</th><th>Суффикс</th><th>Причастие</th><th>Синоним (который…)</th></tr></thead>
+  <thead><tr><th>Инфинитив</th><th>Мы (1 л. мн.ч.)</th><th>Суффикс</th><th>Причастие</th><th>= который…</th></tr></thead>
   <tbody>
-    <tr><td><code>выполнять</code></td><td class="ru">выполня-ем</td><td><span class="suffix">-ем-</span></td><td class="ru">выполняемый</td><td class="ru">который выполняют / выполняется</td></tr>
-    <tr><td><code>проверять</code></td><td class="ru">проверя-ем</td><td><span class="suffix">-ем-</span></td><td class="ru">проверяемый</td><td class="ru">который проверяют</td></tr>
-    <tr><td><code>создавать</code></td><td class="ru">создаём</td><td><span class="suffix">-ем-</span></td><td class="ru">создаваемый</td><td class="ru">который создают</td></tr>
-    <tr><td><code>любить</code></td><td class="ru">люб-им</td><td><span class="suffix">-им-</span></td><td class="ru">любимый</td><td class="ru">которого любят</td></tr>
-    <tr><td><code>видеть</code></td><td class="ru">вид-им</td><td><span class="suffix">-им-</span></td><td class="ru">видимый</td><td class="ru">которого видят</td></tr>
-    <tr><td><code>ценить</code></td><td class="ru">цен-им</td><td><span class="suffix">-им-</span></td><td class="ru">ценимый</td><td class="ru">которого ценят</td></tr>
+    <tr><td><code>выполнять</code></td><td class="ru">выполняем</td><td><span class="suffix">-ем-</span></td><td class="ru">выполняемый</td><td>который выполняют</td></tr>
+    <tr><td><code>получать</code></td><td class="ru">получаем</td><td><span class="suffix">-ем-</span></td><td class="ru">получаемый</td><td>который получают</td></tr>
+    <tr><td><code>продавать</code></td><td class="ru">продаём</td><td><span class="suffix">-ем-</span></td><td class="ru">продаваемый</td><td>который продают</td></tr>
+    <tr><td><code>издавать</code></td><td class="ru">издаём</td><td><span class="suffix">-ем-</span></td><td class="ru">издаваемый</td><td>который издают</td></tr>
+    <tr><td><code>передавать</code></td><td class="ru">передаём</td><td><span class="suffix">-ем-</span></td><td class="ru">передаваемый</td><td>который передают</td></tr>
+    <tr><td><code>любить</code></td><td class="ru">любим</td><td><span class="suffix">-им-</span></td><td class="ru">любимый</td><td>которого любят</td></tr>
+    <tr><td><code>видеть</code></td><td class="ru">видим</td><td><span class="suffix">-им-</span></td><td class="ru">видимый</td><td>которого видят</td></tr>
+    <tr><td><code>переводить</code></td><td class="ru">переводим</td><td><span class="suffix">-им-</span></td><td class="ru">переводимый</td><td>который переводят</td></tr>
+    <tr><td><code>нести</code></td><td class="ru">несём</td><td><span class="suffix" style="background:var(--purple)">-ом-</span></td><td class="ru">несомый</td><td>который несут</td></tr>
+    <tr><td><code>вести</code></td><td class="ru">ведём</td><td><span class="suffix" style="background:var(--purple)">-ом-</span></td><td class="ru">ведомый</td><td>который ведут</td></tr>
+    <tr><td><code>искать</code></td><td class="ru">ищем</td><td><span class="suffix" style="background:var(--purple)">-ом-</span></td><td class="ru">искомый</td><td>который ищут</td></tr>
   </tbody>
 </table>
 </div>
 
+<div class="warning">
+  <strong>Не имеют формы пассивного причастия настоящего:</strong> пить, мыть, бить, шить, лить, брать, ждать, писать + стоить, просить, говорить, учить, платить, кормить.
+</div>
+
 <div class="key-rule">
   <strong>Разница: активное и пассивное причастие настоящего времени:</strong><br>
-  <span class="ru">Студенты, <em>изучающие</em> русский язык, учатся на подготовительном факультете.</span><br>
-  <small>→ Активное: студенты сами изучают (кто? → студенты)</small><br><br>
-  <span class="ru">Русский язык, <em>изучаемый</em> студентами, поможет им получить профессию.</span><br>
-  <small>→ Пассивное: язык изучается студентами (что? → язык)</small>
+  <span class="ru">Студенты, <strong>изучающие</strong> русский язык…</span> — активное: студенты сами изучают (кто?)<br>
+  <span class="ru">Русский язык, <strong>изучаемый</strong> студентами…</span> — пассивное: язык изучается студентами (что?)
 </div>
 
 <div class="tip">
   <span class="tip-icon">📝</span>
-  <div><strong>Приставка НЕ- + пассивное причастие настоящего времени</strong> = невозможность:<br>
-  <span class="ru">незабываемый</span> (нельзя забыть) · <span class="ru">невидимый</span> (нельзя увидеть) · <span class="ru">непереводимый</span> (нельзя перевести) · <span class="ru">невыносимый</span> (нельзя вынести) · <span class="ru">неузнаваемый</span> (нельзя узнать) · <span class="ru">нерешаемый</span> (нельзя решить)</div>
+  <div><strong>НЕ- + пассивное причастие настоящего = невозможность:</strong><br>
+  <span class="ru">незабываемый</span> · <span class="ru">невидимый</span> · <span class="ru">непереводимый</span> · <span class="ru">невыносимый</span> · <span class="ru">неузнаваемый</span> · <span class="ru">нерешаемый</span> · <span class="ru">неописуемый</span></div>
 </div>
 </div>
 
-<!-- ══════════════════════ ТЕМА 6 ══════════════════════ -->
+<!-- ══════ ТЕМА 6 ══════ -->
 <div id="t6">
 <div class="section-header">
   <div class="section-num">06</div>
   <div class="section-titles">
     <p>Тема 6 · Пассивные причастия</p>
-    <h2>Пассивные причастия прошедшего времени</h2>
+    <h2>Пассивные причастия прошедшего времени <span class="new-tag">полная таблица чередований</span></h2>
   </div>
-</div>
-
-<div class="explain">
-  <h3>Полные и краткие формы</h3>
-  <p>Пассивное причастие прошедшего времени показывает, что предмет <strong>испытал завершённое действие</strong>. Имеет <strong>полную форму</strong> (склоняется как прилагательное) и <strong>краткую форму</strong> (только для сказуемого, не склоняется). Образуется от глаголов <strong>СВ</strong>.</p>
 </div>
 
 <div class="table-wrap">
 <table>
-  <thead><tr><th>Суффикс</th><th>Глаголы</th><th>Образование</th><th>Полная форма (м.р.)</th><th>Краткая форма (м./ж./с./мн.)</th></tr></thead>
+  <thead><tr><th>Суффикс</th><th>Глаголы</th><th>Образование</th><th>Полная форма (м.р.)</th><th>Краткая (м./ж./с./мн.)</th></tr></thead>
   <tbody>
     <tr>
       <td><span class="suffix">-нн-</span></td>
       <td>На <code>-ать/-ять/-еть</code></td>
       <td>Основа инфинитива + нн</td>
-      <td class="ru">написанный</td>
-      <td class="ru">написан / написана / написано / написаны</td>
+      <td class="ru">написанный, сыгранный, осмеянный, увиденный</td>
+      <td class="ru">написан/а/о/ы</td>
     </tr>
     <tr>
       <td><span class="suffix">-енн-/-ённ-</span></td>
       <td>На <code>-ить/-ти</code></td>
-      <td>Основа 1 л. ед.ч. буд.вр. + ен/ён</td>
-      <td class="ru">решённый</td>
-      <td class="ru">решён / решена / решено / решены</td>
+      <td>Осн. 1 л. ед.ч. буд.вр. + ен/ён</td>
+      <td class="ru">решённый, полученный, принесённый, переведённый, спасённый</td>
+      <td class="ru">решён/а/о/ы</td>
     </tr>
     <tr>
       <td><span class="suffix">-т-</span></td>
-      <td>Особые глаголы</td>
+      <td>Особые (список выше)</td>
       <td>Основа прош.вр. + т</td>
-      <td class="ru">открытый</td>
-      <td class="ru">открыт / открыта / открыто / открыты</td>
+      <td class="ru">открытый, взятый, запертый, приколотый, мятый</td>
+      <td class="ru">открыт/а/о/ы</td>
     </tr>
   </tbody>
 </table>
 </div>
 
-<div class="compare-grid">
+<div class="explain" style="margin-top:20px">
+  <h3>Полная таблица чередований согласных <span class="new-tag">из всех источников</span></h3>
+  <p>При образовании пассивного причастия прошедшего времени от глаголов на <code>-ить</code> происходят чередования — как в форме 1 л. ед.ч. будущего времени:</p>
+</div>
+
+<div class="alt-grid">
+  <div class="alt-item"><span class="change">б → бл</span><br><span class="ru">употребить → употреблённый</span></div>
+  <div class="alt-item"><span class="change">в → вл</span><br><span class="ru">поставить → поставленный<br>исправить → исправленный</span></div>
+  <div class="alt-item"><span class="change">п → пл</span><br><span class="ru">купить → купленный</span></div>
+  <div class="alt-item"><span class="change">т → ч</span><br><span class="ru">встретить → встреченный<br>заметить → замеченный</span></div>
+  <div class="alt-item"><span class="change">т → щ</span><br><span class="ru">возвратить → возвращённый<br>вырастить → выращенный</span></div>
+  <div class="alt-item"><span class="change">с → ш</span><br><span class="ru">бросить → брошенный<br>пригласить → приглашённый</span></div>
+  <div class="alt-item"><span class="change">з → ж</span><br><span class="ru">изобразить → изображённый</span></div>
+  <div class="alt-item"><span class="change">д → ж</span><br><span class="ru">обидеть → обиженный</span></div>
+  <div class="alt-item"><span class="change">д → жд</span><br><span class="ru">освободить → освобождённый<br>победить → побеждённый</span></div>
+  <div class="alt-item"><span class="change">ст → щ</span><br><span class="ru">опустить → опущенный</span></div>
+  <div class="alt-item"><span class="change">ф → фл</span><br><span class="ru">разграфить → разграфлённый</span></div>
+  <div class="alt-item"><span class="change">м → мл</span><br><span class="ru">разгромить → разгромленный</span></div>
+  <div class="alt-item"><span class="change">ч → ж</span><br><span class="ru">подстричь → подстриженный</span></div>
+</div>
+
+<div class="compare-grid" style="margin-top:20px">
   <div class="compare-box b1">
     <h4>Активное причастие прошедшего</h4>
     <ul>
-      <li><span class="ru">профессор, <strong>написавший</strong> книгу</span><span class="label">= профессор, который написал книгу</span></li>
-      <li><span class="ru">студент, <strong>сдавший</strong> экзамен</span><span class="label">= студент, который сдал экзамен</span></li>
-      <li><span class="ru">учёный, <strong>открывший</strong> закон</span><span class="label">= учёный, который открыл закон</span></li>
+      <li><span class="ru">профессор, <strong>написавший</strong> книгу</span><span class="label">= который написал (субъект)</span></li>
+      <li><span class="ru">учёный, <strong>открывший</strong> закон</span><span class="label">= который открыл (субъект)</span></li>
     </ul>
   </div>
   <div class="compare-box b2">
     <h4>Пассивное причастие прошедшего</h4>
     <ul>
-      <li><span class="ru">книга, <strong>написанная</strong> профессором</span><span class="label">= книга, которую написал профессор</span></li>
-      <li><span class="ru">экзамен, <strong>сданный</strong> студентом</span><span class="label">= экзамен, который сдал студент</span></li>
-      <li><span class="ru">закон, <strong>открытый</strong> учёным</span><span class="label">= закон, который открыл учёный</span></li>
+      <li><span class="ru">книга, <strong>написанная</strong> профессором</span><span class="label">= которую написал (объект)</span></li>
+      <li><span class="ru">закон, <strong>открытый</strong> учёным</span><span class="label">= который открыл (объект)</span></li>
     </ul>
   </div>
 </div>
 
 <div class="key-rule">
   <strong>Полная форма vs краткая форма:</strong><br>
-  <span class="ru">Письмо, <em>написанное</em> отцом, лежит на столе.</span> → полная форма = определение (эпитет)<br>
-  <span class="ru">Письмо <em>написано</em> отцом.</span> → краткая форма = сказуемое (предикат)
+  <span class="ru">Письмо, <strong>написанное</strong> отцом, лежит на столе.</span> → полная = определение (эпитет)<br>
+  <span class="ru">Письмо <strong>написано</strong> отцом.</span> → краткая = сказуемое (предикат)<br>
+  <span class="ru">Текст, <strong>переведённый</strong> студентом, был интересным.</span> → полная = определение
 </div>
 </div>
 
-<!-- ══════════════════════ СВОДНАЯ ТАБЛИЦА ══════════════════════ -->
-<div style="margin:60px 0;">
+<!-- ══════ СВОДНАЯ ТАБЛИЦА ══════ -->
+<div id="svod" style="margin:60px 0">
 <div class="section-header" style="margin-top:0">
   <div class="section-num" style="color:var(--gold)">★</div>
   <div class="section-titles">
-    <p>Сводная таблица · Все 4 типа причастий</p>
+    <p>Сводная таблица · Все 5 форм причастий</p>
     <h2>Сравнение всех причастий</h2>
   </div>
 </div>
-
 <div class="table-wrap">
 <table>
-  <thead>
-    <tr>
-      <th>Тип</th><th>Значок</th><th>Основа</th><th>Суффикс</th><th>Вид</th><th>Заменяет</th><th>Пример</th>
-    </tr>
-  </thead>
+  <thead><tr><th>Тип</th><th>Значок</th><th>Основа образования</th><th>Суффикс(ы)</th><th>Вид</th><th>Заменяет</th><th>Пример</th></tr></thead>
   <tbody>
-    <tr>
-      <td><strong>Активное настоящего</strong></td>
-      <td><span class="badge act">Акт. наст.</span></td>
-      <td>3 л. мн.ч. наст. вр.</td>
-      <td><span class="suffix">-ющ-</span> <span class="suffix">-ущ-</span> <span class="suffix">-ящ-</span> <span class="suffix">-ащ-</span></td>
-      <td><span class="badge nsv">НСВ</span></td>
-      <td class="ru">который + НСВ наст. (подлеж.)</td>
-      <td class="ru">читающий студент</td>
-    </tr>
-    <tr>
-      <td><strong>Активное прошедшего</strong></td>
-      <td><span class="badge act">Акт. прош.</span></td>
-      <td>Прош. вр. м.р. ед.ч.</td>
-      <td><span class="suffix">-вш-</span> <span class="suffix">-ш-</span></td>
-      <td><span class="badge nsv">НСВ</span> / <span class="badge sv">СВ</span></td>
-      <td class="ru">который + прош.вр. (подлеж.)</td>
-      <td class="ru">прочитавший студент</td>
-    </tr>
-    <tr>
-      <td><strong>Пассивное настоящего</strong></td>
-      <td><span class="badge pas">Пасс. наст.</span></td>
-      <td>1 л. мн.ч. наст. вр.</td>
-      <td><span class="suffix">-ем-</span> <span class="suffix">-им-</span></td>
-      <td><span class="badge nsv">НСВ</span></td>
-      <td class="ru">который + НСВ (дополнение)</td>
-      <td class="ru">изучаемый язык</td>
-    </tr>
-    <tr>
-      <td><strong>Пассивное прошедшего (полн.)</strong></td>
-      <td><span class="badge pas">Пасс. прош.</span></td>
-      <td>Инфинитив СВ</td>
-      <td><span class="suffix">-нн-</span> <span class="suffix">-енн-</span> <span class="suffix">-т-</span></td>
-      <td><span class="badge sv">СВ</span></td>
-      <td class="ru">который + СВ (дополнение)</td>
-      <td class="ru">прочитанная книга</td>
-    </tr>
-    <tr>
-      <td><strong>Пассивное прошедшего (кратк.)</strong></td>
-      <td><span class="badge pas">Кратк. форма</span></td>
-      <td>Инфинитив СВ</td>
-      <td><span class="suffix">-н/-а/-о/-ы</span> <span class="suffix">-ен/-а/-о/-ы</span> <span class="suffix">-т/-а/-о/-ы</span></td>
-      <td><span class="badge sv">СВ</span></td>
-      <td>Сказуемое: результат действия</td>
-      <td class="ru">книга прочитана</td>
-    </tr>
+    <tr><td><strong>Акт. настоящего</strong></td><td><span class="badge act">Акт.Наст.</span></td><td>3 л. мн.ч. наст.вр.</td><td><span class="suffix">-ющ-</span> <span class="suffix">-ущ-</span> <span class="suffix">-ящ-</span> <span class="suffix">-ащ-</span></td><td><span class="badge nsv">НСВ</span></td><td class="ru">который + НСВ наст. (подл.)</td><td class="ru">читающий</td></tr>
+    <tr><td><strong>Акт. прошедшего</strong></td><td><span class="badge act">Акт.Прош.</span></td><td>Прош.вр. м.р. ед.ч.</td><td><span class="suffix">-вш-</span> <span class="suffix">-ш-</span></td><td><span class="badge nsv">НСВ</span> <span class="badge sv">СВ</span></td><td class="ru">который + прош.вр. (подл.)</td><td class="ru">прочитавший</td></tr>
+    <tr><td><strong>Пасс. настоящего</strong></td><td><span class="badge pas">Пасс.Наст.</span></td><td>1 л. мн.ч. наст.вр.</td><td><span class="suffix">-ем-</span> <span class="suffix">-им-</span> <span class="suffix">-ом-</span></td><td><span class="badge nsv">НСВ</span></td><td class="ru">который + НСВ (доп.)</td><td class="ru">изучаемый</td></tr>
+    <tr><td><strong>Пасс. прош. (полн.)</strong></td><td><span class="badge pas">Пасс.Прош.</span></td><td>Инфинитив СВ</td><td><span class="suffix">-нн-</span> <span class="suffix">-енн-</span> <span class="suffix">-т-</span></td><td><span class="badge sv">СВ</span></td><td class="ru">который + СВ (доп.)</td><td class="ru">прочитанный</td></tr>
+    <tr><td><strong>Пасс. прош. (кратк.)</strong></td><td><span class="badge pas">Кратк.</span></td><td>Инфинитив СВ</td><td><span class="suffix">-н/-а/-о/-ы</span> <span class="suffix">-ён/-а/-о/-ы</span> <span class="suffix">-т/-а/-о/-ы</span></td><td><span class="badge sv">СВ</span></td><td>Сказуемое: результат</td><td class="ru">прочитан/а/о/ы</td></tr>
   </tbody>
 </table>
 </div>
 </div>
 
-<!-- ══════════════════════ ТЕМА 7 ══════════════════════ -->
+<!-- ══════ ТЕМА 7 ══════ -->
 <div id="t7">
 <div class="section-header">
   <div class="section-num">07</div>
   <div class="section-titles">
     <p>Тема 7 · Деепричастия</p>
-    <h2>Деепричастия несовершенного вида</h2>
+    <h2>Деепричастия НСВ <span class="new-tag">+ таблица значений</span></h2>
   </div>
 </div>
 
 <div class="explain">
-  <h3>Что такое деепричастие НСВ?</h3>
-  <p>Деепричастие НСВ выражает действие, которое происходит <strong>одновременно</strong> с основным действием глагола. Деепричастие неизменяемо. <strong>Главное правило: у деепричастия и у глагола-сказуемого — один и тот же субъект действия!</strong></p>
+  <h3>Что такое деепричастие?</h3>
+  <p>Деепричастие — это особая глагольная форма, которая обозначает <strong>добавочное действие</strong> как признак другого процесса. Отвечает на вопросы <strong>что делая? что сделав?</strong> Совмещает признаки глагола и наречия. Деепричастие <strong>неизменяемо</strong>.</p>
+  <p style="margin-top:8px">Деепричастие НСВ выражает действие, <strong>одновременное</strong> с основным действием.</p>
 </div>
 
 <div class="formula">
-  <span class="hl">Основа:</span> форма 3-го лица множественного числа (они…) настоящего времени НСВ<br>
-  <span class="hl">Оканчивается на -ют/-ют (1 спр.):</span> → убрать окончание → + <span class="hl">-я</span><br>
-  <span class="hl">Оканчивается на -ят/-ат (2 спр.):</span> → убрать окончание → + <span class="hl">-а</span><br>
-  <span class="hl">Возвратные глаголы:</span> деепричастие + <span class="hl">-сь</span> (не -ся!)
+  <span class="hl">Основа:</span> 3 л. мн.ч. (они…) наст.вр. НСВ<br>
+  <span class="hl">Оканчивается на -ют/-ют (Гр.1):</span> → убрать → + <span class="hl">-я</span><br>
+  <span class="hl">Оканчивается на -ят/-ат (Гр.2):</span> → убрать → + <span class="hl">-а</span><br>
+  <span class="hl">Возвратные:</span> деепричастие + <span class="hl">-сь</span> (не -ся!)
 </div>
 
 <div class="table-wrap">
 <table>
-  <thead><tr><th>Инфинитив</th><th>Они (3 л. мн.ч.)</th><th>Деепричастие</th><th>Значение</th></tr></thead>
+  <thead><tr><th>Инфинитив</th><th>Они (3 л. мн.ч.)</th><th>Деепричастие НСВ</th></tr></thead>
   <tbody>
-    <tr><td><code>читать</code></td><td class="ru">читают</td><td class="ru"><strong>читая</strong></td><td>читая (в то время как читал)</td></tr>
-    <tr><td><code>объяснять</code></td><td class="ru">объясняют</td><td class="ru"><strong>объясняя</strong></td><td>объясняя</td></tr>
-    <tr><td><code>говорить</code></td><td class="ru">говорят</td><td class="ru"><strong>говоря</strong></td><td>говоря</td></tr>
-    <tr><td><code>кричать</code></td><td class="ru">кричат</td><td class="ru"><strong>крича</strong></td><td>крича</td></tr>
-    <tr><td><code>слышать</code></td><td class="ru">слышат</td><td class="ru"><strong>слыша</strong></td><td>слыша</td></tr>
-    <tr><td><code>идти</code></td><td class="ru">идут</td><td class="ru"><strong>идя</strong></td><td>идя</td></tr>
-    <tr><td><code>заниматься</code></td><td class="ru">занимаются</td><td class="ru"><strong>занимаясь</strong></td><td>занимаясь</td></tr>
-    <tr><td><code>давать</code></td><td>— (от инфинитива)</td><td class="ru"><strong>давая</strong></td><td>давая</td></tr>
+    <tr><td><code>изучать</code></td><td class="ru">изучают</td><td class="ru"><strong>изучая</strong></td></tr>
+    <tr><td><code>заниматься</code></td><td class="ru">занимаются</td><td class="ru"><strong>занимаясь</strong></td></tr>
+    <tr><td><code>слышать</code></td><td class="ru">слышат</td><td class="ru"><strong>слыша</strong></td></tr>
+    <tr><td><code>учиться</code></td><td class="ru">учатся</td><td class="ru"><strong>учась</strong></td></tr>
+    <tr><td><code>давать</code></td><td>от инфинитива</td><td class="ru"><strong>давая</strong></td></tr>
+    <tr><td><code>узнавать</code></td><td>от инфинитива</td><td class="ru"><strong>узнавая</strong></td></tr>
+    <tr><td><code>вставать</code></td><td>от инфинитива</td><td class="ru"><strong>вставая</strong></td></tr>
+    <tr><td><code>быть</code></td><td>будут</td><td class="ru"><strong>будучи</strong></td></tr>
   </tbody>
 </table>
 </div>
 
 <div class="warning">
   <strong>Глаголы, от которых НЕ образуются деепричастия НСВ:</strong><br>
-  Глаголы на <code>-чь</code>: <span class="ru">мочь, беречь, стричь, печь, течь</span><br>
-  Другие: <span class="ru">есть, пить, бить, мыть, петь, стать, писать, резать, платить, расти, ехать, бежать</span>
+  На <code>-чь</code>: <span class="ru">мочь, беречь, стричь, печь, течь</span><br>
+  Другие: <span class="ru">есть, пить, бить, мыть, петь, стать, писать, резать, платить, расти, ехать, бежать, ждать, хотеть</span>
 </div>
 
-<div class="compare-grid">
-  <div class="compare-box b3">
-    <h4>Сложное предложение</h4>
-    <ul>
-      <li><span class="ru">Когда студент переводил текст, он пользовался словарём.</span></li>
-      <li><span class="ru">Если Вы будете заниматься спортом, Вы станете здоровым.</span></li>
-      <li><span class="ru">Пока мы гуляли по городу, мы встретили друга.</span></li>
-    </ul>
+<div class="explain" style="margin-top:20px">
+  <h3>Значения деепричастия НСВ <span class="new-tag">дополнено</span></h3>
+</div>
+<div class="meaning-table">
+  <div class="mt-head"><div>Значение</div><div>Простое предложение</div><div>Синоним (сложное)</div></div>
+  <div class="mt-row">
+    <div class="mt-cell"><strong>Время</strong></div>
+    <div class="mt-cell"><span class="ru">Читая книгу, он улыбался.</span></div>
+    <div class="mt-cell"><span class="ru"><strong>Когда</strong> он читал книгу, он улыбался.</span></div>
   </div>
-  <div class="compare-box b1">
-    <h4>С деепричастием НСВ</h4>
-    <ul>
-      <li><span class="ru">Переводя текст, студент пользовался словарём.</span></li>
-      <li><span class="ru">Занимаясь спортом, Вы станете здоровым.</span></li>
-      <li><span class="ru">Гуляя по городу, мы встретили друга.</span></li>
-    </ul>
+  <div class="mt-row">
+    <div class="mt-cell"><strong>Условие</strong></div>
+    <div class="mt-cell"><span class="ru">Занимаясь спортом, ты станешь здоровым.</span></div>
+    <div class="mt-cell"><span class="ru"><strong>Если</strong> ты будешь заниматься спортом, ты станешь здоровым.</span></div>
+  </div>
+  <div class="mt-row">
+    <div class="mt-cell"><strong>Причина</strong></div>
+    <div class="mt-cell"><span class="ru">Андрей бежал, спеша на занятия.</span></div>
+    <div class="mt-cell"><span class="ru">Андрей бежал, <strong>потому что</strong> спешил на занятия.</span></div>
+  </div>
+  <div class="mt-row">
+    <div class="mt-cell"><strong>Уступка</strong></div>
+    <div class="mt-cell"><span class="ru">Зная правило, он всё равно делал ошибки.</span></div>
+    <div class="mt-cell"><span class="ru"><strong>Хотя</strong> он знал правило, он всё равно делал ошибки.</span></div>
+  </div>
+  <div class="mt-row">
+    <div class="mt-cell"><strong>Образ действия</strong></div>
+    <div class="mt-cell"><span class="ru">Студенты слушали, записывая.</span></div>
+    <div class="mt-cell"><span class="ru">Студенты слушали <strong>и</strong> записывали.</span></div>
   </div>
 </div>
 
 <div class="key-rule">
-  <strong>Главное правило деепричастия:</strong> Субъект деепричастия и субъект глагола-сказуемого — <strong>одно и то же лицо!</strong><br><br>
+  <strong>Главное правило!</strong> Субъект деепричастия и субъект глагола-сказуемого — <strong>одно и то же лицо</strong>:<br>
   ✅ <span class="ru">Читая книгу, <strong>я</strong> слушал музыку.</span> (я читал И я слушал)<br>
-  ❌ <span class="ru">~~Читая книгу, музыка звучала.~~</span> (кто читал? — неизвестно; кто звучал? — музыка)<br><br>
-  <strong>Время деепричастия НСВ = время глагола-сказуемого:</strong><br>
-  <span class="ru">Читая…, я повторяю / я повторял / я буду повторять грамматику.</span>
+  ❌ <span class="ru">~~Читая книгу, музыка звучала.~~</span> (кто читал? ≠ кто звучал?)<br><br>
+  <strong>Согласование времён:</strong> деепричастие НСВ не меняет форму — меняется только глагол-сказуемое:<br>
+  <span class="ru">Читая… я повторяю / повторял / буду повторять грамматику.</span>
 </div>
 </div>
 
-<!-- ══════════════════════ ТЕМА 8 ══════════════════════ -->
+<!-- ══════ ТЕМА 8 ══════ -->
 <div id="t8">
 <div class="section-header">
   <div class="section-num">08</div>
   <div class="section-titles">
     <p>Тема 8 · Деепричастия</p>
-    <h2>Деепричастия совершенного вида</h2>
+    <h2>Деепричастия СВ <span class="new-tag">полные правила образования</span></h2>
   </div>
 </div>
 
 <div class="explain">
-  <h3>Что такое деепричастие СВ?</h3>
-  <p>Деепричастие СВ выражает действие, которое было <strong>завершено до начала основного действия</strong>. Заменяет конструкции <span class="ru">после того как, когда, как только, если</span>. Тот же субъект!</p>
-</div>
-
-<div class="formula">
-  <span class="hl">Основа:</span> форма прошедшего времени мужского рода ед.ч. (он…)<br>
-  <span class="hl">Оканчивается на -Л:</span> убрать -л → + <span class="hl">-в</span><br>
-  <span class="hl">НЕ оканчивается на -л (согласная):</span> → + <span class="hl">-ши</span><br>
-  <span class="hl">Возвратные глаголы:</span> деепричастие + <span class="hl">-вши-сь</span>
+  <h3>Значение и образование</h3>
+  <p>Деепричастие СВ выражает действие, <strong>завершённое до начала основного действия</strong>. Отвечает на вопрос <strong>что сделав?</strong> Синонимы: <span class="ru">после того как, когда, как только</span>. Тот же субъект!</p>
 </div>
 
 <div class="table-wrap">
 <table>
-  <thead><tr><th>Инфинитив (СВ)</th><th>Прош. вр. (он)</th><th>Деепричастие СВ</th><th>Значение</th></tr></thead>
+  <thead><tr><th>Случай</th><th>Правило</th><th>Пример инфинитива</th><th>Деепричастие СВ</th></tr></thead>
   <tbody>
-    <tr><td><code>прочитать</code></td><td class="ru">прочитал</td><td class="ru"><strong>прочитав</strong></td><td>прочитав (после того как прочитал)</td></tr>
-    <tr><td><code>написать</code></td><td class="ru">написал</td><td class="ru"><strong>написав</strong></td><td>написав</td></tr>
-    <tr><td><code>построить</code></td><td class="ru">построил</td><td class="ru"><strong>построив</strong></td><td>построив</td></tr>
-    <tr><td><code>получить</code></td><td class="ru">получил</td><td class="ru"><strong>получив</strong></td><td>получив</td></tr>
-    <tr><td><code>познакомиться</code></td><td class="ru">познакомился</td><td class="ru"><strong>познакомившись</strong></td><td>познакомившись</td></tr>
-    <tr><td><code>встретиться</code></td><td class="ru">встретился</td><td class="ru"><strong>встретившись</strong></td><td>встретившись</td></tr>
-    <tr><td><code>вырасти</code></td><td class="ru">вырос</td><td class="ru"><strong>выросши</strong></td><td>выросши</td></tr>
+    <tr>
+      <td><strong>Стандарт — глаголы без -ся</strong></td>
+      <td>Убрать -ть → + <span class="suffix">-в</span></td>
+      <td><code>встретить, сказать, изучить</code></td>
+      <td class="ru"><strong>встретив, сказав, изучив</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Глаголы на -сть</strong></td>
+      <td>Убрать -сть → + <span class="suffix">-в</span></td>
+      <td><code>поесть, упасть</code></td>
+      <td class="ru"><strong>поев, упав</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Возвратные на -ся</strong></td>
+      <td>Убрать -ться → + <span class="suffix">-вшись</span></td>
+      <td><code>познакомиться, умыться</code></td>
+      <td class="ru"><strong>познакомившись, умывшись</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Движение на -ти (-ти, -дти)</strong></td>
+      <td>3 л. мн.ч. буд.вр. → убрать → + <span class="suffix">-я</span></td>
+      <td><code>принести, выйти, перевести</code></td>
+      <td class="ru"><strong>принеся, выйдя, переведя</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Глаголы на -чь</strong></td>
+      <td>Прош.вр. м.р. + <span class="suffix">-ши</span></td>
+      <td><code>испечь, протечь</code></td>
+      <td class="ru"><strong>испёкши, протёкши</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Согласная + -ти</strong></td>
+      <td>Прош.вр. м.р. + <span class="suffix">-ши</span></td>
+      <td><code>спасти, вырасти</code></td>
+      <td class="ru"><strong>спасши, выросши</strong></td>
+    </tr>
   </tbody>
 </table>
 </div>
 
 <div class="warning">
-  <strong>Глаголы движения с -йти — нужно запомнить отдельно!</strong><br>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:6px;margin-top:8px;font-size:13px;">
-    <span class="ru">прийти → придя</span>
-    <span class="ru">уйти → уйдя</span>
-    <span class="ru">войти → войдя</span>
-    <span class="ru">выйти → выйдя</span>
-    <span class="ru">перейти → перейдя</span>
-    <span class="ru">пройти → пройдя</span>
-    <span class="ru">зайти → зайдя</span>
-    <span class="ru">дойти → дойдя</span>
-    <span class="ru">обойти → обойдя</span>
-    <span class="ru">перевести → переведя</span>
-    <span class="ru">принести → принеся</span>
-    <span class="ru">унести → унеся</span>
+  <strong>Глаголы движения на -йти — таблица обязательно!</strong>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px;margin-top:8px;font-size:13px;">
+    <span class="ru">прийти → придут → <strong>придя</strong></span>
+    <span class="ru">уйти → уйдут → <strong>уйдя</strong></span>
+    <span class="ru">войти → войдут → <strong>войдя</strong></span>
+    <span class="ru">выйти → выйдут → <strong>выйдя</strong></span>
+    <span class="ru">перейти → перейдут → <strong>перейдя</strong></span>
+    <span class="ru">пройти → пройдут → <strong>пройдя</strong></span>
+    <span class="ru">зайти → зайдут → <strong>зайдя</strong></span>
+    <span class="ru">дойти → дойдут → <strong>дойдя</strong></span>
+    <span class="ru">обойти → обойдут → <strong>обойдя</strong></span>
+    <span class="ru">принести → принесут → <strong>принеся</strong></span>
+    <span class="ru">отнести → отнесут → <strong>отнеся</strong></span>
+    <span class="ru">унести → унесут → <strong>унеся</strong></span>
+    <span class="ru">перевести → переведут → <strong>переведя</strong></span>
+    <span class="ru">привезти → привезут → <strong>привезя</strong></span>
+    <span class="ru">возвратиться → возвратятся → <strong>возвратясь</strong></span>
   </div>
-  <small style="color:#999;margin-top:6px;display:block">Образуются от формы 3 л. мн.ч. будущего времени: придут → при<strong>дя</strong></small>
 </div>
 
 <div class="compare-grid">
   <div class="compare-box b3">
     <h4>Деепричастие НСВ — одновременно</h4>
     <ul>
-      <li><span class="ru">Гуляя по городу, друзья заходили в магазины.</span><span class="label">= Когда они гуляли, они заходили</span></li>
-      <li><span class="ru">Читая книгу, он слушал музыку.</span><span class="label">= Пока он читал, он слушал</span></li>
+      <li><span class="ru">Гуляя по городу, мы говорили.</span><span class="label">Когда мы гуляли, мы говорили.</span></li>
+      <li><span class="ru">Читая книгу, он улыбался.</span><span class="label">Пока он читал, он улыбался.</span></li>
     </ul>
   </div>
   <div class="compare-box b4">
     <h4>Деепричастие СВ — предшествует</h4>
     <ul>
-      <li><span class="ru">Прочитав книгу, он отдал её другу.</span><span class="label">= После того как прочитал, отдал</span></li>
-      <li><span class="ru">Войдя в аудиторию, студент сел.</span><span class="label">= Как только вошёл, сел</span></li>
+      <li><span class="ru">Прочитав книгу, он отдал её другу.</span><span class="label">После того как прочитал, отдал.</span></li>
+      <li><span class="ru">Войдя в аудиторию, студент сел.</span><span class="label">Как только вошёл, сел.</span></li>
     </ul>
   </div>
 </div>
 
-<!-- Сравнительная таблица деепричастий -->
-<div style="margin-top:30px">
 <div class="table-wrap">
 <table>
   <thead><tr><th>Критерий</th><th>Деепричастие НСВ</th><th>Деепричастие СВ</th></tr></thead>
   <tbody>
-    <tr><td><strong>Тип действия</strong></td><td>Одновременное с основным</td><td>Завершённое до основного</td></tr>
-    <tr><td><strong>Основа</strong></td><td>3 л. мн.ч. наст. вр.</td><td>Прош. вр. м.р. ед.ч.</td></tr>
-    <tr><td><strong>Суффикс</strong></td><td class="ru"><strong>-я / -а (+ -сь)</strong></td><td class="ru"><strong>-в / -ши (+ -сь)</strong></td></tr>
-    <tr><td><strong>Синоним</strong></td><td class="ru">когда, пока, если</td><td class="ru">после того как, как только</td></tr>
-    <tr><td><strong>Пример</strong></td><td class="ru">Читая книгу, он улыбался.</td><td class="ru">Прочитав книгу, он улыбнулся.</td></tr>
-    <tr><td><strong>Зависит ли от времени глагола?</strong></td><td>Нет — сама форма не меняется</td><td>Нет — сама форма не меняется</td></tr>
+    <tr><td>Тип действия</td><td>Одновременное с основным</td><td>Завершённое до основного</td></tr>
+    <tr><td>Основа</td><td>3 л. мн.ч. наст. вр.</td><td>Прош.вр. м.р. ед.ч. / 3 л. мн.ч. буд.вр.</td></tr>
+    <tr><td>Суффикс</td><td class="ru"><strong>-я / -а (+ -сь)</strong></td><td class="ru"><strong>-в / -вшись / -ши / -я</strong></td></tr>
+    <tr><td>Синоним</td><td class="ru">когда, пока, если, так как, хотя</td><td class="ru">после того как, как только</td></tr>
+    <tr><td>Вопрос</td><td>что делая?</td><td>что сделав?</td></tr>
   </tbody>
 </table>
-</div>
 </div>
 
 <!-- ТЕСТ -->
 <div class="quiz-section">
-  <h3>Проверьте себя: НСВ или СВ?</h3>
+  <h3>Проверьте себя</h3>
 
   <div class="quiz-item">
     <div class="quiz-q">1. <span class="ru">___ письмо, я сразу ответил на него.</span></div>
@@ -895,7 +878,7 @@
       <button class="quiz-opt" onclick="checkQ(this,'correct')">Получив</button>
       <button class="quiz-opt" onclick="checkQ(this,'wrong')">Получая</button>
     </div>
-    <div class="quiz-feedback"><strong>Правильно: Получив</strong> (СВ) — сначала получил письмо, потом ответил. Два последовательных действия → деепричастие СВ.</div>
+    <div class="quiz-feedback"><strong>Получив</strong> (СВ) — сначала получил, потом ответил. Последовательные действия → деепричастие СВ.</div>
   </div>
 
   <div class="quiz-item">
@@ -905,47 +888,57 @@
       <button class="quiz-opt" onclick="checkQ(this,'wrong')">Погуляв</button>
       <button class="quiz-opt" onclick="checkQ(this,'wrong')">Гулявший</button>
     </div>
-    <div class="quiz-feedback"><strong>Правильно: Гуляя</strong> (НСВ) — действия одновременные: гуляли и заходили в магазины в то же время.</div>
+    <div class="quiz-feedback"><strong>Гуляя</strong> (НСВ) — одновременные действия: гуляли и заходили в магазины.</div>
   </div>
 
   <div class="quiz-item">
-    <div class="quiz-q">3. <span class="ru">___ домой, мы начали готовить ужин.</span></div>
+    <div class="quiz-q">3. <span class="ru">Пассивное причастие настоящего от «нести»</span></div>
     <div class="quiz-opts">
-      <button class="quiz-opt" onclick="checkQ(this,'wrong')">Возвращаясь</button>
-      <button class="quiz-opt" onclick="checkQ(this,'correct')">Вернувшись</button>
-      <button class="quiz-opt" onclick="checkQ(this,'wrong')">Вернувший</button>
+      <button class="quiz-opt" onclick="checkQ(this,'wrong')">несимый</button>
+      <button class="quiz-opt" onclick="checkQ(this,'correct')">несомый</button>
+      <button class="quiz-opt" onclick="checkQ(this,'wrong')">несённый</button>
     </div>
-    <div class="quiz-feedback"><strong>Правильно: Вернувшись</strong> (СВ) — сначала вернулись, потом начали готовить. Последовательные действия → СВ.</div>
+    <div class="quiz-feedback"><strong>несомый</strong> — глаголы движения (нести, вести, искать) образуют пассивное причастие наст. с суффиксом <strong>-ом-</strong>, а не -ем- или -им-.</div>
   </div>
 
   <div class="quiz-item">
-    <div class="quiz-q">4. <span class="ru">Студент, ___ книгу в библиотеке, сдал её вовремя.</span> — Какой тип причастия нужен?</div>
+    <div class="quiz-q">4. <span class="ru">Деепричастие СВ от «выйти»</span></div>
     <div class="quiz-opts">
-      <button class="quiz-opt" onclick="checkQ(this,'wrong')">берущий (активное настоящего)</button>
-      <button class="quiz-opt" onclick="checkQ(this,'correct')">взявший (активное прошедшего СВ)</button>
-      <button class="quiz-opt" onclick="checkQ(this,'wrong')">взятый (пассивное прошедшего)</button>
+      <button class="quiz-opt" onclick="checkQ(this,'wrong')">вышив</button>
+      <button class="quiz-opt" onclick="checkQ(this,'wrong')">выходя</button>
+      <button class="quiz-opt" onclick="checkQ(this,'correct')">выйдя</button>
     </div>
-    <div class="quiz-feedback"><strong>Правильно: взявший</strong> — активное причастие прошедшего СВ. Студент сам взял книгу (он = субъект действия). Замена: студент, который взял книгу.</div>
+    <div class="quiz-feedback"><strong>выйдя</strong> — глаголы движения на -йти: выйдут → убрать -ут → + -я → выйдя.</div>
   </div>
 
   <div class="quiz-item">
-    <div class="quiz-q">5. <span class="ru">Книга, ___ студентом в библиотеке, лежит на столе.</span></div>
+    <div class="quiz-q">5. <span class="ru">Студент, ___ книгу в библиотеке, сдал её вовремя.</span> — тип причастия?</div>
     <div class="quiz-opts">
-      <button class="quiz-opt" onclick="checkQ(this,'wrong')">взявшая (активное прошедшего)</button>
-      <button class="quiz-opt" onclick="checkQ(this,'wrong')">берущая (активное настоящего)</button>
-      <button class="quiz-opt" onclick="checkQ(this,'correct')">взятая (пассивное прошедшего)</button>
+      <button class="quiz-opt" onclick="checkQ(this,'wrong')">берущий (акт. наст.)</button>
+      <button class="quiz-opt" onclick="checkQ(this,'correct')">взявший (акт. прош. СВ)</button>
+      <button class="quiz-opt" onclick="checkQ(this,'wrong')">взятый (пасс. прош.)</button>
     </div>
-    <div class="quiz-feedback"><strong>Правильно: взятая</strong> — пассивное причастие прошедшего СВ. Книга = объект действия (её взяли). Замена: книга, которую взял студент.</div>
+    <div class="quiz-feedback"><strong>взявший</strong> — активное прошедшего СВ. Студент сам взял книгу (он = субъект). Синоним: студент, который взял книгу.</div>
   </div>
 
   <div class="quiz-item">
-    <div class="quiz-q">6. Почему это предложение неправильное? <span class="ru" style="color:var(--red)">Читая книгу, музыка звучала.</span></div>
+    <div class="quiz-q">6. <span class="ru">Пассивное причастие прошедшего от «пригласить»</span></div>
     <div class="quiz-opts">
-      <button class="quiz-opt" onclick="checkQ(this,'wrong')">Неправильный суффикс деепричастия</button>
-      <button class="quiz-opt" onclick="checkQ(this,'correct')">У деепричастия и глагола разные субъекты</button>
-      <button class="quiz-opt" onclick="checkQ(this,'wrong')">Нужно использовать деепричастие СВ</button>
+      <button class="quiz-opt" onclick="checkQ(this,'wrong')">пригластый</button>
+      <button class="quiz-opt" onclick="checkQ(this,'correct')">приглашённый</button>
+      <button class="quiz-opt" onclick="checkQ(this,'wrong')">приглашавший</button>
     </div>
-    <div class="quiz-feedback"><strong>Правильно: разные субъекты.</strong> Кто читал? — неизвестно. Кто звучал? — музыка. Деепричастие и глагол-сказуемое должны иметь один и тот же субъект!<br>✅ Правильно: <span class="ru">Читая книгу, <strong>я</strong> слышал музыку.</span></div>
+    <div class="quiz-feedback"><strong>приглашённый</strong> — чередование с→ш: пригласить → приглашу → приглашённый. Это активное причастие не подходит, а «пригластый» не существует.</div>
+  </div>
+
+  <div class="quiz-item">
+    <div class="quiz-q">7. Почему это предложение неправильное? <span class="ru" style="color:var(--red)">Читая книгу, музыка звучала.</span></div>
+    <div class="quiz-opts">
+      <button class="quiz-opt" onclick="checkQ(this,'wrong')">Неправильный суффикс</button>
+      <button class="quiz-opt" onclick="checkQ(this,'correct')">У деепричастия и глагола — разные субъекты</button>
+      <button class="quiz-opt" onclick="checkQ(this,'wrong')">Нужно деепричастие СВ</button>
+    </div>
+    <div class="quiz-feedback"><strong>Разные субъекты!</strong> Кто читал? (неизвестно) ≠ кто звучал? (музыка). ✅ Правильно: <span class="ru">Читая книгу, <strong>я</strong> слышал музыку.</span></div>
   </div>
 </div>
 
@@ -953,91 +946,45 @@
 <div class="section-header" style="margin-top:60px">
   <div class="section-num" style="color:var(--gold)">∑</div>
   <div class="section-titles">
-    <p>Итоговая таблица · Полный обзор</p>
-    <h2>Все формы — в одной таблице</h2>
+    <p>Итоговая таблица</p>
+    <h2>Все формы — причастия и деепричастия</h2>
   </div>
 </div>
-
 <div class="table-wrap">
 <table>
-  <thead>
-    <tr><th>Форма</th><th>Основа образования</th><th>Суффикс(ы)</th><th>Вид</th><th>Значение / синоним</th></tr>
-  </thead>
+  <thead><tr><th>Форма</th><th>Основа</th><th>Суффикс(ы)</th><th>Вид</th><th>Синоним</th></tr></thead>
   <tbody>
-    <tr>
-      <td><strong>Акт. причастие наст.</strong></td>
-      <td>3 л. мн.ч. наст. вр.</td>
-      <td><span class="suffix">-ющ-</span> <span class="suffix">-ущ-</span> <span class="suffix">-ящ-</span> <span class="suffix">-ащ-</span></td>
-      <td><span class="badge nsv">НСВ</span></td>
-      <td class="ru">который + НСВ наст. (подл.)</td>
-    </tr>
-    <tr>
-      <td><strong>Акт. причастие прош.</strong></td>
-      <td>Прош. вр. м.р. ед.ч.</td>
-      <td><span class="suffix">-вш-</span> <span class="suffix">-ш-</span></td>
-      <td><span class="badge nsv">НСВ</span> <span class="badge sv">СВ</span></td>
-      <td class="ru">который + прош.вр. (подл.)</td>
-    </tr>
-    <tr>
-      <td><strong>Пасс. причастие наст.</strong></td>
-      <td>1 л. мн.ч. наст. вр.</td>
-      <td><span class="suffix">-ем-</span> <span class="suffix">-им-</span></td>
-      <td><span class="badge nsv">НСВ</span></td>
-      <td class="ru">который + НСВ (доп.)</td>
-    </tr>
-    <tr>
-      <td><strong>Пасс. причастие прош. (полн.)</strong></td>
-      <td>Инфинитив СВ</td>
-      <td><span class="suffix">-нн-</span> <span class="suffix">-енн-</span> <span class="suffix">-т-</span></td>
-      <td><span class="badge sv">СВ</span></td>
-      <td class="ru">который + СВ (доп.)</td>
-    </tr>
-    <tr>
-      <td><strong>Пасс. причастие прош. (кратк.)</strong></td>
-      <td>Инфинитив СВ</td>
-      <td><span class="suffix">-н/-а/-о/-ы</span> <span class="suffix">-ен/-а/-о/-ы</span> <span class="suffix">-т/-а/-о/-ы</span></td>
-      <td><span class="badge sv">СВ</span></td>
-      <td>Сказуемое (результат)</td>
-    </tr>
-    <tr>
-      <td><strong>Деепричастие НСВ</strong></td>
-      <td>3 л. мн.ч. наст. вр.</td>
-      <td><span class="suffix">-я</span> <span class="suffix">-а</span> <span class="suffix">-ясь</span></td>
-      <td><span class="badge nsv">НСВ</span></td>
-      <td class="ru">когда, пока (одновременно)</td>
-    </tr>
-    <tr>
-      <td><strong>Деепричастие СВ</strong></td>
-      <td>Прош. вр. м.р. ед.ч.</td>
-      <td><span class="suffix">-в</span> <span class="suffix">-ши</span> <span class="suffix">-вшись</span></td>
-      <td><span class="badge sv">СВ</span></td>
-      <td class="ru">после того как (предшествует)</td>
-    </tr>
+    <tr><td><strong>Акт. причастие наст.</strong></td><td>3 л. мн.ч. наст.вр.</td><td><span class="suffix">-ющ-</span><span class="suffix">-ущ-</span><span class="suffix">-ящ-</span><span class="suffix">-ащ-</span></td><td><span class="badge nsv">НСВ</span></td><td class="ru">который + НСВ наст. (подл.)</td></tr>
+    <tr><td><strong>Акт. причастие прош.</strong></td><td>Прош.вр. м.р. ед.ч.</td><td><span class="suffix">-вш-</span><span class="suffix">-ш-</span></td><td><span class="badge nsv">НСВ</span><span class="badge sv">СВ</span></td><td class="ru">который + прош.вр. (подл.)</td></tr>
+    <tr><td><strong>Пасс. причастие наст.</strong></td><td>1 л. мн.ч. наст.вр.</td><td><span class="suffix">-ем-</span><span class="suffix">-им-</span><span class="suffix">-ом-</span></td><td><span class="badge nsv">НСВ</span></td><td class="ru">который + НСВ (доп.)</td></tr>
+    <tr><td><strong>Пасс. причастие прош. (полн.)</strong></td><td>Инфинитив СВ</td><td><span class="suffix">-нн-</span><span class="suffix">-енн-</span><span class="suffix">-т-</span></td><td><span class="badge sv">СВ</span></td><td class="ru">который + СВ (доп.)</td></tr>
+    <tr><td><strong>Пасс. причастие прош. (кратк.)</strong></td><td>Инфинитив СВ</td><td><span class="suffix">-н/-а</span><span class="suffix">-ён/-а</span><span class="suffix">-т/-а</span></td><td><span class="badge sv">СВ</span></td><td>Сказуемое (результат)</td></tr>
+    <tr><td><strong>Деепричастие НСВ</strong></td><td>3 л. мн.ч. наст.вр.</td><td><span class="suffix">-я</span><span class="suffix">-а</span><span class="suffix">-ясь</span></td><td><span class="badge nsv">НСВ</span></td><td class="ru">когда, пока, если, так как, хотя</td></tr>
+    <tr><td><strong>Деепричастие СВ</strong></td><td>Прош.вр. м.р. / 3 л. мн.ч. буд.вр.</td><td><span class="suffix">-в</span><span class="suffix">-вшись</span><span class="suffix">-ши</span><span class="suffix">-я</span></td><td><span class="badge sv">СВ</span></td><td class="ru">после того как, как только</td></tr>
   </tbody>
 </table>
 </div>
-
 </div><!-- end t8 -->
-</div><!-- end .content -->
+</div><!-- end content -->
 
-<!-- ══════════════════════ КАРТОЧКИ ══════════════════════ -->
+<!-- ══════ КАРТОЧКИ ══════ -->
 <div class="flashcard-section" id="flashcards">
   <div class="flashcard-header">
-    <h2>Карточки для повторения</h2>
-    <p>Нажмите на карточку, чтобы увидеть ответ</p>
+    <h2>Карточки для повторения — 18 карточек</h2>
+    <p>Нажмите на карточку, чтобы увидеть ответ · Зелёные карточки — из дополнительных источников</p>
   </div>
   <div class="cards-grid">
 
     <div class="card" onclick="this.classList.toggle('flipped')">
       <div class="card-inner">
         <div class="card-face card-front">
-          <div class="card-tag">Активное причастие настоящего</div>
+          <div class="card-tag">Акт. причастие настоящего</div>
           <div class="card-q">Образуйте причастие от глагола <span style="color:var(--gold)">писать</span></div>
           <div class="card-hint">↓ нажмите для ответа</div>
         </div>
         <div class="card-face card-back">
           <div class="card-tag">Ответ</div>
-          <div class="card-a">пишут → пиш- + <strong style="color:var(--gold)">ущ</strong> + ий<br><br><span class="gold-big">пишущий</span><br><br>который пишет<br>(1 спр., оканчивается на -ут)</div>
+          <div class="card-a">пишут → пиш- + <strong style="color:var(--gold)">ущ</strong><br><br><span class="gold-big">пишущий</span><br><br>Гр.1 (они -ут) → -ущ-<br>«который пишет»</div>
         </div>
       </div>
     </div>
@@ -1045,13 +992,13 @@
     <div class="card" onclick="this.classList.toggle('flipped')">
       <div class="card-inner">
         <div class="card-face card-front">
-          <div class="card-tag">Активное причастие прошедшего</div>
-          <div class="card-q">Трансформируйте: <span style="color:var(--gold)">учёный, который открыл закон</span></div>
+          <div class="card-tag">Акт. причастие прошедшего</div>
+          <div class="card-q">Образуйте: <span style="color:var(--gold)">учёный, который открыл закон</span></div>
           <div class="card-hint">↓ нажмите для ответа</div>
         </div>
         <div class="card-face card-back">
           <div class="card-tag">Ответ</div>
-          <div class="card-a">открыл → откры<strong style="color:var(--gold)">л</strong> → убрать -л → + <strong style="color:var(--gold)">вш</strong><br><br><span class="gold-big">учёный, открывший закон</span><br><br>Активное причастие прош. СВ</div>
+          <div class="card-a">открыл → откры<strong style="color:var(--gold)">л</strong> → убрать → + вш<br><br><span class="gold-big">учёный, открывший закон</span><br><br>Акт. прош. СВ</div>
         </div>
       </div>
     </div>
@@ -1059,13 +1006,13 @@
     <div class="card" onclick="this.classList.toggle('flipped')">
       <div class="card-inner">
         <div class="card-face card-front">
-          <div class="card-tag">Пассивное причастие прошедшего</div>
+          <div class="card-tag">Пасс. причастие прошедшего</div>
           <div class="card-q">Образуйте полное пассивное причастие от <span style="color:var(--gold)">решить</span></div>
           <div class="card-hint">↓ нажмите для ответа</div>
         </div>
         <div class="card-face card-back">
           <div class="card-tag">Ответ</div>
-          <div class="card-a">реш-ил → реш- + <strong style="color:var(--gold)">ённ</strong><br><br><span class="gold-big">решённый</span><br><br>Краткие: решён / решена / решено / решены<br>Внимание на ударение!</div>
+          <div class="card-a">реш-ил → реш + <strong style="color:var(--gold)">ённ</strong><br><br><span class="gold-big">решённый</span><br>решён / решена / решено / решены<br><br>⚠ Ударение на -ённ-!</div>
         </div>
       </div>
     </div>
@@ -1079,7 +1026,7 @@
         </div>
         <div class="card-face card-back">
           <div class="card-tag">Ответ</div>
-          <div class="card-a">читают → чита- + <strong style="color:var(--gold)">я</strong><br><br><span class="gold-big">Читая, он слушал музыку.</span><br><br>Действия одновременны → НСВ<br>Субъект один — он</div>
+          <div class="card-a">читают → чита- + <strong style="color:var(--gold)">я</strong><br><br><span class="gold-big">Читая, он слушал музыку.</span><br><br>Одновременно → НСВ · Один субъект!</div>
         </div>
       </div>
     </div>
@@ -1093,7 +1040,7 @@
         </div>
         <div class="card-face card-back">
           <div class="card-tag">Ответ</div>
-          <div class="card-a">получила → получи- + <strong style="color:var(--gold)">в</strong><br><br><span class="gold-big">Получив диплом, она уехала.</span><br><br>Сначала получила, потом уехала → СВ</div>
+          <div class="card-a">получить → убрать -ть → + <strong style="color:var(--gold)">в</strong><br><br><span class="gold-big">Получив диплом, она уехала.</span><br><br>Сначала получила, потом уехала → СВ</div>
         </div>
       </div>
     </div>
@@ -1101,7 +1048,7 @@
     <div class="card" onclick="this.classList.toggle('flipped')">
       <div class="card-inner">
         <div class="card-face card-front">
-          <div class="card-tag">Пассивная конструкция НСВ</div>
+          <div class="card-tag">Пасс. конструкция НСВ</div>
           <div class="card-q">Трансформируйте: <span style="color:var(--gold)">Задание выполняется студентами.</span></div>
           <div class="card-hint">↓ нажмите для ответа</div>
         </div>
@@ -1112,16 +1059,30 @@
       </div>
     </div>
 
-    <div class="card" onclick="this.classList.toggle('flipped')">
+    <div class="card card-new" onclick="this.classList.toggle('flipped')">
       <div class="card-inner">
-        <div class="card-face card-front">
-          <div class="card-tag">Глаголы движения</div>
-          <div class="card-q">Деепричастия СВ от: <span style="color:var(--gold)">прийти · войти · выйти · уйти</span></div>
+        <div class="card-face card-front" style="background:#1e2a1e">
+          <div class="card-tag">Суффикс -ОМ- ★ новое</div>
+          <div class="card-q">Пассивное причастие настоящего от: <span style="color:var(--gold)">нести · вести · искать</span></div>
           <div class="card-hint">↓ нажмите для ответа</div>
         </div>
         <div class="card-face card-back">
           <div class="card-tag">Ответ</div>
-          <div class="card-a">Образуются от 3 л. мн.ч. будущего:<br>придут → <span class="gold-big">придя</span><br>войдут → <span class="gold-big">войдя</span><br>выйдут → <span class="gold-big">выйдя</span><br>уйдут → <span class="gold-big">уйдя</span></div>
+          <div class="card-a">несём → нес + <strong style="color:var(--gold)">ом</strong> → <span class="gold-big">несомый</span><br>ведём → вед + <strong style="color:var(--gold)">ом</strong> → <span class="gold-big">ведомый</span><br>ищем → иск + <strong style="color:var(--gold)">ом</strong> → <span class="gold-big">искомый</span><br><br>Особые глаголы! Суффикс -ОМ-</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-new" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-face card-front" style="background:#1e2a1e">
+          <div class="card-tag">Дееприч. СВ на -сть ★ новое</div>
+          <div class="card-q">Деепричастие СВ от: <span style="color:var(--gold)">поесть · упасть · украсть</span></div>
+          <div class="card-hint">↓ нажмите для ответа</div>
+        </div>
+        <div class="card-face card-back">
+          <div class="card-tag">Ответ</div>
+          <div class="card-a">поесть → убрать -сть → по<strong style="color:var(--gold)">в</strong><br>упасть → убрать -сть → упа<strong style="color:var(--gold)">в</strong><br>украсть → убрать -сть → украв<br><br><span class="gold-big">поев · упав · укравши</span><br>Глаголы на -сть: минус -сть + -в</div>
         </div>
       </div>
     </div>
@@ -1129,8 +1090,22 @@
     <div class="card" onclick="this.classList.toggle('flipped')">
       <div class="card-inner">
         <div class="card-face card-front">
-          <div class="card-tag">Краткая форма — суффикс -т-</div>
-          <div class="card-q">Краткая форма от <span style="color:var(--gold)">открыть</span> во всех родах и числе</div>
+          <div class="card-tag">Глаголы движения</div>
+          <div class="card-q">Деепричастие СВ от: <span style="color:var(--gold)">прийти · войти · выйти · уйти</span></div>
+          <div class="card-hint">↓ нажмите для ответа</div>
+        </div>
+        <div class="card-face card-back">
+          <div class="card-tag">Ответ</div>
+          <div class="card-a">придут → приду<strong style="color:var(--gold)">т</strong> → придя<br><br><span class="gold-big">придя · войдя · выйдя · уйдя</span><br><br>3 л.мн.ч. буд.вр. → убрать → + -я</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-face card-front">
+          <div class="card-tag">Краткая форма — суффикс -Т-</div>
+          <div class="card-q">Краткая форма от <span style="color:var(--gold)">открыть</span> во всех родах</div>
           <div class="card-hint">↓ нажмите для ответа</div>
         </div>
         <div class="card-face card-back">
@@ -1144,12 +1119,12 @@
       <div class="card-inner">
         <div class="card-face card-front">
           <div class="card-tag">НЕ- + причастие</div>
-          <div class="card-q">Объясните значение слов: <span style="color:var(--gold)">незабываемый · невидимый · непереводимый</span></div>
+          <div class="card-q">Объясните: <span style="color:var(--gold)">незабываемый · невидимый · неописуемый</span></div>
           <div class="card-hint">↓ нажмите для ответа</div>
         </div>
         <div class="card-face card-back">
           <div class="card-tag">Ответ</div>
-          <div class="card-a"><span class="gold-big">незабываемый</span> = нельзя забыть<br><span class="gold-big">невидимый</span> = нельзя увидеть<br><span class="gold-big">непереводимый</span> = нельзя перевести<br><br>НЕ- + пассивное причастие НСВ = невозможность</div>
+          <div class="card-a"><span class="gold-big">незабываемый</span> = нельзя забыть<br><span class="gold-big">невидимый</span> = нельзя увидеть<br><span class="gold-big">неописуемый</span> = нельзя описать<br><br>НЕ- + пасс. причастие НСВ = невозможность</div>
         </div>
       </div>
     </div>
@@ -1158,12 +1133,40 @@
       <div class="card-inner">
         <div class="card-face card-front">
           <div class="card-tag">Активное vs Пассивное прошедшего</div>
-          <div class="card-q">Разница между: <span style="color:var(--gold)">написавший / написанный</span></div>
+          <div class="card-q">Разница: <span style="color:var(--gold)">написавший / написанный</span></div>
           <div class="card-hint">↓ нажмите для ответа</div>
         </div>
         <div class="card-face card-back">
           <div class="card-tag">Ответ</div>
-          <div class="card-a"><span class="gold-big">написавший</span> = АКТИВНОЕ<br>тот, кто написал (субъект)<br>профессор, написавший книгу<br><br><span class="gold-big">написанный</span> = ПАССИВНОЕ<br>то, что написал кто-то (объект)<br>книга, написанная профессором</div>
+          <div class="card-a"><span class="gold-big">написавший</span> = АКТИВНОЕ<br>кто написал (субъект)<br>профессор, написавший книгу<br><br><span class="gold-big">написанный</span> = ПАССИВНОЕ<br>что было написано (объект)<br>книга, написанная профессором</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-new" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-face card-front" style="background:#1e2a1e">
+          <div class="card-tag">Чередования ★ новое</div>
+          <div class="card-q">Пассивные причастия прош. от: <span style="color:var(--gold)">купить · освободить · опустить</span></div>
+          <div class="card-hint">↓ нажмите для ответа</div>
+        </div>
+        <div class="card-face card-back">
+          <div class="card-tag">Ответ</div>
+          <div class="card-a">п→пл: <span class="gold-big">купленный</span><br>д→жд: <span class="gold-big">освобождённый</span><br>ст→щ: <span class="gold-big">опущенный</span><br><br>Купить → куплю → купленный<br>Освободить → освобожу → освобождённый</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-new" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-face card-front" style="background:#1e2a1e">
+          <div class="card-tag">Значения дееприч. НСВ ★ новое</div>
+          <div class="card-q">Какие значения может выражать деепричастие НСВ? Дайте синонимы.</div>
+          <div class="card-hint">↓ нажмите для ответа</div>
+        </div>
+        <div class="card-face card-back">
+          <div class="card-tag">Ответ</div>
+          <div class="card-a"><strong style="color:var(--gold)">Время:</strong> когда, пока<br><strong style="color:var(--gold)">Условие:</strong> если<br><strong style="color:var(--gold)">Причина:</strong> так как, потому что<br><strong style="color:var(--gold)">Уступка:</strong> хотя<br><strong style="color:var(--gold)">Образ действия:</strong> и (однородные)</div>
         </div>
       </div>
     </div>
@@ -1171,13 +1174,41 @@
     <div class="card" onclick="this.classList.toggle('flipped')">
       <div class="card-inner">
         <div class="card-face card-front">
-          <div class="card-tag">Чередования согласных</div>
-          <div class="card-q">Образуйте пассивные причастия прошедшего от: <span style="color:var(--gold)">купить · встретить · пригласить</span></div>
+          <div class="card-tag">Пасс. причастие наст.</div>
+          <div class="card-q">Образуйте от: <span style="color:var(--gold)">проверять · любить · передавать</span></div>
           <div class="card-hint">↓ нажмите для ответа</div>
         </div>
         <div class="card-face card-back">
           <div class="card-tag">Ответ</div>
-          <div class="card-a">п → пл: <span class="gold-big">купленный</span><br>т → ч: <span class="gold-big">встреченный</span><br>с → ш: <span class="gold-big">приглашённый</span><br><br>Внимание на чередования!<br>Куплю → купленный<br>Встречу → встреченный</div>
+          <div class="card-a">проверяем → <span class="gold-big">проверяемый</span><br>любим → <span class="gold-big">любимый</span><br>передаём → <span class="gold-big">передаваемый</span><br><br>-ем- / -им- / -ем- (от инфинитива)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-new" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-face card-front" style="background:#1e2a1e">
+          <div class="card-tag">Спряжение → причастие ★ новое</div>
+          <div class="card-q">Почему <span style="color:var(--gold)">слышать</span> → <span style="color:var(--gold)">слышащий</span>, а не «слышющий»?</div>
+          <div class="card-hint">↓ нажмите для ответа</div>
+        </div>
+        <div class="card-face card-back">
+          <div class="card-tag">Ответ</div>
+          <div class="card-a">слышать — исключение Гр.2!<br>(они слыш<strong style="color:var(--gold)">ат</strong>, не слышют)<br><br>→ они слышат → -ат → убрать → + -ащ-<br><br><span class="gold-big">слышащий</span><br><br>Смотреть, видеть, держать, дышать — так же!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-new" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-face card-front" style="background:#1e2a1e">
+          <div class="card-tag">Неправильные акт. прош. ★ новое</div>
+          <div class="card-q">Активное причастие прошедшего от: <span style="color:var(--gold)">нести · везти · помочь · погибнуть</span></div>
+          <div class="card-hint">↓ нажмите для ответа</div>
+        </div>
+        <div class="card-face card-back">
+          <div class="card-tag">Ответ</div>
+          <div class="card-a">нёс + ш → <span class="gold-big">нёсший</span><br>вёз + ш → <span class="gold-big">вёзший</span><br>помог + ш → <span class="gold-big">помогший</span><br>погиб + ш → <span class="gold-big">погибший</span><br><br>Форма прош.вр. на согласную → + -ш-</div>
         </div>
       </div>
     </div>
@@ -1185,13 +1216,13 @@
     <div class="card" onclick="this.classList.toggle('flipped')">
       <div class="card-inner">
         <div class="card-face card-front">
-          <div class="card-tag">Пассивное причастие настоящего</div>
-          <div class="card-q">Образуйте причастие от <span style="color:var(--gold)">проверять</span> и <span style="color:var(--gold)">любить</span></div>
+          <div class="card-tag">Правило субъекта</div>
+          <div class="card-q">Почему это предложение неправильное? <span style="color:#ff8888">Читая книгу, музыка звучала.</span></div>
           <div class="card-hint">↓ нажмите для ответа</div>
         </div>
         <div class="card-face card-back">
           <div class="card-tag">Ответ</div>
-          <div class="card-a">мы проверяем → проверя + <strong style="color:var(--gold)">ем</strong><br><span class="gold-big">проверяемый</span><br>(задание, которое проверяют)<br><br>мы любим → люб + <strong style="color:var(--gold)">им</strong><br><span class="gold-big">любимый</span><br>(тот, которого любят)</div>
+          <div class="card-a">Деепричастие и глагол должны иметь <strong style="color:var(--gold)">один субъект</strong>!<br><br>Кто читал? (никто) ≠ кто звучал? (музыка)<br><br>✅ <span style="color:#aad4aa">Читая книгу, <strong>я</strong> слышал музыку.</span></div>
         </div>
       </div>
     </div>
@@ -1201,22 +1232,22 @@
 
 <div class="content" style="padding-top:40px;">
 <div style="text-align:center;margin-top:50px;padding:40px 30px;background:var(--ink);color:var(--cream);">
-  <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--gold);margin-bottom:10px;">Желаем успехов на экзамене! 🎓</div>
-  <div style="font-size:13px;color:rgba(245,240,232,0.45);font-family:'JetBrains Mono',monospace;margin-top:8px;">Причастие и деепричастие в русском языке · По пособию Городецкой и Чуваловой</div>
+  <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--gold);margin-bottom:10px;">Желаем успехов на экзамене! 🎓</div>
+  <div style="font-size:12px;color:rgba(245,240,232,.4);font-family:'JetBrains Mono',monospace;margin-top:6px;">Источники: Городецкая & Чувалова · Сизова Т.Ф. · Кондрашова и др. · Рабочий лист уровня B1</div>
 </div>
 </div>
 
 <button class="scroll-top" id="scrollBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Наверх</button>
 
 <script>
-  function checkQ(btn, result) {
+  function checkQ(btn, r) {
     const item = btn.closest('.quiz-item');
     item.querySelectorAll('.quiz-opt').forEach(o => o.disabled = true);
-    btn.classList.add(result);
+    btn.classList.add(r);
     const fb = item.querySelector('.quiz-feedback');
     fb.style.display = 'block';
-    fb.style.background = result === 'correct' ? '#d4f0d4' : '#f0d4d4';
-    fb.style.color = result === 'correct' ? '#1a4a1a' : '#4a1a1a';
+    fb.style.background = r === 'correct' ? '#d4f0d4' : '#f0d4d4';
+    fb.style.color = r === 'correct' ? '#1a4a1a' : '#4a1a1a';
     fb.style.padding = '10px 14px';
   }
   window.addEventListener('scroll', () => {
